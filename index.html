@@ -237,10 +237,6 @@ footer{
   font-size:12px;color:var(--muted)
 }
 
-/* =========================
-   کارت ویزیت
-========================= */
-
 .brand-card{
   background:var(--card);
   border:1px solid var(--line);
@@ -303,15 +299,17 @@ footer{
 </nav>
 
 <div class="nav-actions">
+
 <button class="icon-btn" id="themeBtn">🌙</button>
 
 <div id="authArea">
 <button class="btn" onclick="openModal('login')">ورود</button>
 </div>
 
-<button class="mobile-menu icon-btn" onclick="openModal('menu')">☰</button>
-</div>
+<button class="mobile-menu icon-btn"
+onclick="openModal('menu')">☰</button>
 
+</div>
 </div>
 </header>
 
@@ -322,7 +320,9 @@ footer{
 
 <div>
 
-<span class="badge">🚀 یادگیری، ساختن، پیشرفت کردن</span>
+<span class="badge">
+🚀 یادگیری، ساختن، پیشرفت کردن
+</span>
 
 <h1>
 ایده‌ات را به یک
@@ -336,22 +336,47 @@ footer{
 </p>
 
 <div class="hero-buttons">
-<a class="btn big" href="#courses">شروع یادگیری ←</a>
-<a class="btn secondary big" href="#services">مشاهده خدمات</a>
+<a class="btn big" href="#courses">
+شروع یادگیری ←
+</a>
+
+<a class="btn secondary big" href="#services">
+مشاهده خدمات
+</a>
 </div>
 
 <div class="stats">
-<div class="stat"><strong>۱۰+</strong><span>دوره آموزشی</span></div>
-<div class="stat"><strong>۲۰+</strong><span>پروژه</span></div>
-<div class="stat"><strong>۱۰۰٪</strong><span>تمرکز روی یادگیری</span></div>
-<div class="stat"><strong>24/7</strong><span>دسترسی به سایت</span></div>
+
+<div class="stat">
+<strong>۱۰+</strong>
+<span>دوره آموزشی</span>
+</div>
+
+<div class="stat">
+<strong>۲۰+</strong>
+<span>پروژه</span>
+</div>
+
+<div class="stat">
+<strong>۱۰۰٪</strong>
+<span>تمرکز روی یادگیری</span>
+</div>
+
+<div class="stat">
+<strong>24/7</strong>
+<span>دسترسی به سایت</span>
+</div>
+
 </div>
 
 </div>
 
 <div class="code-card">
+
 <div class="code-top">
-<i class="dot"></i><i class="dot"></i><i class="dot"></i>
+<i class="dot"></i>
+<i class="dot"></i>
+<i class="dot"></i>
 </div>
 
 <pre><span class="c-purple">const</span> <span class="c-blue">dream</span> = {
@@ -381,21 +406,35 @@ footer{
 
 <div class="filters">
 
-<input id="search" class="search"
+<input
+id="search"
+class="search"
 placeholder="🔎 جستجوی دوره..."
 oninput="renderCourses()">
 
-<button class="chip active"
-onclick="setCat(this,'all')">همه</button>
+<button
+class="chip active"
+onclick="setCat(this,'all')">
+همه
+</button>
 
-<button class="chip"
-onclick="setCat(this,'web')">وب</button>
+<button
+class="chip"
+onclick="setCat(this,'web')">
+وب
+</button>
 
-<button class="chip"
-onclick="setCat(this,'programming')">برنامه‌نویسی</button>
+<button
+class="chip"
+onclick="setCat(this,'programming')">
+برنامه‌نویسی
+</button>
 
-<button class="chip"
-onclick="setCat(this,'design')">طراحی</button>
+<button
+class="chip"
+onclick="setCat(this,'design')">
+طراحی
+</button>
 
 </div>
 
@@ -417,33 +456,69 @@ onclick="setCat(this,'design')">طراحی</button>
 <div class="grid">
 
 <div class="card">
+
 <div class="course-icon">🌐</div>
+
 <h3>طراحی سایت</h3>
-<p>ساخت سایت مدرن، واکنش‌گرا و مناسب موبایل.</p>
+
+<p>
+ساخت سایت مدرن، واکنش‌گرا و مناسب موبایل.
+</p>
+
 <div class="card-row">
 <b>سفارشی</b>
-<button class="btn" onclick="order('طراحی سایت')">سفارش</button>
+
+<button
+class="btn"
+onclick="order('طراحی سایت')">
+سفارش
+</button>
 </div>
+
 </div>
 
 <div class="card">
+
 <div class="course-icon">🎨</div>
+
 <h3>طراحی پوستر</h3>
-<p>طراحی پوستر، بنر و محتوای تصویری جذاب.</p>
+
+<p>
+طراحی پوستر، بنر و محتوای تصویری جذاب.
+</p>
+
 <div class="card-row">
 <b>سفارشی</b>
-<button class="btn" onclick="order('طراحی پوستر')">سفارش</button>
+
+<button
+class="btn"
+onclick="order('طراحی پوستر')">
+سفارش
+</button>
 </div>
+
 </div>
 
 <div class="card">
+
 <div class="course-icon">💻</div>
+
 <h3>پروژه برنامه‌نویسی</h3>
-<p>کمک در ساخت پروژه‌های آموزشی و شخصی.</p>
+
+<p>
+کمک در ساخت پروژه‌های آموزشی و شخصی.
+</p>
+
 <div class="card-row">
 <b>سفارشی</b>
-<button class="btn" onclick="order('پروژه برنامه‌نویسی')">سفارش</button>
+
+<button
+class="btn"
+onclick="order('پروژه برنامه‌نویسی')">
+سفارش
+</button>
 </div>
+
 </div>
 
 </div>
@@ -456,7 +531,9 @@ onclick="setCat(this,'design')">طراحی</button>
 <div class="section-head">
 <div>
 <h2>✨ چرا اینجا؟</h2>
-<p>همه‌چیز ساده، کاربردی و پروژه‌محور طراحی شده است.</p>
+<p>
+همه‌چیز ساده، کاربردی و پروژه‌محور طراحی شده است.
+</p>
 </div>
 </div>
 
@@ -465,28 +542,30 @@ onclick="setCat(this,'design')">طراحی</button>
 <div class="card feature">
 <div class="emoji">🎯</div>
 <b>یادگیری هدفمند</b>
-<p>به‌جای حفظ کردن، با ساخت پروژه یاد می‌گیری.</p>
+<p>
+به‌جای حفظ کردن، با ساخت پروژه یاد می‌گیری.
+</p>
 </div>
 
 <div class="card feature">
 <div class="emoji">📱</div>
 <b>کاملاً واکنش‌گرا</b>
-<p>سایت روی موبایل، تبلت و کامپیوتر ظاهر مناسبی دارد.</p>
+<p>
+سایت روی موبایل، تبلت و کامپیوتر ظاهر مناسبی دارد.
+</p>
 </div>
 
 <div class="card feature">
 <div class="emoji">⚡</div>
 <b>سریع و سبک</b>
-<p>بدون نیاز به کتابخانه‌های سنگین، با HTML و CSS و JavaScript.</p>
+<p>
+بدون نیاز به کتابخانه‌های سنگین، با HTML و CSS و JavaScript.
+</p>
 </div>
 
 </div>
 </div>
 </section>
-
-<!-- =========================
-     برند و کارت ویزیت
-========================= -->
 
 <section class="section" id="brand">
 <div class="container">
@@ -515,35 +594,55 @@ alt="کارت ویزیت من">
 <div class="section-head">
 <div>
 <h2>📩 ارتباط با ما</h2>
-<p>برای سفارش پروژه یا ارسال پیام فرم زیر را پر کن.</p>
+<p>
+برای سفارش پروژه یا ارسال پیام فرم زیر را پر کن.
+</p>
 </div>
 </div>
 
 <div class="contact-grid">
 
 <div class="card">
+
 <h3>آماده‌ای شروع کنیم؟ 🚀</h3>
+
 <p style="margin-top:10px">
 پیامت در همین مرورگر ذخیره می‌شود.
 </p>
 
 <div style="margin-top:20px">
+
 💡 ایده داری؟ بنویس.<br>
 🧑‍💻 پروژه داری؟ توضیح بده.<br>
 📚 سوال آموزشی داری؟ بپرس.
+
 </div>
+
 </div>
 
-<form class="card form" onsubmit="sendMessage(event)">
+<form
+class="card form"
+onsubmit="sendMessage(event)">
 
-<input class="field" id="name"
-required placeholder="نام شما">
+<input
+class="field"
+id="name"
+required
+placeholder="نام شما">
 
-<input class="field" id="email"
-type="email" required placeholder="ایمیل">
+<input
+class="field"
+id="email"
+type="email"
+required
+placeholder="ایمیل">
 
-<textarea class="field" id="message"
-required rows="5" placeholder="پیام شما..."></textarea>
+<textarea
+class="field"
+id="message"
+required
+rows="5"
+placeholder="پیام شما..."></textarea>
 
 <button class="btn big">
 ارسال پیام 🚀
@@ -559,15 +658,24 @@ required rows="5" placeholder="پیام شما..."></textarea>
 
 <footer>
 <div class="container">
-© <span id="year"></span> تمامی حقوق محفوظ است.
+
+© <span id="year"></span>
+تمامی حقوق محفوظ است.
+
 <div class="credit">
 سازنده: سید امیر حسین کاظم پور
 </div>
+
 </div>
 </footer>
 
-<div class="modal-bg" id="modalBg" onclick="closeOutside(event)">
+<div
+class="modal-bg"
+id="modalBg"
+onclick="closeOutside(event)">
+
 <div class="modal" id="modal"></div>
+
 </div>
 
 <div class="toast" id="toast"></div>
@@ -584,8 +692,8 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
@@ -594,6 +702,7 @@ supabase.createClient(
 ========================= */
 
 const courses=[
+
 {
 id:1,
 icon:"🌐",
@@ -602,6 +711,7 @@ cat:"web",
 desc:"ساخت اولین صفحات وب و طراحی حرفه‌ای رابط کاربری.",
 price:"رایگان"
 },
+
 {
 id:2,
 icon:"⚡",
@@ -610,6 +720,7 @@ cat:"programming",
 desc:"متغیرها، شرط‌ها، حلقه‌ها، توابع و ساخت برنامه‌های تعاملی.",
 price:"رایگان"
 },
+
 {
 id:3,
 icon:"🐍",
@@ -618,6 +729,7 @@ cat:"programming",
 desc:"شروع برنامه‌نویسی با پایتون به زبان ساده و پروژه‌محور.",
 price:"رایگان"
 },
+
 {
 id:4,
 icon:"🎮",
@@ -626,6 +738,7 @@ cat:"programming",
 desc:"ساخت بازی‌های کوچک و جذاب برای مرورگر.",
 price:"رایگان"
 },
+
 {
 id:5,
 icon:"🎨",
@@ -634,6 +747,7 @@ cat:"design",
 desc:"رنگ، فاصله، تایپوگرافی و ساخت رابط کاربری جذاب.",
 price:"رایگان"
 },
+
 {
 id:6,
 icon:"🚀",
@@ -642,6 +756,7 @@ cat:"web",
 desc:"ساخت یک سایت کامل با چند بخش، فرم و انیمیشن.",
 price:"رایگان"
 }
+
 ];
 
 let activeCat="all";
@@ -649,27 +764,35 @@ let activeCat="all";
 
 function renderCourses(){
 
-const q=document
-.getElementById("search")
-.value.trim()
+const q =
+document.getElementById("search")
+.value
+.trim()
 .toLowerCase();
 
-const list=courses.filter(c=>
-(activeCat==="all"||c.cat===activeCat)&&
-(!q||
-c.title.toLowerCase().includes(q)||
-c.desc.toLowerCase().includes(q))
+const list =
+courses.filter(c =>
+(activeCat==="all" || c.cat===activeCat) &&
+(
+!q ||
+c.title.toLowerCase().includes(q) ||
+c.desc.toLowerCase().includes(q)
+)
 );
 
-const grid=document.getElementById("courseGrid");
+const grid =
+document.getElementById("courseGrid");
 
-grid.innerHTML=list.length?
+grid.innerHTML =
+list.length ?
 
 list.map(c=>`
 
 <article class="card">
 
-<div class="course-icon">${c.icon}</div>
+<div class="course-icon">
+${c.icon}
+</div>
 
 <h3>${c.title}</h3>
 
@@ -677,9 +800,12 @@ list.map(c=>`
 
 <div class="card-row">
 
-<span class="price">${c.price}</span>
+<span class="price">
+${c.price}
+</span>
 
-<button class="btn"
+<button
+class="btn"
 onclick="courseDetails(${c.id})">
 مشاهده
 </button>
@@ -695,6 +821,7 @@ onclick="courseDetails(${c.id})">
 `<div class="empty">
 دوره‌ای پیدا نشد 😕
 </div>`;
+
 }
 
 
@@ -704,26 +831,35 @@ activeCat=cat;
 
 document
 .querySelectorAll(".chip")
-.forEach(x=>x.classList.remove("active"));
+.forEach(x =>
+x.classList.remove("active")
+);
 
 el.classList.add("active");
 
 renderCourses();
+
 }
 
 
 function courseDetails(id){
 
-const c=courses.find(x=>x.id===id);
+const c =
+courses.find(x => x.id===id);
 
 showModal(`
 
 <div class="modal-head">
 
-<h2>${c.icon} ${c.title}</h2>
+<h2>
+${c.icon} ${c.title}
+</h2>
 
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
+<button
+class="icon-btn"
+onclick="closeModal()">
+✕
+</button>
 
 </div>
 
@@ -740,7 +876,8 @@ onclick="closeModal()">✕</button>
 
 </div>
 
-<button class="btn big"
+<button
+class="btn big"
 style="margin-top:20px;width:100%"
 onclick="toast('دوره به لیست شما اضافه شد!');closeModal()">
 
@@ -749,6 +886,7 @@ onclick="toast('دوره به لیست شما اضافه شد!');closeModal()">
 </button>
 
 `);
+
 }
 
 
@@ -762,27 +900,36 @@ showModal(`
 
 <div class="modal-head">
 
-<h2>🛠️ سفارش ${service}</h2>
+<h2>
+🛠️ سفارش ${service}
+</h2>
 
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
+<button
+class="icon-btn"
+onclick="closeModal()">
+✕
+</button>
 
 </div>
 
-<form class="form"
+<form
+class="form"
 onsubmit="submitOrder(event,'${service}')">
 
-<input class="field"
+<input
+class="field"
 id="orderName"
 required
 placeholder="نام">
 
-<input class="field"
+<input
+class="field"
 id="orderContact"
 required
 placeholder="شماره تماس یا ایمیل">
 
-<textarea class="field"
+<textarea
+class="field"
 id="orderDesc"
 required
 rows="5"
@@ -795,6 +942,7 @@ placeholder="توضیح پروژه..."></textarea>
 </form>
 
 `);
+
 }
 
 
@@ -802,9 +950,9 @@ function submitOrder(e,service){
 
 e.preventDefault();
 
-const orders=
+const orders =
 JSON.parse(
-localStorage.getItem("orders")||"[]"
+localStorage.getItem("orders") || "[]"
 );
 
 orders.push({
@@ -820,7 +968,8 @@ document.getElementById("orderContact").value,
 desc:
 document.getElementById("orderDesc").value,
 
-date:new Date().toLocaleString("fa-IR")
+date:
+new Date().toLocaleString("fa-IR")
 
 });
 
@@ -831,7 +980,10 @@ JSON.stringify(orders)
 
 closeModal();
 
-toast("درخواست با موفقیت ذخیره شد ✅");
+toast(
+"درخواست با موفقیت ذخیره شد ✅"
+);
+
 }
 
 
@@ -843,9 +995,9 @@ function sendMessage(e){
 
 e.preventDefault();
 
-const msgs=
+const msgs =
 JSON.parse(
-localStorage.getItem("messages")||"[]"
+localStorage.getItem("messages") || "[]"
 );
 
 msgs.push({
@@ -859,7 +1011,8 @@ document.getElementById("email").value,
 message:
 document.getElementById("message").value,
 
-date:new Date().toLocaleString("fa-IR")
+date:
+new Date().toLocaleString("fa-IR")
 
 });
 
@@ -870,12 +1023,15 @@ JSON.stringify(msgs)
 
 e.target.reset();
 
-toast("پیام شما ذخیره شد ✅");
+toast(
+"پیام شما ذخیره شد ✅"
+);
+
 }
 
 
 /* =========================
-   LOGIN / REGISTER
+   MODAL
 ========================= */
 
 function openModal(type){
@@ -894,36 +1050,57 @@ showModal(`
 
 <h2>منو</h2>
 
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
+<button
+class="icon-btn"
+onclick="closeModal()">
+✕
+</button>
 
 </div>
 
 <div class="form">
 
-<a class="btn secondary"
+<a
+class="btn secondary"
 href="#home"
-onclick="closeModal()">خانه</a>
+onclick="closeModal()">
+خانه
+</a>
 
-<a class="btn secondary"
+<a
+class="btn secondary"
 href="#courses"
-onclick="closeModal()">دوره‌ها</a>
+onclick="closeModal()">
+دوره‌ها
+</a>
 
-<a class="btn secondary"
+<a
+class="btn secondary"
 href="#services"
-onclick="closeModal()">خدمات</a>
+onclick="closeModal()">
+خدمات
+</a>
 
-<a class="btn secondary"
+<a
+class="btn secondary"
 href="#about"
-onclick="closeModal()">درباره</a>
+onclick="closeModal()">
+درباره
+</a>
 
-<a class="btn secondary"
+<a
+class="btn secondary"
 href="#brand"
-onclick="closeModal()">برند من</a>
+onclick="closeModal()">
+برند من
+</a>
 
-<a class="btn secondary"
+<a
+class="btn secondary"
 href="#contact"
-onclick="closeModal()">ارتباط</a>
+onclick="closeModal()">
+ارتباط
+</a>
 
 </div>
 
@@ -934,24 +1111,33 @@ onclick="closeModal()">ارتباط</a>
 }
 
 
+/* =========================
+   LOGIN / REGISTER MODAL
+========================= */
+
 function showAuthModal(mode){
 
-const register=mode==="register";
+const register =
+mode === "register";
 
 showModal(`
 
 <div class="modal-head">
 
 <h2>
-${register?"📝 ثبت‌نام":"👤 ورود"}
+${register ? "📝 ثبت‌نام" : "👤 ورود"}
 </h2>
 
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
+<button
+type="button"
+class="icon-btn"
+onclick="closeModal()">
+✕
+</button>
 
 </div>
 
-${register?`
+${register ? `
 
 <input
 class="field"
@@ -965,13 +1151,14 @@ id="username"
 required
 placeholder="نام کاربری">
 
-`: ""}
+` : ""}
 
 <input
 class="field"
 id="userEmail"
 required
 type="email"
+autocomplete="email"
 placeholder="ایمیل">
 
 <input
@@ -979,14 +1166,17 @@ class="field"
 id="userPass"
 required
 type="password"
+autocomplete="${register ? "new-password" : "current-password"}"
 placeholder="رمز عبور">
 
 <button
+type="button"
 class="btn big"
+id="authSubmitBtn"
 style="width:100%;margin-top:5px"
-onclick="${register?"registerUser()":"loginUser()"}">
+onclick="handleAuthSubmit('${register ? "register" : "login"}')">
 
-${register?"ثبت‌نام":"ورود"}
+${register ? "ثبت‌نام" : "ورود"}
 
 </button>
 
@@ -998,7 +1188,9 @@ register
 ?
 
 `حساب داری؟
+
 <button
+type="button"
 class="btn secondary"
 onclick="showAuthModal('login')">
 ورود
@@ -1007,7 +1199,9 @@ onclick="showAuthModal('login')">
 :
 
 `حساب نداری؟
+
 <button
+type="button"
 class="btn secondary"
 onclick="showAuthModal('register')">
 ثبت‌نام
@@ -1022,62 +1216,38 @@ onclick="showAuthModal('register')">
 
 
 /* =========================
+   AUTH BUTTON
+========================= */
+
+async function handleAuthSubmit(mode){
+
+if(mode==="register"){
+
+await registerUser();
+
+}else{
+
+await loginUser();
+
+}
+
+}
+
+
+/* =========================
    REGISTER
 ========================= */
 
 async function registerUser(){
 
-const fullName=
-document.getElementById("fullName").value.trim();
+const fullNameElement =
+document.getElementById("fullName");
 
-const username=
-document.getElementById("username").value.trim();
+const usernameElement =
+document.getElementById("username");
 
-const email=
-document.getElementById("userEmail").value.trim();
+const emailElement =
+document.getElementById("userEmail");
 
-const password=
-document.getElementById("userPass").value;
-
-if(!fullName||!username||!email||!password){
-
-toast("لطفاً همه فیلدها را پر کن");
-
-return;
-}
-
-if(password.length<6){
-
-toast("رمز عبور باید حداقل ۶ کاراکتر باشد");
-
-return;
-}
-
-const {data,error}=
-await supabaseClient.auth.signUp({
-
-email:email,
-
-password:password,
-
-options:{
-data:{
-full_name:fullName,
-username:username
-}
-}
-
-});
-
-if(error){
-
-toast("خطا: "+error.message);
-
-return;
-}
-
-closeModal();
-
-if(data.session){
-
-toast("ثبت‌نام با موفقی
+const passwordElement =
+document.getElementById("userPa
