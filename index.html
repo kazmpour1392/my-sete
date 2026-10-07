@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b1020">
-<meta name="description" content="سایت آموزشی و خدماتی امیرحسین کاظم پور">
-<title>آکادمی و استودیو امیرحسین</title>
+<meta name="description" content="آکادمی طراحی سایت">
+<title>آکادمی طراحی سایت</title>
+
 <style>
 :root{
   --bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#667085;--line:#e7eaf0;
-  --primary:#6c5ce7;--primary2:#8e7dff;--accent:#00c2ff;--shadow:0 18px 50px rgba(24,30,55,.10);
+  --primary:#6c5ce7;--primary2:#8e7dff;--accent:#00c2ff;
+  --shadow:0 18px 50px rgba(24,30,55,.10);
 }
 body.dark{
   --bg:#080c18;--card:#111827;--text:#f8fafc;--muted:#a8b0c2;--line:#263047;
@@ -17,100 +19,307 @@ body.dark{
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Tahoma,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.8;transition:.25s}
+body{
+  font-family:Tahoma,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.8;transition:.25s
+}
 a{text-decoration:none;color:inherit}
 button,input,textarea,select{font:inherit}
 .container{width:min(1160px,92%);margin:auto}
-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-size:21px;font-weight:900;display:flex;align-items:center;gap:10px}
-.logo span{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff}
+
+header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line)
+}
+.nav{
+  height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px
+}
+.logo{
+  font-size:21px;font-weight:900;
+  display:flex;align-items:center;gap:10px
+}
+.logo span{
+  display:grid;place-items:center;width:40px;height:40px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#fff
+}
 nav{display:flex;gap:24px}
 nav a{color:var(--muted);font-weight:700;font-size:14px}
 nav a:hover{color:var(--primary)}
 .nav-actions{display:flex;gap:8px}
-.icon-btn,.btn{border:0;cursor:pointer;border-radius:13px;padding:10px 15px}
-.icon-btn{background:var(--card);border:1px solid var(--line);color:var(--text)}
-.btn{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-weight:800;box-shadow:0 10px 25px rgba(108,92,231,.22)}
-.btn.secondary{background:var(--card);color:var(--text);border:1px solid var(--line);box-shadow:none}
+.icon-btn,.btn{
+  border:0;cursor:pointer;border-radius:13px;padding:10px 15px
+}
+.icon-btn{
+  background:var(--card);
+  border:1px solid var(--line);
+  color:var(--text)
+}
+.btn{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;font-weight:800;
+  box-shadow:0 10px 25px rgba(108,92,231,.22)
+}
+.btn.secondary{
+  background:var(--card);color:var(--text);
+  border:1px solid var(--line);box-shadow:none
+}
 .btn.big{padding:13px 21px}
+
 .hero{padding:78px 0 60px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
-.badge{display:inline-flex;padding:7px 12px;border-radius:99px;background:rgba(108,92,231,.11);color:var(--primary);font-weight:800;font-size:13px;margin-bottom:15px}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:50px;align-items:center
+}
+.badge{
+  display:inline-flex;padding:7px 12px;border-radius:99px;
+  background:rgba(108,92,231,.11);
+  color:var(--primary);font-weight:800;font-size:13px;
+  margin-bottom:15px
+}
 h1{font-size:clamp(38px,6vw,70px);line-height:1.1;margin-bottom:20px}
-.gradient{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;color:transparent}
-.hero p{font-size:18px;color:var(--muted);max-width:650px;margin-bottom:25px}
+.gradient{
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;color:transparent
+}
+.hero p{
+  font-size:18px;color:var(--muted);
+  max-width:650px;margin-bottom:25px
+}
 .hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
-.code-card{background:#0d1324;border:1px solid #27304a;border-radius:25px;padding:20px;box-shadow:var(--shadow);transform:rotate(1deg)}
-.code-top{display:flex;gap:7px;margin-bottom:18px}.dot{width:11px;height:11px;border-radius:50%;background:#777}
-pre{color:#dce5ff;overflow:auto;font-family:Consolas,monospace;font-size:14px}
-.c-purple{color:#b99cff}.c-blue{color:#62d7ff}.c-green{color:#78e6a1}.c-yellow{color:#ffe28a}
-.section{padding:75px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}
-.section-head h2{font-size:32px}.section-head p{color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:45px}
-.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
-.stat strong{font-size:28px}.stat span{display:block;color:var(--muted);font-size:13px}
-.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.search{flex:1;min-width:220px;padding:12px 15px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--text);outline:0}
-.chip{padding:10px 15px;border-radius:13px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.course-icon{font-size:35px;margin-bottom:12px}.card h3{margin-bottom:7px}.card p{color:var(--muted);font-size:14px}.card-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px}.price{font-weight:900;color:var(--primary)}
-.services .card{position:relative;overflow:hidden}.services .card:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:rgba(108,92,231,.08);left:-30px;bottom:-35px}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature{padding:25px}.feature b{font-size:20px}.feature .emoji{font-size:35px;margin-bottom:10px}
-.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px}.form{display:grid;gap:12px}.field{padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--text);outline:0}.field:focus{border-color:var(--primary)}
-footer{padding:35px 0;border-top:1px solid var(--line);color:var(--muted);text-align:center}.credit{color:var(--text);font-weight:800;margin-top:7px}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;padding:20px;z-index:100}.modal-bg.show{display:grid}
-.modal{width:min(550px,100%);background:var(--card);border-radius:22px;padding:25px;max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;gap:15px;margin-bottom:15px}
-.toast{position:fixed;left:20px;bottom:20px;background:#101828;color:#fff;padding:13px 18px;border-radius:14px;transform:translateY(120px);transition:.3s;z-index:200}.toast.show{transform:translateY(0)}
-.empty{text-align:center;color:var(--muted);padding:30px;grid-column:1/-1}
+.code-card{
+  background:#0d1324;border:1px solid #27304a;
+  border-radius:25px;padding:20px;
+  box-shadow:var(--shadow);transform:rotate(1deg)
+}
+.code-top{display:flex;gap:7px;margin-bottom:18px}
+.dot{width:11px;height:11px;border-radius:50%;background:#777}
+pre{
+  color:#dce5ff;overflow:auto;
+  font-family:Consolas,monospace;font-size:14px
+}
+.c-purple{color:#b99cff}
+.c-blue{color:#62d7ff}
+.c-green{color:#78e6a1}
+.c-yellow{color:#ffe28a}
+
+.section{padding:75px 0}
+.section-head{
+  display:flex;justify-content:space-between;
+  align-items:end;gap:20px;margin-bottom:28px
+}
+.section-head h2{font-size:32px}
+.section-head p{color:var(--muted)}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:15px;margin-top:45px
+}
+.stat,.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;padding:22px;
+  box-shadow:var(--shadow)
+}
+.stat strong{font-size:28px}
+.stat span{display:block;color:var(--muted);font-size:13px}
+
+.filters{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px
+}
+.search{
+  flex:1;min-width:220px;padding:12px 15px;
+  border:1px solid var(--line);border-radius:13px;
+  background:var(--card);color:var(--text);
+  outline:0
+}
+.chip{
+  padding:10px 15px;border-radius:13px;
+  border:1px solid var(--line);
+  background:var(--card);color:var(--text);
+  cursor:pointer
+}
+.chip.active{
+  background:var(--primary);color:#fff;
+  border-color:var(--primary)
+}
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.course-icon{font-size:35px;margin-bottom:12px}
+.card h3{margin-bottom:7px}
+.card p{color:var(--muted);font-size:14px}
+.card-row{
+  display:flex;justify-content:space-between;
+  align-items:center;margin-top:18px
+}
+.price{font-weight:900;color:var(--primary)}
+
+.services .card{position:relative;overflow:hidden}
+.services .card:after{
+  content:"";position:absolute;width:90px;height:90px;
+  border-radius:50%;background:rgba(108,92,231,.08);
+  left:-30px;bottom:-35px
+}
+.feature-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.feature{padding:25px}
+.feature b{font-size:20px}
+.feature .emoji{font-size:35px;margin-bottom:10px}
+
+.contact-grid{
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:20px
+}
+.form{display:grid;gap:12px}
+.field{
+  padding:13px 15px;border:1px solid var(--line);
+  border-radius:13px;background:var(--card);
+  color:var(--text);outline:0
+}
+.field:focus{border-color:var(--primary)}
+
+footer{
+  padding:35px 0;border-top:1px solid var(--line);
+  color:var(--muted);text-align:center
+}
+.credit{color:var(--text);font-weight:800;margin-top:7px}
+
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  display:none;place-items:center;padding:20px;z-index:100
+}
+.modal-bg.show{display:grid}
+.modal{
+  width:min(550px,100%);background:var(--card);
+  border-radius:22px;padding:25px;
+  max-height:90vh;overflow:auto
+}
+.modal-head{
+  display:flex;justify-content:space-between;
+  gap:15px;margin-bottom:15px
+}
+.toast{
+  position:fixed;left:20px;bottom:20px;
+  background:#101828;color:#fff;
+  padding:13px 18px;border-radius:14px;
+  transform:translateY(120px);transition:.3s;z-index:200
+}
+.toast.show{transform:translateY(0)}
+.empty{
+  text-align:center;color:var(--muted);
+  padding:30px;grid-column:1/-1
+}
 .mobile-menu{display:none}
+
+.user-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:13px;padding:7px 10px
+}
+.user-email{
+  max-width:150px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;
+  font-size:12px;color:var(--muted)
+}
+
 @media(max-width:850px){
- nav{display:none}.mobile-menu{display:block}
- .hero-grid,.contact-grid{grid-template-columns:1fr}.hero{padding-top:45px}
- .grid,.feature-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}
+  nav{display:none}
+  .mobile-menu{display:block}
+  .hero-grid,.contact-grid{grid-template-columns:1fr}
+  .hero{padding-top:45px}
+  .grid,.feature-grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .user-email{display:none}
 }
 @media(max-width:560px){
- .grid,.feature-grid,.stats{grid-template-columns:1fr}
- .section{padding:55px 0}.section-head{display:block}.section-head h2{font-size:27px;margin-bottom:6px}
- .nav{height:64px}.logo{font-size:17px}.logo span{width:35px;height:35px}
+  .grid,.feature-grid,.stats{grid-template-columns:1fr}
+  .section{padding:55px 0}
+  .section-head{display:block}
+  .section-head h2{font-size:27px;margin-bottom:6px}
+  .nav{height:64px}
+  .logo{font-size:17px}
+  .logo span{width:35px;height:35px}
 }
 </style>
 </head>
+
 <body>
+
 <header>
- <div class="container nav">
-  <a class="logo" href="#"><span>AK</span> آکادمی امیرحسین</a>
-  <nav>
-   <a href="#home">خانه</a><a href="#courses">دوره‌ها</a><a href="#services">خدمات</a><a href="#about">درباره</a><a href="#contact">ارتباط</a>
-  </nav>
-  <div class="nav-actions">
-   <button class="icon-btn" id="themeBtn" title="تغییر حالت">🌙</button>
-   <button class="btn" onclick="openModal('login')">ورود</button>
-   <button class="mobile-menu icon-btn" onclick="openModal('menu')">☰</button>
-  </div>
- </div>
+<div class="container nav">
+
+<a class="logo" href="#">
+  <span>AK</span>
+  آکادمی طراحی سایت
+</a>
+
+<nav>
+<a href="#home">خانه</a>
+<a href="#courses">دوره‌ها</a>
+<a href="#services">خدمات</a>
+<a href="#about">درباره</a>
+<a href="#contact">ارتباط</a>
+</nav>
+
+<div class="nav-actions">
+<button class="icon-btn" id="themeBtn">🌙</button>
+
+<div id="authArea">
+<button class="btn" onclick="openModal('login')">ورود</button>
+</div>
+
+<button class="mobile-menu icon-btn" onclick="openModal('menu')">☰</button>
+</div>
+
+</div>
 </header>
 
 <main id="home">
+
 <section class="hero">
- <div class="container hero-grid">
-  <div>
-   <span class="badge">🚀 یادگیری، ساختن، پیشرفت کردن</span>
-   <h1>ایده‌ات را به یک <span class="gradient">پروژه واقعی</span> تبدیل کن.</h1>
-   <p>آموزش برنامه‌نویسی، طراحی سایت و خدمات دیجیتال در یک محیط مدرن و ساده؛ برای شروع لازم نیست حرفه‌ای باشی.</p>
-   <div class="hero-buttons">
-    <a class="btn big" href="#courses">شروع یادگیری ←</a>
-    <a class="btn secondary big" href="#services">مشاهده خدمات</a>
-   </div>
-   <div class="stats">
-    <div class="stat"><strong>۱۰+</strong><span>دوره آموزشی</span></div>
-    <div class="stat"><strong>۲۰+</strong><span>پروژه</span></div>
-    <div class="stat"><strong>۱۰۰٪</strong><span>تمرکز روی یادگیری</span></div>
-    <div class="stat"><strong>24/7</strong><span>دسترسی به سایت</span></div>
-   </div>
-  </div>
-  <div class="code-card">
-   <div class="code-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+<div class="container hero-grid">
+
+<div>
+
+<span class="badge">🚀 یادگیری، ساختن، پیشرفت کردن</span>
+
+<h1>
+ایده‌ات را به یک
+<span class="gradient">پروژه واقعی</span>
+تبدیل کن.
+</h1>
+
+<p>
+آموزش برنامه‌نویسی، طراحی سایت و خدمات دیجیتال
+در یک محیط مدرن و ساده؛ برای شروع لازم نیست حرفه‌ای باشی.
+</p>
+
+<div class="hero-buttons">
+<a class="btn big" href="#courses">شروع یادگیری ←</a>
+<a class="btn secondary big" href="#services">مشاهده خدمات</a>
+</div>
+
+<div class="stats">
+<div class="stat"><strong>۱۰+</strong><span>دوره آموزشی</span></div>
+<div class="stat"><strong>۲۰+</strong><span>پروژه</span></div>
+<div class="stat"><strong>۱۰۰٪</strong><span>تمرکز روی یادگیری</span></div>
+<div class="stat"><strong>24/7</strong><span>دسترسی به سایت</span></div>
+</div>
+
+</div>
+
+<div class="code-card">
+<div class="code-top">
+<i class="dot"></i><i class="dot"></i><i class="dot"></i>
+</div>
+
 <pre><span class="c-purple">const</span> <span class="c-blue">dream</span> = {
   idea: <span class="c-green">"یک پروژه خفن"</span>,
   skills: [<span class="c-green">"HTML"</span>, <span class="c-green">"CSS"</span>,
@@ -121,150 +330,773 @@ footer{padding:35px 0;border-top:1px solid var(--line);color:var(--muted);text-a
 <span class="c-purple">function</span> <span class="c-blue">build</span>(dream) {
   <span class="c-purple">return</span> dream.idea + <span class="c-green">" ✨"</span>;
 }</pre>
-  </div>
- </div>
+
+</div>
+</div>
 </section>
 
 <section class="section" id="courses">
 <div class="container">
- <div class="section-head"><div><h2>📚 دوره‌های آموزشی</h2><p>از پایه شروع کن و قدم‌به‌قدم جلو برو.</p></div></div>
- <div class="filters">
-  <input id="search" class="search" placeholder="🔎 جستجوی دوره..." oninput="renderCourses()">
-  <button class="chip active" data-cat="all" onclick="setCat(this,'all')">همه</button>
-  <button class="chip" data-cat="web" onclick="setCat(this,'web')">وب</button>
-  <button class="chip" data-cat="programming" onclick="setCat(this,'programming')">برنامه‌نویسی</button>
-  <button class="chip" data-cat="design" onclick="setCat(this,'design')">طراحی</button>
- </div>
- <div class="grid" id="courseGrid"></div>
+
+<div class="section-head">
+<div>
+<h2>📚 دوره‌های آموزشی</h2>
+<p>از پایه شروع کن و قدم‌به‌قدم جلو برو.</p>
+</div>
+</div>
+
+<div class="filters">
+
+<input id="search" class="search"
+placeholder="🔎 جستجوی دوره..."
+oninput="renderCourses()">
+
+<button class="chip active"
+onclick="setCat(this,'all')">همه</button>
+
+<button class="chip"
+onclick="setCat(this,'web')">وب</button>
+
+<button class="chip"
+onclick="setCat(this,'programming')">برنامه‌نویسی</button>
+
+<button class="chip"
+onclick="setCat(this,'design')">طراحی</button>
+
+</div>
+
+<div class="grid" id="courseGrid"></div>
+
 </div>
 </section>
 
 <section class="section services" id="services">
 <div class="container">
- <div class="section-head"><div><h2>🛠️ خدمات</h2><p>برای پروژه شخصی، مدرسه یا کسب‌وکار.</p></div></div>
- <div class="grid">
-  <div class="card"><div class="course-icon">🌐</div><h3>طراحی سایت</h3><p>ساخت سایت مدرن، واکنش‌گرا و مناسب موبایل.</p><div class="card-row"><b>سفارشی</b><button class="btn" onclick="order('طراحی سایت')">سفارش</button></div></div>
-  <div class="card"><div class="course-icon">🎨</div><h3>طراحی پوستر</h3><p>طراحی پوستر، بنر و محتوای تصویری جذاب.</p><div class="card-row"><b>سفارشی</b><button class="btn" onclick="order('طراحی پوستر')">سفارش</button></div></div>
-  <div class="card"><div class="course-icon">💻</div><h3>پروژه برنامه‌نویسی</h3><p>کمک در ساخت پروژه‌های آموزشی و شخصی.</p><div class="card-row"><b>سفارشی</b><button class="btn" onclick="order('پروژه برنامه‌نویسی')">سفارش</button></div></div>
- </div>
+
+<div class="section-head">
+<div>
+<h2>🛠️ خدمات</h2>
+<p>برای پروژه شخصی، مدرسه یا کسب‌وکار.</p>
+</div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="course-icon">🌐</div>
+<h3>طراحی سایت</h3>
+<p>ساخت سایت مدرن، واکنش‌گرا و مناسب موبایل.</p>
+<div class="card-row">
+<b>سفارشی</b>
+<button class="btn" onclick="order('طراحی سایت')">سفارش</button>
+</div>
+</div>
+
+<div class="card">
+<div class="course-icon">🎨</div>
+<h3>طراحی پوستر</h3>
+<p>طراحی پوستر، بنر و محتوای تصویری جذاب.</p>
+<div class="card-row">
+<b>سفارشی</b>
+<button class="btn" onclick="order('طراحی پوستر')">سفارش</button>
+</div>
+</div>
+
+<div class="card">
+<div class="course-icon">💻</div>
+<h3>پروژه برنامه‌نویسی</h3>
+<p>کمک در ساخت پروژه‌های آموزشی و شخصی.</p>
+<div class="card-row">
+<b>سفارشی</b>
+<button class="btn" onclick="order('پروژه برنامه‌نویسی')">سفارش</button>
+</div>
+</div>
+
+</div>
 </div>
 </section>
 
 <section class="section" id="about">
 <div class="container">
- <div class="section-head"><div><h2>✨ چرا اینجا؟</h2><p>همه‌چیز ساده، کاربردی و پروژه‌محور طراحی شده است.</p></div></div>
- <div class="feature-grid">
-  <div class="card feature"><div class="emoji">🎯</div><b>یادگیری هدفمند</b><p>به‌جای حفظ کردن، با ساخت پروژه یاد می‌گیری.</p></div>
-  <div class="card feature"><div class="emoji">📱</div><b>کاملاً واکنش‌گرا</b><p>سایت روی موبایل، تبلت و کامپیوتر ظاهر مناسبی دارد.</p></div>
-  <div class="card feature"><div class="emoji">⚡</div><b>سریع و سبک</b><p>بدون نیاز به کتابخانه‌های سنگین، با HTML و CSS و JavaScript.</p></div>
- </div>
+
+<div class="section-head">
+<div>
+<h2>✨ چرا اینجا؟</h2>
+<p>همه‌چیز ساده، کاربردی و پروژه‌محور طراحی شده است.</p>
+</div>
+</div>
+
+<div class="feature-grid">
+
+<div class="card feature">
+<div class="emoji">🎯</div>
+<b>یادگیری هدفمند</b>
+<p>به‌جای حفظ کردن، با ساخت پروژه یاد می‌گیری.</p>
+</div>
+
+<div class="card feature">
+<div class="emoji">📱</div>
+<b>کاملاً واکنش‌گرا</b>
+<p>سایت روی موبایل، تبلت و کامپیوتر ظاهر مناسبی دارد.</p>
+</div>
+
+<div class="card feature">
+<div class="emoji">⚡</div>
+<b>سریع و سبک</b>
+<p>بدون نیاز به کتابخانه‌های سنگین، با HTML و CSS و JavaScript.</p>
+</div>
+
+</div>
 </div>
 </section>
 
 <section class="section" id="contact">
 <div class="container">
- <div class="section-head"><div><h2>📩 ارتباط با ما</h2><p>برای سفارش پروژه یا ارسال پیام فرم زیر را پر کن.</p></div></div>
- <div class="contact-grid">
-  <div class="card">
-   <h3>آماده‌ای شروع کنیم؟ 🚀</h3>
-   <p style="margin-top:10px">پیامت در همین مرورگر ذخیره می‌شود. برای دریافت واقعی پیام‌ها بعداً می‌توانیم بک‌اند و دیتابیس وصل کنیم.</p>
-   <div style="margin-top:20px">💡 ایده داری؟ بنویس.<br>🧑‍💻 پروژه داری؟ توضیح بده.<br>📚 سوال آموزشی داری؟ بپرس.</div>
-  </div>
-  <form class="card form" onsubmit="sendMessage(event)">
-   <input class="field" id="name" required placeholder="نام شما">
-   <input class="field" id="email" type="email" required placeholder="ایمیل">
-   <textarea class="field" id="message" required rows="5" placeholder="پیام شما..."></textarea>
-   <button class="btn big">ارسال پیام 🚀</button>
-  </form>
- </div>
+
+<div class="section-head">
+<div>
+<h2>📩 ارتباط با ما</h2>
+<p>برای سفارش پروژه یا ارسال پیام فرم زیر را پر کن.</p>
+</div>
+</div>
+
+<div class="contact-grid">
+
+<div class="card">
+<h3>آماده‌ای شروع کنیم؟ 🚀</h3>
+<p style="margin-top:10px">
+پیامت در همین مرورگر ذخیره می‌شود.
+</p>
+
+<div style="margin-top:20px">
+💡 ایده داری؟ بنویس.<br>
+🧑‍💻 پروژه داری؟ توضیح بده.<br>
+📚 سوال آموزشی داری؟ بپرس.
+</div>
+</div>
+
+<form class="card form" onsubmit="sendMessage(event)">
+
+<input class="field" id="name"
+required placeholder="نام شما">
+
+<input class="field" id="email"
+type="email" required placeholder="ایمیل">
+
+<textarea class="field" id="message"
+required rows="5" placeholder="پیام شما..."></textarea>
+
+<button class="btn big">
+ارسال پیام 🚀
+</button>
+
+</form>
+
+</div>
 </div>
 </section>
+
 </main>
 
 <footer>
- <div class="container">© <span id="year"></span> تمامی حقوق محفوظ است.
-  <div class="credit">سازنده: سید امیر حسین کاظم پور</div>
- </div>
+<div class="container">
+© <span id="year"></span> تمامی حقوق محفوظ است.
+<div class="credit">
+سازنده: سید امیر حسین کاظم پور
+</div>
+</div>
 </footer>
 
 <div class="modal-bg" id="modalBg" onclick="closeOutside(event)">
- <div class="modal" id="modal"></div>
+<div class="modal" id="modal"></div>
 </div>
+
 <div class="toast" id="toast"></div>
 
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://pdspayxfazoutbjxqswi.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_kPYB9r27zwqmJYRDYBMb_A_YR-2a2PX";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================
+   COURSES
+========================= */
+
 const courses=[
- {id:1,icon:"🌐",title:"HTML و CSS از صفر",cat:"web",desc:"ساخت اولین صفحات وب و طراحی حرفه‌ای رابط کاربری.",price:"رایگان"},
- {id:2,icon:"⚡",title:"JavaScript مقدماتی",cat:"programming",desc:"متغیرها، شرط‌ها، حلقه‌ها، توابع و ساخت برنامه‌های تعاملی.",price:"رایگان"},
- {id:3,icon:"🐍",title:"Python مقدماتی",cat:"programming",desc:"شروع برنامه‌نویسی با پایتون به زبان ساده و پروژه‌محور.",price:"رایگان"},
- {id:4,icon:"🎮",title:"ساخت بازی با JavaScript",cat:"programming",desc:"ساخت بازی‌های کوچک و جذاب برای مرورگر.",price:"رایگان"},
- {id:5,icon:"🎨",title:"اصول طراحی UI",cat:"design",desc:"رنگ، فاصله، تایپوگرافی و ساخت رابط کاربری جذاب.",price:"رایگان"},
- {id:6,icon:"🚀",title:"ساخت سایت حرفه‌ای",cat:"web",desc:"ساخت یک سایت کامل با چند بخش، فرم و انیمیشن.",price:"رایگان"}
+{
+id:1,
+icon:"🌐",
+title:"HTML و CSS از صفر",
+cat:"web",
+desc:"ساخت اولین صفحات وب و طراحی حرفه‌ای رابط کاربری.",
+price:"رایگان"
+},
+{
+id:2,
+icon:"⚡",
+title:"JavaScript مقدماتی",
+cat:"programming",
+desc:"متغیرها، شرط‌ها، حلقه‌ها، توابع و ساخت برنامه‌های تعاملی.",
+price:"رایگان"
+},
+{
+id:3,
+icon:"🐍",
+title:"Python مقدماتی",
+cat:"programming",
+desc:"شروع برنامه‌نویسی با پایتون به زبان ساده و پروژه‌محور.",
+price:"رایگان"
+},
+{
+id:4,
+icon:"🎮",
+title:"ساخت بازی با JavaScript",
+cat:"programming",
+desc:"ساخت بازی‌های کوچک و جذاب برای مرورگر.",
+price:"رایگان"
+},
+{
+id:5,
+icon:"🎨",
+title:"اصول طراحی UI",
+cat:"design",
+desc:"رنگ، فاصله، تایپوگرافی و ساخت رابط کاربری جذاب.",
+price:"رایگان"
+},
+{
+id:6,
+icon:"🚀",
+title:"ساخت سایت حرفه‌ای",
+cat:"web",
+desc:"ساخت یک سایت کامل با چند بخش، فرم و انیمیشن.",
+price:"رایگان"
+}
 ];
+
 let activeCat="all";
 
+
 function renderCourses(){
- const q=document.getElementById("search").value.trim().toLowerCase();
- const list=courses.filter(c=>(activeCat==="all"||c.cat===activeCat)&&
-   (!q||c.title.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)));
- const grid=document.getElementById("courseGrid");
- grid.innerHTML=list.length?list.map(c=>`
- <article class="card">
-  <div class="course-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.desc}</p>
-  <div class="card-row"><span class="price">${c.price}</span><button class="btn" onclick="courseDetails(${c.id})">مشاهده</button></div>
- </article>`).join(""):`<div class="empty">دوره‌ای پیدا نشد 😕</div>`;
+
+const q=document
+.getElementById("search")
+.value.trim()
+.toLowerCase();
+
+const list=courses.filter(c=>
+(activeCat==="all"||c.cat===activeCat)&&
+(!q||
+c.title.toLowerCase().includes(q)||
+c.desc.toLowerCase().includes(q))
+);
+
+const grid=document.getElementById("courseGrid");
+
+grid.innerHTML=list.length?
+
+list.map(c=>`
+
+<article class="card">
+
+<div class="course-icon">${c.icon}</div>
+
+<h3>${c.title}</h3>
+
+<p>${c.desc}</p>
+
+<div class="card-row">
+
+<span class="price">${c.price}</span>
+
+<button class="btn"
+onclick="courseDetails(${c.id})">
+مشاهده
+</button>
+
+</div>
+
+</article>
+
+`).join("")
+
+:
+
+`<div class="empty">
+دوره‌ای پیدا نشد 😕
+</div>`;
 }
+
+
 function setCat(el,cat){
- activeCat=cat;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderCourses();
-}
-function courseDetails(id){
- const c=courses.find(x=>x.id===id);
- showModal(`<div class="modal-head"><h2>${c.icon} ${c.title}</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
- <p>${c.desc}</p><div style="margin-top:20px"><b>مسیر پیشنهادی:</b><br>۱. آشنایی با مفاهیم<br>۲. تمرین‌های کوتاه<br>۳. ساخت پروژه<br>۴. پروژه نهایی</div>
- <button class="btn big" style="margin-top:20px;width:100%" onclick="toast('دوره به لیست شما اضافه شد!');closeModal()">شروع دوره 🚀</button>`);
-}
-function order(service){
- showModal(`<div class="modal-head"><h2>🛠️ سفارش ${service}</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
- <form class="form" onsubmit="submitOrder(event,'${service}')">
- <input class="field" id="orderName" required placeholder="نام">
- <input class="field" id="orderContact" required placeholder="شماره تماس یا ایمیل">
- <textarea class="field" id="orderDesc" required rows="5" placeholder="توضیح پروژه..."></textarea>
- <button class="btn big">ثبت درخواست</button></form>`);
-}
-function submitOrder(e,service){
- e.preventDefault();
- const orders=JSON.parse(localStorage.getItem("orders")||"[]");
- orders.push({service,name:orderName.value,contact:orderContact.value,desc:orderDesc.value,date:new Date().toLocaleString("fa-IR")});
- localStorage.setItem("orders",JSON.stringify(orders));closeModal();toast("درخواست با موفقیت ذخیره شد ✅");
-}
-function sendMessage(e){
- e.preventDefault();
- const msgs=JSON.parse(localStorage.getItem("messages")||"[]");
- msgs.push({name:name.value,email:email.value,message:message.value,date:new Date().toLocaleString("fa-IR")});
- localStorage.setItem("messages",JSON.stringify(msgs));e.target.reset();toast("پیام شما ذخیره شد ✅");
-}
-function openModal(type){
- if(type==="login") showModal(`<div class="modal-head"><h2>👤 ورود / ثبت‌نام</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
- <form class="form" onsubmit="login(event)"><input class="field" id="userEmail" required type="email" placeholder="ایمیل"><input class="field" id="userPass" required type="password" placeholder="رمز عبور"><button class="btn big">ورود</button></form>
- <p style="color:var(--muted);margin-top:15px;font-size:13px">نسخه فعلی ورود را داخل مرورگر ذخیره می‌کند؛ برای ورود واقعی می‌توانیم Firebase یا بک‌اند اختصاصی اضافه کنیم.</p>`);
- else if(type==="menu") showModal(`<div class="modal-head"><h2>منو</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
- <div class="form">${["خانه","دوره‌ها","خدمات","درباره","ارتباط"].map(x=>`<a class="btn secondary" href="#${x==="خانه"?"home":x==="دوره‌ها"?"courses":x==="خدمات"?"services":x==="درباره"?"about":"contact"}" onclick="closeModal()">${x}</a>`).join("")}</div>`);
-}
-function login(e){
- e.preventDefault();localStorage.setItem("loggedIn","1");localStorage.setItem("userEmail",userEmail.value);closeModal();toast("خوش آمدی 👋");
-}
-function showModal(html){document.getElementById("modal").innerHTML=html;document.getElementById("modalBg").classList.add("show")}
-function closeModal(){document.getElementById("modalBg").classList.remove("show")}
-function closeOutside(e){if(e.target.id==="modalBg")closeModal()}
-function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2800)}
-document.getElementById("themeBtn").onclick=()=>{
- document.body.classList.toggle("dark");
- localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light");
- document.getElementById("themeBtn").textContent=document.body.classList.contains("dark")?"☀️":"🌙";
-};
-if(localStorage.getItem("theme")==="dark"){document.body.classList.add("dark");document.getElementById("themeBtn").textContent="☀️"}
-document.getElementById("year").textContent=new Date().getFullYear();
+
+activeCat=cat;
+
+document
+.querySelectorAll(".chip")
+.forEach(x=>x.classList.remove("active"));
+
+el.classList.add("active");
+
 renderCourses();
-</script>
-</body>
-</html>
+}
+
+
+function courseDetails(id){
+
+const c=courses.find(x=>x.id===id);
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>${c.icon} ${c.title}</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<p>${c.desc}</p>
+
+<div style="margin-top:20px">
+
+<b>مسیر پیشنهادی:</b><br>
+
+۱. آشنایی با مفاهیم<br>
+۲. تمرین‌های کوتاه<br>
+۳. ساخت پروژه<br>
+۴. پروژه نهایی
+
+</div>
+
+<button class="btn big"
+style="margin-top:20px;width:100%"
+onclick="toast('دوره به لیست شما اضافه شد!');closeModal()">
+
+شروع دوره 🚀
+
+</button>
+
+`);
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+function order(service){
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>🛠️ سفارش ${service}</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<form class="form"
+onsubmit="submitOrder(event,'${service}')">
+
+<input class="field"
+id="orderName"
+required
+placeholder="نام">
+
+<input class="field"
+id="orderContact"
+required
+placeholder="شماره تماس یا ایمیل">
+
+<textarea class="field"
+id="orderDesc"
+required
+rows="5"
+placeholder="توضیح پروژه..."></textarea>
+
+<button class="btn big">
+ثبت درخواست
+</button>
+
+</form>
+
+`);
+}
+
+
+function submitOrder(e,service){
+
+e.preventDefault();
+
+const orders=
+JSON.parse(
+localStorage.getItem("orders")||"[]"
+);
+
+orders.push({
+
+service,
+
+name:
+document.getElementById("orderName").value,
+
+contact:
+document.getElementById("orderContact").value,
+
+desc:
+document.getElementById("orderDesc").value,
+
+date:new Date().toLocaleString("fa-IR")
+
+});
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+closeModal();
+
+toast("درخواست با موفقیت ذخیره شد ✅");
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+function sendMessage(e){
+
+e.preventDefault();
+
+const msgs=
+JSON.parse(
+localStorage.getItem("messages")||"[]"
+);
+
+msgs.push({
+
+name:
+document.getElementById("name").value,
+
+email:
+document.getElementById("email").value,
+
+message:
+document.getElementById("message").value,
+
+date:new Date().toLocaleString("fa-IR")
+
+});
+
+localStorage.setItem(
+"messages",
+JSON.stringify(msgs)
+);
+
+e.target.reset();
+
+toast("پیام شما ذخیره شد ✅");
+}
+
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+function openModal(type){
+
+if(type==="login"){
+
+showAuthModal("login");
+
+}
+
+else if(type==="menu"){
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>منو</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<div class="form">
+
+<a class="btn secondary"
+href="#home"
+onclick="closeModal()">خانه</a>
+
+<a class="btn secondary"
+href="#courses"
+onclick="closeModal()">دوره‌ها</a>
+
+<a class="btn secondary"
+href="#services"
+onclick="closeModal()">خدمات</a>
+
+<a class="btn secondary"
+href="#about"
+onclick="closeModal()">درباره</a>
+
+<a class="btn secondary"
+href="#contact"
+onclick="closeModal()">ارتباط</a>
+
+</div>
+
+`);
+
+}
+
+}
+
+
+function showAuthModal(mode){
+
+const register=mode==="register";
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>
+${register?"📝 ثبت‌نام":"👤 ورود"}
+</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+${register?`
+
+<input
+class="field"
+id="fullName"
+required
+placeholder="نام و نام خانوادگی">
+
+<input
+class="field"
+id="username"
+required
+placeholder="نام کاربری">
+
+`: ""}
+
+<input
+class="field"
+id="userEmail"
+required
+type="email"
+placeholder="ایمیل">
+
+<input
+class="field"
+id="userPass"
+required
+type="password"
+placeholder="رمز عبور">
+
+<button
+class="btn big"
+style="width:100%;margin-top:5px"
+onclick="${register?"registerUser()":"loginUser()"}">
+
+${register?"ثبت‌نام":"ورود"}
+
+</button>
+
+<div style="text-align:center;margin-top:15px">
+
+${
+register
+
+?
+
+`حساب داری؟
+<button
+class="btn secondary"
+onclick="showAuthModal('login')">
+ورود
+</button>`
+
+:
+
+`حساب نداری؟
+<button
+class="btn secondary"
+onclick="showAuthModal('register')">
+ثبت‌نام
+</button>`
+}
+
+</div>
+
+`);
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+async function registerUser(){
+
+const fullName=
+document.getElementById("fullName").value.trim();
+
+const username=
+document.getElementById("username").value.trim();
+
+const email=
+document.getElementById("userEmail").value.trim();
+
+const password=
+document.getElementById("userPass").value;
+
+if(!fullName||!username||!email||!password){
+
+toast("لطفاً همه فیلدها را پر کن");
+
+return;
+}
+
+if(password.length<6){
+
+toast("رمز عبور باید حداقل ۶ کاراکتر باشد");
+
+return;
+}
+
+const {data,error}=
+await supabaseClient.auth.signUp({
+
+email:email,
+
+password:password,
+
+options:{
+data:{
+full_name:fullName,
+username:username
+}
+}
+
+});
+
+if(error){
+
+toast("خطا: "+error.message);
+
+return;
+}
+
+closeModal();
+
+if(data.session){
+
+toast("ثبت‌نام با موفقیت انجام شد 🎉");
+
+}else{
+
+toast(
+"ثبت‌نام انجام شد. ایمیلت را برای تأیید بررسی کن 📧"
+);
+
+}
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function loginUser(){
+
+const email=
+document.getElementById("userEmail").value.trim();
+
+const password=
+document.getElementById("userPass").value;
+
+if(!email||!password){
+
+toast("ایمیل و رمز عبور را وارد کن");
+
+return;
+}
+
+const {data,error}=
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+if(error){
+
+toast("ایمیل یا رمز عبور اشتباه است ❌");
+
+console.error(error);
+
+return;
+}
+
+closeModal();
+
+toast("خوش آمدی 👋");
+
+updateAuthUI(data.user);
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logoutUser(){
+
+const {error}=
+await supabaseClient.auth.signOut();
+
+if(error){
+
+toast("خطا در خروج");
+
+return;
+}
+
+toast("با موفقیت خارج شدی 👋");
+
+updateAuthUI(nul
