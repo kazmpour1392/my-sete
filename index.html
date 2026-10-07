@@ -3,1252 +3,1523 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1020">
-<meta name="description" content="آکادمی طراحی سایت">
+
 <title>آکادمی طراحی سایت</title>
 
+<meta name="description" content="آکادمی طراحی سایت - آموزش، طراحی و خدمات وب">
+
 <style>
-:root{
-  --bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#667085;--line:#e7eaf0;
-  --primary:#6c5ce7;--primary2:#8e7dff;--accent:#00c2ff;
-  --shadow:0 18px 50px rgba(24,30,55,.10);
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
-body.dark{
-  --bg:#080c18;--card:#111827;--text:#f8fafc;--muted:#a8b0c2;--line:#263047;
-  --shadow:0 18px 50px rgba(0,0,0,.35);
+
+html{
+    scroll-behavior:smooth;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+
 body{
-  font-family:Tahoma,"Segoe UI",sans-serif;
-  background:var(--bg);color:var(--text);
-  line-height:1.8;transition:.25s
+    font-family:
+        Tahoma,
+        Arial,
+        "Segoe UI",
+        sans-serif;
+    background:#080b16;
+    color:#f4f7ff;
+    line-height:1.8;
+    transition:.3s;
 }
-a{text-decoration:none;color:inherit}
-button,input,textarea,select{font:inherit}
-.container{width:min(1160px,92%);margin:auto}
+
+body.light{
+    background:#f4f7fb;
+    color:#111827;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
 
 header{
-  position:sticky;top:0;z-index:50;
-  background:color-mix(in srgb,var(--bg) 82%,transparent);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line)
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(18px);
+    background:rgba(8,11,22,.82);
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
-.nav{
-  height:72px;display:flex;align-items:center;
-  justify-content:space-between;gap:20px
+
+body.light header{
+    background:rgba(255,255,255,.88);
+    border-bottom:1px solid rgba(0,0,0,.08);
 }
+
+.navbar{
+    min-height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
 .logo{
-  font-size:21px;font-weight:900;
-  display:flex;align-items:center;gap:10px
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:900;
+    font-size:19px;
+    white-space:nowrap;
 }
-.logo span{
-  display:grid;place-items:center;width:40px;height:40px;
-  border-radius:13px;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:#fff
+
+.logo-mark{
+    width:50px;
+    height:50px;
+    border-radius:15px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
-nav{display:flex;gap:24px}
-nav a{color:var(--muted);font-weight:700;font-size:14px}
-nav a:hover{color:var(--primary)}
-.nav-actions{display:flex;gap:8px}
-.icon-btn,.btn{
-  border:0;cursor:pointer;border-radius:13px;padding:10px 15px
+
+.logo-mark img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
 }
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.nav-links a{
+    padding:9px 13px;
+    border-radius:10px;
+    color:#cbd5e1;
+    transition:.25s;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    background:rgba(255,255,255,.08);
+    color:#fff;
+}
+
+body.light .nav-links a{
+    color:#475569;
+}
+
+body.light .nav-links a:hover{
+    background:#eef2ff;
+    color:#111827;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.icon-btn,
+.auth-btn{
+    border:0;
+    cursor:pointer;
+    border-radius:11px;
+    padding:10px 14px;
+    font-weight:800;
+    transition:.25s;
+}
+
 .icon-btn{
-  background:var(--card);
-  border:1px solid var(--line);
-  color:var(--text)
+    background:rgba(255,255,255,.08);
+    color:white;
 }
-.btn{
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:#fff;font-weight:800;
-  box-shadow:0 10px 25px rgba(108,92,231,.22)
-}
-.btn.secondary{
-  background:var(--card);color:var(--text);
-  border:1px solid var(--line);box-shadow:none
-}
-.btn.big{padding:13px 21px}
 
-.hero{padding:78px 0 60px;overflow:hidden}
+body.light .icon-btn{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.auth-btn{
+    background:linear-gradient(135deg,#6366f1,#8b5cf6);
+    color:white;
+}
+
+.auth-btn:hover,
+.icon-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    padding:100px 0 80px;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#6366f1;
+    filter:blur(160px);
+    opacity:.18;
+    top:-180px;
+    right:-100px;
+    pointer-events:none;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#06b6d4;
+    filter:blur(150px);
+    opacity:.12;
+    bottom:-200px;
+    left:-100px;
+    pointer-events:none;
+}
+
 .hero-grid{
-  display:grid;grid-template-columns:1.1fr .9fr;
-  gap:50px;align-items:center
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:50px;
+    align-items:center;
 }
+
 .badge{
-  display:inline-flex;padding:7px 12px;border-radius:99px;
-  background:rgba(108,92,231,.11);
-  color:var(--primary);font-weight:800;font-size:13px;
-  margin-bottom:15px
+    display:inline-flex;
+    padding:7px 14px;
+    border:1px solid rgba(129,140,248,.35);
+    background:rgba(99,102,241,.1);
+    color:#a5b4fc;
+    border-radius:100px;
+    margin-bottom:20px;
+    font-size:14px;
 }
-h1{font-size:clamp(38px,6vw,70px);line-height:1.1;margin-bottom:20px}
+
+.hero h1{
+    font-size:clamp(38px,6vw,72px);
+    line-height:1.15;
+    margin-bottom:22px;
+    font-weight:1000;
+}
+
 .gradient{
-  background:linear-gradient(90deg,var(--primary),var(--accent));
-  -webkit-background-clip:text;color:transparent
+    background:linear-gradient(
+        90deg,
+        #818cf8,
+        #c084fc,
+        #22d3ee
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
+
 .hero p{
-  font-size:18px;color:var(--muted);
-  max-width:650px;margin-bottom:25px
+    color:#aab4c8;
+    max-width:680px;
+    font-size:18px;
+    margin-bottom:28px;
 }
-.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
-.code-card{
-  background:#0d1324;border:1px solid #27304a;
-  border-radius:25px;padding:20px;
-  box-shadow:var(--shadow);transform:rotate(1deg)
-}
-.code-top{display:flex;gap:7px;margin-bottom:18px}
-.dot{width:11px;height:11px;border-radius:50%;background:#777}
-pre{
-  color:#dce5ff;overflow:auto;
-  font-family:Consolas,monospace;font-size:14px
-}
-.c-purple{color:#b99cff}
-.c-blue{color:#62d7ff}
-.c-green{color:#78e6a1}
-.c-yellow{color:#ffe28a}
 
-.section{padding:75px 0}
+body.light .hero p{
+    color:#475569;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    cursor:pointer;
+    padding:13px 20px;
+    border-radius:13px;
+    font-weight:900;
+    transition:.25s;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn-primary{
+    color:white;
+    background:linear-gradient(135deg,#6366f1,#8b5cf6);
+    box-shadow:0 12px 30px rgba(99,102,241,.25);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,.07);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+body.light .btn-secondary{
+    background:white;
+    color:#111827;
+    border:1px solid #e5e7eb;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.hero-card{
+    position:relative;
+    min-height:350px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.1);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(99,102,241,.18),
+            rgba(139,92,246,.05)
+        );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.hero-card img{
+    width:72%;
+    max-height:280px;
+    object-fit:contain;
+    filter:drop-shadow(0 25px 30px rgba(0,0,0,.35));
+}
+
+/* ================= SECTIONS ================= */
+
+.section{
+    padding:85px 0;
+}
+
 .section-head{
-  display:flex;justify-content:space-between;
-  align-items:end;gap:20px;margin-bottom:28px
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:20px;
+    margin-bottom:30px;
 }
-.section-head h2{font-size:32px}
-.section-head p{color:var(--muted)}
 
-.stats{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:15px;margin-top:45px
+.section-head h2{
+    font-size:34px;
+    line-height:1.3;
 }
-.stat,.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:20px;padding:22px;
-  box-shadow:var(--shadow)
-}
-.stat strong{font-size:28px}
-.stat span{display:block;color:var(--muted);font-size:13px}
 
-.filters{
-  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px
+.section-head p{
+    color:#94a3b8;
+    margin-top:6px;
 }
-.search{
-  flex:1;min-width:220px;padding:12px 15px;
-  border:1px solid var(--line);border-radius:13px;
-  background:var(--card);color:var(--text);
-  outline:0
-}
-.chip{
-  padding:10px 15px;border-radius:13px;
-  border:1px solid var(--line);
-  background:var(--card);color:var(--text);
-  cursor:pointer
-}
-.chip.active{
-  background:var(--primary);color:#fff;
-  border-color:var(--primary)
-}
+
+/* ================= CARDS ================= */
+
 .grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
-.course-icon{font-size:35px;margin-bottom:12px}
-.card h3{margin-bottom:7px}
-.card p{color:var(--muted);font-size:14px}
-.card-row{
-  display:flex;justify-content:space-between;
-  align-items:center;margin-top:18px
-}
-.price{font-weight:900;color:var(--primary)}
 
-.services .card{position:relative;overflow:hidden}
-.services .card:after{
-  content:"";position:absolute;width:90px;height:90px;
-  border-radius:50%;background:rgba(108,92,231,.08);
-  left:-30px;bottom:-35px
+.card{
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.045);
+    border-radius:22px;
+    padding:24px;
+    transition:.3s;
 }
-.feature-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+
+body.light .card{
+    background:white;
+    border-color:#e5e7eb;
+    box-shadow:0 12px 35px rgba(15,23,42,.06);
 }
-.feature{padding:25px}
-.feature b{font-size:20px}
-.feature .emoji{font-size:35px;margin-bottom:10px}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(129,140,248,.4);
+}
+
+.card-icon{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    background:rgba(99,102,241,.13);
+    margin-bottom:17px;
+}
+
+.card h3{
+    margin-bottom:8px;
+    font-size:20px;
+}
+
+.card p{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* ================= COURSES ================= */
+
+.course-card{
+    overflow:hidden;
+    padding:0;
+}
+
+.course-image{
+    height:150px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.3),
+            rgba(34,211,238,.1)
+        );
+}
+
+.course-content{
+    padding:20px;
+}
+
+.course-meta{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:15px;
+    font-size:13px;
+    color:#94a3b8;
+}
+
+/* ================= BRAND ================= */
+
+.brand-section{
+    padding-top:60px;
+}
+
+.brand-grid{
+    display:grid;
+    grid-template-columns:.75fr 1.25fr;
+    gap:25px;
+    align-items:start;
+}
+
+.brand-card{
+    text-align:center;
+}
+
+.brand-card h3{
+    margin-bottom:18px;
+    font-size:23px;
+}
+
+.logo-showcase{
+    min-height:350px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(99,102,241,.16),
+            transparent 65%
+        );
+}
+
+.logo-showcase img{
+    max-width:80%;
+    max-height:320px;
+    object-fit:contain;
+    filter:drop-shadow(0 20px 30px rgba(0,0,0,.3));
+}
+
+.business-card-box{
+    overflow:hidden;
+    border-radius:20px;
+    background:#fff;
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+.business-card-box img{
+    width:100%;
+    height:auto;
+    display:block;
+    transition:.3s;
+}
+
+.business-card-box img:hover{
+    transform:scale(1.015);
+}
+
+/* ================= ABOUT ================= */
+
+.about-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.about-box .card{
+    min-height:200px;
+}
+
+.check-list{
+    list-style:none;
+    margin-top:15px;
+}
+
+.check-list li{
+    margin:9px 0;
+}
+
+/* ================= CONTACT ================= */
 
 .contact-grid{
-  display:grid;grid-template-columns:.8fr 1.2fr;gap:20px
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:25px;
 }
-.form{display:grid;gap:12px}
-.field{
-  padding:13px 15px;border:1px solid var(--line);
-  border-radius:13px;background:var(--card);
-  color:var(--text);outline:0
+
+.contact-item{
+    padding:17px;
+    border-radius:15px;
+    background:rgba(255,255,255,.05);
+    margin-top:12px;
 }
-.field:focus{border-color:var(--primary)}
+
+body.light .contact-item{
+    background:#f8fafc;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:700;
+}
+
+.form-control{
+    width:100%;
+    padding:13px 15px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.12);
+    outline:none;
+    background:rgba(255,255,255,.05);
+    color:white;
+    font-size:15px;
+}
+
+body.light .form-control{
+    background:#f8fafc;
+    color:#111827;
+    border-color:#dbe1ea;
+}
+
+textarea.form-control{
+    min-height:130px;
+    resize:vertical;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
-  padding:35px 0;border-top:1px solid var(--line);
-  color:var(--muted);text-align:center
+    margin-top:50px;
+    padding:30px 0;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#94a3b8;
+    text-align:center;
 }
-.credit{color:var(--text);font-weight:800;margin-top:7px}
+
+body.light footer{
+    border-color:#e5e7eb;
+}
+
+/* ================= MODAL ================= */
 
 .modal-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,.6);
-  display:none;place-items:center;padding:20px;z-index:100
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+    padding:20px;
 }
-.modal-bg.show{display:grid}
+
+.modal-bg.show{
+    display:flex;
+}
+
 .modal{
-  width:min(550px,100%);background:var(--card);
-  border-radius:22px;padding:25px;
-  max-height:90vh;overflow:auto
+    width:min(450px,100%);
+    border-radius:25px;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.1);
+    padding:27px;
+    box-shadow:0 30px 100px rgba(0,0,0,.5);
+    position:relative;
 }
-.modal-head{
-  display:flex;justify-content:space-between;
-  gap:15px;margin-bottom:15px
+
+body.light .modal{
+    background:white;
+    color:#111827;
 }
+
+.modal-close{
+    position:absolute;
+    left:17px;
+    top:15px;
+    border:0;
+    background:transparent;
+    color:#94a3b8;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.modal h2{
+    margin-bottom:8px;
+}
+
+.modal-subtitle{
+    color:#94a3b8;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.tab{
+    border:0;
+    cursor:pointer;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,255,255,.06);
+    color:#94a3b8;
+    font-weight:800;
+}
+
+.tab.active{
+    background:#6366f1;
+    color:white;
+}
+
+.auth-form{
+    display:none;
+}
+
+.auth-form.active{
+    display:block;
+}
+
+/* ================= TOAST ================= */
+
 .toast{
-  position:fixed;left:20px;bottom:20px;
-  background:#101828;color:#fff;
-  padding:13px 18px;border-radius:14px;
-  transform:translateY(120px);transition:.3s;z-index:200
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,120px);
+    background:#111827;
+    color:white;
+    padding:13px 20px;
+    border-radius:13px;
+    z-index:5000;
+    opacity:0;
+    transition:.35s;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
-.toast.show{transform:translateY(0)}
-.empty{
-  text-align:center;color:var(--muted);
-  padding:30px;grid-column:1/-1
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
 }
-.mobile-menu{display:none}
+
+/* ================= USER ================= */
 
 .user-box{
-  display:flex;align-items:center;gap:8px;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:13px;padding:7px 10px
-}
-.user-email{
-  max-width:150px;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap;
-  font-size:12px;color:var(--muted)
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
-@media(max-width:850px){
-  nav{display:none}
-  .mobile-menu{display:block}
-  .hero-grid,.contact-grid{grid-template-columns:1fr}
-  .hero{padding-top:45px}
-  .grid,.feature-grid{grid-template-columns:repeat(2,1fr)}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .user-email{display:none}
+.user-name{
+    color:#cbd5e1;
+    font-size:13px;
+    max-width:130px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
-@media(max-width:560px){
-  .grid,.feature-grid,.stats{grid-template-columns:1fr}
-  .section{padding:55px 0}
-  .section-head{display:block}
-  .section-head h2{font-size:27px;margin-bottom:6px}
-  .nav{height:64px}
-  .logo{font-size:17px}
-  .logo span{width:35px;height:35px}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:70px 0;
+    }
+
+    .hero-card{
+        min-height:280px;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .brand-grid,
+    .about-box,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        min-height:68px;
+    }
+
+    .logo{
+        font-size:15px;
+    }
+
+    .logo-mark{
+        width:43px;
+        height:43px;
+        border-radius:12px;
+    }
+
+    .header-actions{
+        gap:5px;
+    }
+
+    .auth-btn{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .icon-btn{
+        padding:8px 10px;
+    }
+
+    .hero{
+        padding:55px 0;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero-card{
+        min-height:230px;
+    }
+
+    .section{
+        padding:60px 0;
+    }
+
+    .section-head h2{
+        font-size:27px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .brand-grid{
+        gap:15px;
+    }
+
+    .logo-showcase{
+        min-height:250px;
+    }
+
+    .business-card-box{
+        border-radius:14px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="container nav">
+<!-- ================= HEADER ================= -->
 
-<a class="logo" href="#">
-  <span>AK</span>
-  آکادمی طراحی سایت
+<header>
+
+<div class="container navbar">
+
+<a href="#home" class="logo">
+
+<span class="logo-mark">
+<img
+src="IMG_۲۰۲۶۱۰۰۸_۰۰۰۳۲۲.png"
+alt="لوگوی آکادمی طراحی سایت">
+</span>
+
+<span>آکادمی طراحی سایت</span>
+
 </a>
 
-<nav>
+<nav class="nav-links">
+
 <a href="#home">خانه</a>
 <a href="#courses">دوره‌ها</a>
 <a href="#services">خدمات</a>
-<a href="#about">درباره</a>
-<a href="#contact">ارتباط</a>
+<a href="#brand">برند من</a>
+<a href="#about">درباره من</a>
+<a href="#contact">تماس</a>
+
 </nav>
 
-<div class="nav-actions">
-<button class="icon-btn" id="themeBtn">🌙</button>
+<div class="header-actions">
+
+<button
+class="icon-btn"
+onclick="toggleTheme()"
+title="تغییر حالت">
+🌙
+</button>
 
 <div id="authArea">
-<button class="btn" onclick="openModal('login')">ورود</button>
+
+<button
+class="auth-btn"
+onclick="openModal('login')">
+ورود
+</button>
+
 </div>
 
-<button class="mobile-menu icon-btn" onclick="openModal('menu')">☰</button>
 </div>
 
 </div>
+
 </header>
 
-<main id="home">
 
-<section class="hero">
+<!-- ================= HERO ================= -->
+
+<main>
+
+<section class="hero" id="home">
+
 <div class="container hero-grid">
 
 <div>
 
-<span class="badge">🚀 یادگیری، ساختن، پیشرفت کردن</span>
+<div class="badge">
+🚀 آموزش و طراحی وب
+</div>
 
 <h1>
-ایده‌ات را به یک
-<span class="gradient">پروژه واقعی</span>
-تبدیل کن.
+
+ساختن آینده با
+
+<span class="gradient">
+طراحی سایت
+</span>
+
 </h1>
 
 <p>
-آموزش برنامه‌نویسی، طراحی سایت و خدمات دیجیتال
-در یک محیط مدرن و ساده؛ برای شروع لازم نیست حرفه‌ای باشی.
+به آکادمی طراحی سایت خوش آمدید؛
+جایی برای یادگیری طراحی وب،
+برنامه‌نویسی و ساخت پروژه‌های حرفه‌ای.
 </p>
 
 <div class="hero-buttons">
-<a class="btn big" href="#courses">شروع یادگیری ←</a>
-<a class="btn secondary big" href="#services">مشاهده خدمات</a>
-</div>
 
-<div class="stats">
-<div class="stat"><strong>۱۰+</strong><span>دوره آموزشی</span></div>
-<div class="stat"><strong>۲۰+</strong><span>پروژه</span></div>
-<div class="stat"><strong>۱۰۰٪</strong><span>تمرکز روی یادگیری</span></div>
-<div class="stat"><strong>24/7</strong><span>دسترسی به سایت</span></div>
-</div>
+<a href="#courses"
+class="btn btn-primary">
+مشاهده دوره‌ها
+</a>
 
-</div>
-
-<div class="code-card">
-<div class="code-top">
-<i class="dot"></i><i class="dot"></i><i class="dot"></i>
-</div>
-
-<pre><span class="c-purple">const</span> <span class="c-blue">dream</span> = {
-  idea: <span class="c-green">"یک پروژه خفن"</span>,
-  skills: [<span class="c-green">"HTML"</span>, <span class="c-green">"CSS"</span>,
-           <span class="c-green">"JavaScript"</span>],
-  result: <span class="c-yellow">"موفقیت 🚀"</span>
-};
-
-<span class="c-purple">function</span> <span class="c-blue">build</span>(dream) {
-  <span class="c-purple">return</span> dream.idea + <span class="c-green">" ✨"</span>;
-}</pre>
+<a href="#brand"
+class="btn btn-secondary">
+💳 کارت ویزیت من
+</a>
 
 </div>
+
 </div>
+
+
+<div class="hero-card">
+
+<img
+src="IMG_۲۰۲۶۱۰۰۸_۰۰۰۳۲۲.png"
+alt="لوگوی آکادمی طراحی سایت">
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- ================= COURSES ================= -->
 
 <section class="section" id="courses">
+
 <div class="container">
 
 <div class="section-head">
+
 <div>
+
 <h2>📚 دوره‌های آموزشی</h2>
-<p>از پایه شروع کن و قدم‌به‌قدم جلو برو.</p>
-</div>
-</div>
 
-<div class="filters">
-
-<input id="search" class="search"
-placeholder="🔎 جستجوی دوره..."
-oninput="renderCourses()">
-
-<button class="chip active"
-onclick="setCat(this,'all')">همه</button>
-
-<button class="chip"
-onclick="setCat(this,'web')">وب</button>
-
-<button class="chip"
-onclick="setCat(this,'programming')">برنامه‌نویسی</button>
-
-<button class="chip"
-onclick="setCat(this,'design')">طراحی</button>
+<p>
+مهارت‌هایی که برای ورود به دنیای وب نیاز داری
+</p>
 
 </div>
 
-<div class="grid" id="courseGrid"></div>
+</div>
+
+
+<div class="grid">
+
+<div class="card course-card">
+
+<div class="course-image">
+🌐
+</div>
+
+<div class="course-content">
+
+<h3>
+طراحی سایت با HTML و CSS
+</h3>
+
+<p>
+از صفر یک سایت زیبا و واکنش‌گرا بساز.
+</p>
+
+<div class="course-meta">
+
+<span>🎓 مقدماتی</span>
+<span>⏱️ پروژه‌محور</span>
 
 </div>
+
+</div>
+
+</div>
+
+
+<div class="card course-card">
+
+<div class="course-image">
+⚡
+</div>
+
+<div class="course-content">
+
+<h3>
+JavaScript
+</h3>
+
+<p>
+سایت‌های تعاملی و حرفه‌ای با JavaScript.
+</p>
+
+<div class="course-meta">
+
+<span>🎓 متوسط</span>
+<span>💻 عملی</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card course-card">
+
+<div class="course-image">
+🐍
+</div>
+
+<div class="course-content">
+
+<h3>
+Python و Flask
+</h3>
+
+<p>
+ساخت وب‌اپلیکیشن‌های واقعی با Python.
+</p>
+
+<div class="course-meta">
+
+<span>🎓 متوسط</span>
+<span>🚀 پروژه‌ای</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section services" id="services">
+
+<!-- ================= SERVICES ================= -->
+
+<section class="section" id="services">
+
 <div class="container">
 
 <div class="section-head">
+
 <div>
+
 <h2>🛠️ خدمات</h2>
-<p>برای پروژه شخصی، مدرسه یا کسب‌وکار.</p>
+
+<p>
+راهکارهای طراحی و توسعه وب
+</p>
+
 </div>
+
 </div>
+
 
 <div class="grid">
 
 <div class="card">
-<div class="course-icon">🌐</div>
-<h3>طراحی سایت</h3>
-<p>ساخت سایت مدرن، واکنش‌گرا و مناسب موبایل.</p>
-<div class="card-row">
-<b>سفارشی</b>
-<button class="btn" onclick="order('طراحی سایت')">سفارش</button>
+
+<div class="card-icon">
+🎨
 </div>
+
+<h3>
+طراحی سایت
+</h3>
+
+<p>
+طراحی سایت مدرن، سریع و واکنش‌گرا برای موبایل و کامپیوتر.
+</p>
+
 </div>
+
 
 <div class="card">
-<div class="course-icon">🎨</div>
-<h3>طراحی پوستر</h3>
-<p>طراحی پوستر، بنر و محتوای تصویری جذاب.</p>
-<div class="card-row">
-<b>سفارشی</b>
-<button class="btn" onclick="order('طراحی پوستر')">سفارش</button>
+
+<div class="card-icon">
+💻
 </div>
+
+<h3>
+توسعه وب
+</h3>
+
+<p>
+ساخت صفحات و وب‌اپلیکیشن‌های کاربردی و حرفه‌ای.
+</p>
+
 </div>
+
 
 <div class="card">
-<div class="course-icon">💻</div>
-<h3>پروژه برنامه‌نویسی</h3>
-<p>کمک در ساخت پروژه‌های آموزشی و شخصی.</p>
-<div class="card-row">
-<b>سفارشی</b>
-<button class="btn" onclick="order('پروژه برنامه‌نویسی')">سفارش</button>
+
+<div class="card-icon">
+✨
 </div>
+
+<h3>
+طراحی رابط کاربری
+</h3>
+
+<p>
+طراحی رابط‌های زیبا و کاربرپسند برای پروژه‌های دیجیتال.
+</p>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
+
+
+<!-- ================= BRAND ================= -->
+
+<section class="section brand-section" id="brand">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<h2>🎨 برند من</h2>
+
+<p>
+لوگو و کارت ویزیت آکادمی طراحی سایت
+</p>
+
+</div>
+
+</div>
+
+
+<div class="brand-grid">
+
+
+<!-- LOGO -->
+
+<div class="card brand-card">
+
+<h3>
+🖼️ لوگوی من
+</h3>
+
+<div class="logo-showcase">
+
+<img
+src="IMG_۲۰۲۶۱۰۰۸_۰۰۰۳۲۲.png"
+alt="لوگوی من">
+
+</div>
+
+</div>
+
+
+<!-- BUSINESS CARD -->
+
+<div class="card brand-card">
+
+<h3>
+💳 کارت ویزیت من
+</h3>
+
+<div class="business-card-box">
+
+<img
+src="IMG_۲۰۲۶۱۰۰۸_۰۰۰۲۲۴.png"
+alt="کارت ویزیت من">
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
 
 <section class="section" id="about">
+
 <div class="container">
 
 <div class="section-head">
+
 <div>
-<h2>✨ چرا اینجا؟</h2>
-<p>همه‌چیز ساده، کاربردی و پروژه‌محور طراحی شده است.</p>
-</div>
-</div>
 
-<div class="feature-grid">
+<h2>👨‍💻 درباره من</h2>
 
-<div class="card feature">
-<div class="emoji">🎯</div>
-<b>یادگیری هدفمند</b>
-<p>به‌جای حفظ کردن، با ساخت پروژه یاد می‌گیری.</p>
-</div>
+<p>
+درباره آکادمی طراحی سایت
+</p>
 
-<div class="card feature">
-<div class="emoji">📱</div>
-<b>کاملاً واکنش‌گرا</b>
-<p>سایت روی موبایل، تبلت و کامپیوتر ظاهر مناسبی دارد.</p>
-</div>
-
-<div class="card feature">
-<div class="emoji">⚡</div>
-<b>سریع و سبک</b>
-<p>بدون نیاز به کتابخانه‌های سنگین، با HTML و CSS و JavaScript.</p>
 </div>
 
 </div>
+
+
+<div class="about-box">
+
+<div class="card">
+
+<h3>
+🚀 هدف من
+</h3>
+
+<p>
+هدف آکادمی طراحی سایت، آموزش ساده و کاربردی
+مهارت‌های برنامه‌نویسی و طراحی وب و کمک به ساخت
+پروژه‌های واقعی است.
+</p>
+
 </div>
+
+
+<div class="card">
+
+<h3>
+⭐ ویژگی‌ها
+</h3>
+
+<ul class="check-list">
+
+<li>✅ آموزش پروژه‌محور</li>
+<li>✅ طراحی مدرن</li>
+<li>✅ مناسب موبایل و کامپیوتر</li>
+<li>✅ تمرکز روی مهارت واقعی</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- ================= CONTACT ================= -->
+
 <section class="section" id="contact">
+
 <div class="container">
 
 <div class="section-head">
+
 <div>
-<h2>📩 ارتباط با ما</h2>
-<p>برای سفارش پروژه یا ارسال پیام فرم زیر را پر کن.</p>
+
+<h2>📩 تماس با من</h2>
+
+<p>
+برای ارتباط و همکاری پیام بفرستید.
+</p>
+
 </div>
+
 </div>
+
 
 <div class="contact-grid">
 
+
 <div class="card">
-<h3>آماده‌ای شروع کنیم؟ 🚀</h3>
-<p style="margin-top:10px">
-پیامت در همین مرورگر ذخیره می‌شود.
-</p>
 
-<div style="margin-top:20px">
-💡 ایده داری؟ بنویس.<br>
-🧑‍💻 پروژه داری؟ توضیح بده.<br>
-📚 سوال آموزشی داری؟ بپرس.
-</div>
+<h3>
+📞 راه‌های ارتباطی
+</h3>
+
+<div class="contact-item">
+📧 ایمیل: از طریق فرم تماس
 </div>
 
-<form class="card form" onsubmit="sendMessage(event)">
+<div class="contact-item">
+🌐 وب‌سایت: آکادمی طراحی سایت
+</div>
 
-<input class="field" id="name"
-required placeholder="نام شما">
+<div class="contact-item">
+💬 آماده دریافت پیام شما هستم
+</div>
 
-<input class="field" id="email"
-type="email" required placeholder="ایمیل">
+</div>
 
-<textarea class="field" id="message"
-required rows="5" placeholder="پیام شما..."></textarea>
 
-<button class="btn big">
+<div class="card">
+
+<form onsubmit="sendMessage(event)">
+
+<div class="form-group">
+
+<label>
+نام
+</label>
+
+<input
+id="contactName"
+class="form-control"
+type="text"
+placeholder="نام شما"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+ایمیل
+</label>
+
+<input
+id="contactEmail"
+class="form-control"
+type="email"
+placeholder="example@email.com"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+پیام
+</label>
+
+<textarea
+id="contactMessage"
+class="form-control"
+placeholder="پیام خود را بنویسید..."
+required></textarea>
+
+</div>
+
+
+<button
+class="btn btn-primary"
+type="submit">
+
 ارسال پیام 🚀
+
 </button>
 
 </form>
 
 </div>
+
 </div>
+
+</div>
+
 </section>
 
 </main>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
+
 <div class="container">
-© <span id="year"></span> تمامی حقوق محفوظ است.
-<div class="credit">
+
+<p>
+© 2026 آکادمی طراحی سایت
+</p>
+
+<p>
 سازنده: سید امیر حسین کاظم پور
+</p>
+
 </div>
-</div>
+
 </footer>
 
-<div class="modal-bg" id="modalBg" onclick="closeOutside(event)">
-<div class="modal" id="modal"></div>
-</div>
 
-<div class="toast" id="toast"></div>
+<!-- ================= AUTH MODAL ================= -->
 
-<!-- Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<div
+class="modal-bg"
+id="modalBg"
+onclick="closeOutside(event)">
 
-<script>
+<div class="modal" id="modal">
 
-/* =========================
-   SUPABASE
-========================= */
-
-const SUPABASE_URL =
-"https://pdspayxfazoutbjxqswi.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_kPYB9r27zwqmJYRDYBMb_A_YR-2a2PX";
-
-const supabaseClient =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+<button
+class="modal-close"
+onclick="closeModal()">
+×
+</button>
 
 
-/* =========================
-   COURSES
-========================= */
+<h2>
+حساب کاربری
+</h2>
 
-const courses=[
-{
-id:1,
-icon:"🌐",
-title:"HTML و CSS از صفر",
-cat:"web",
-desc:"ساخت اولین صفحات وب و طراحی حرفه‌ای رابط کاربری.",
-price:"رایگان"
-},
-{
-id:2,
-icon:"⚡",
-title:"JavaScript مقدماتی",
-cat:"programming",
-desc:"متغیرها، شرط‌ها، حلقه‌ها، توابع و ساخت برنامه‌های تعاملی.",
-price:"رایگان"
-},
-{
-id:3,
-icon:"🐍",
-title:"Python مقدماتی",
-cat:"programming",
-desc:"شروع برنامه‌نویسی با پایتون به زبان ساده و پروژه‌محور.",
-price:"رایگان"
-},
-{
-id:4,
-icon:"🎮",
-title:"ساخت بازی با JavaScript",
-cat:"programming",
-desc:"ساخت بازی‌های کوچک و جذاب برای مرورگر.",
-price:"رایگان"
-},
-{
-id:5,
-icon:"🎨",
-title:"اصول طراحی UI",
-cat:"design",
-desc:"رنگ، فاصله، تایپوگرافی و ساخت رابط کاربری جذاب.",
-price:"رایگان"
-},
-{
-id:6,
-icon:"🚀",
-title:"ساخت سایت حرفه‌ای",
-cat:"web",
-desc:"ساخت یک سایت کامل با چند بخش، فرم و انیمیشن.",
-price:"رایگان"
-}
-];
-
-let activeCat="all";
+<p class="modal-subtitle">
+برای ورود یا ساخت حساب اقدام کنید.
+</p>
 
 
-function renderCourses(){
+<div class="tabs">
 
-const q=document
-.getElementById("search")
-.value.trim()
-.toLowerCase();
+<button
+class="tab active"
+id="loginTab"
+onclick="showAuthTab('login')">
+ورود
+</button>
 
-const list=courses.filter(c=>
-(activeCat==="all"||c.cat===activeCat)&&
-(!q||
-c.title.toLowerCase().includes(q)||
-c.desc.toLowerCase().includes(q))
-);
-
-const grid=document.getElementById("courseGrid");
-
-grid.innerHTML=list.length?
-
-list.map(c=>`
-
-<article class="card">
-
-<div class="course-icon">${c.icon}</div>
-
-<h3>${c.title}</h3>
-
-<p>${c.desc}</p>
-
-<div class="card-row">
-
-<span class="price">${c.price}</span>
-
-<button class="btn"
-onclick="courseDetails(${c.id})">
-مشاهده
+<button
+class="tab"
+id="registerTab"
+onclick="showAuthTab('register')">
+ثبت‌نام
 </button>
 
 </div>
 
-</article>
 
-`).join("")
+<!-- LOGIN -->
 
-:
+<form
+class="auth-form active"
+id="loginForm"
+onsubmit="loginUser(event)">
 
-`<div class="empty">
-دوره‌ای پیدا نشد 😕
-</div>`;
-}
+<div class="form-group">
 
+<label>
+ایمیل
+</label>
 
-function setCat(el,cat){
-
-activeCat=cat;
-
-document
-.querySelectorAll(".chip")
-.forEach(x=>x.classList.remove("active"));
-
-el.classList.add("active");
-
-renderCourses();
-}
-
-
-function courseDetails(id){
-
-const c=courses.find(x=>x.id===id);
-
-showModal(`
-
-<div class="modal-head">
-
-<h2>${c.icon} ${c.title}</h2>
-
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
+<input
+id="loginEmail"
+class="form-control"
+type="email"
+required
+placeholder="ایمیل">
 
 </div>
 
-<p>${c.desc}</p>
 
-<div style="margin-top:20px">
+<div class="form-group">
 
-<b>مسیر پیشنهادی:</b><br>
+<label>
+رمز عبور
+</label>
 
-۱. آشنایی با مفاهیم<br>
-۲. تمرین‌های کوتاه<br>
-۳. ساخت پروژه<br>
-۴. پروژه نهایی
+<input
+id="loginPassword"
+class="form-control"
+type="password"
+required
+placeholder="رمز عبور">
 
 </div>
 
-<button class="btn big"
-style="margin-top:20px;width:100%"
-onclick="toast('دوره به لیست شما اضافه شد!');closeModal()">
 
-شروع دوره 🚀
+<button
+class="btn btn-primary"
+style="width:100%"
+type="submit">
 
-</button>
+ورود 🚀
 
-`);
-}
-
-
-/* =========================
-   SERVICES
-========================= */
-
-function order(service){
-
-showModal(`
-
-<div class="modal-head">
-
-<h2>🛠️ سفارش ${service}</h2>
-
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
-
-</div>
-
-<form class="form"
-onsubmit="submitOrder(event,'${service}')">
-
-<input class="field"
-id="orderName"
-required
-placeholder="نام">
-
-<input class="field"
-id="orderContact"
-required
-placeholder="شماره تماس یا ایمیل">
-
-<textarea class="field"
-id="orderDesc"
-required
-rows="5"
-placeholder="توضیح پروژه..."></textarea>
-
-<button class="btn big">
-ثبت درخواست
 </button>
 
 </form>
 
-`);
-}
 
+<!-- REGISTER -->
 
-function submitOrder(e,service){
+<form
+class="auth-form"
+id="registerForm"
+onsubmit="registerUser(event)">
 
-e.preventDefault();
+<div class="form-group">
 
-const orders=
-JSON.parse(
-localStorage.getItem("orders")||"[]"
-);
+<label>
+نام
+</label>
 
-orders.push({
-
-service,
-
-name:
-document.getElementById("orderName").value,
-
-contact:
-document.getElementById("orderContact").value,
-
-desc:
-document.getElementById("orderDesc").value,
-
-date:new Date().toLocaleString("fa-IR")
-
-});
-
-localStorage.setItem(
-"orders",
-JSON.stringify(orders)
-);
-
-closeModal();
-
-toast("درخواست با موفقیت ذخیره شد ✅");
-}
-
-
-/* =========================
-   MESSAGES
-========================= */
-
-function sendMessage(e){
-
-e.preventDefault();
-
-const msgs=
-JSON.parse(
-localStorage.getItem("messages")||"[]"
-);
-
-msgs.push({
-
-name:
-document.getElementById("name").value,
-
-email:
-document.getElementById("email").value,
-
-message:
-document.getElementById("message").value,
-
-date:new Date().toLocaleString("fa-IR")
-
-});
-
-localStorage.setItem(
-"messages",
-JSON.stringify(msgs)
-);
-
-e.target.reset();
-
-toast("پیام شما ذخیره شد ✅");
-}
-
-
-/* =========================
-   LOGIN / REGISTER
-========================= */
-
-function openModal(type){
-
-if(type==="login"){
-
-showAuthModal("login");
-
-}
-
-else if(type==="menu"){
-
-showModal(`
-
-<div class="modal-head">
-
-<h2>منو</h2>
-
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
+<input
+id="registerName"
+class="form-control"
+type="text"
+required
+placeholder="نام شما">
 
 </div>
 
-<div class="form">
 
-<a class="btn secondary"
-href="#home"
-onclick="closeModal()">خانه</a>
+<div class="form-group">
 
-<a class="btn secondary"
-href="#courses"
-onclick="closeModal()">دوره‌ها</a>
-
-<a class="btn secondary"
-href="#services"
-onclick="closeModal()">خدمات</a>
-
-<a class="btn secondary"
-href="#about"
-onclick="closeModal()">درباره</a>
-
-<a class="btn secondary"
-href="#contact"
-onclick="closeModal()">ارتباط</a>
-
-</div>
-
-`);
-
-}
-
-}
-
-
-function showAuthModal(mode){
-
-const register=mode==="register";
-
-showModal(`
-
-<div class="modal-head">
-
-<h2>
-${register?"📝 ثبت‌نام":"👤 ورود"}
-</h2>
-
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
-
-</div>
-
-${register?`
+<label>
+ایمیل
+</label>
 
 <input
-class="field"
-id="fullName"
-required
-placeholder="نام و نام خانوادگی">
-
-<input
-class="field"
-id="username"
-required
-placeholder="نام کاربری">
-
-`: ""}
-
-<input
-class="field"
-id="userEmail"
-required
+id="registerEmail"
+class="form-control"
 type="email"
+required
 placeholder="ایمیل">
 
+</div>
+
+
+<div class="form-group">
+
+<label>
+رمز عبور
+</label>
+
 <input
-class="field"
-id="userPass"
-required
+id="registerPassword"
+class="form-control"
 type="password"
-placeholder="رمز عبور">
-
-<button
-class="btn big"
-style="width:100%;margin-top:5px"
-onclick="${register?"registerUser()":"loginUser()"}">
-
-${register?"ثبت‌نام":"ورود"}
-
-</button>
-
-<div style="text-align:center;margin-top:15px">
-
-${
-register
-
-?
-
-`حساب داری؟
-<button
-class="btn secondary"
-onclick="showAuthModal('login')">
-ورود
-</button>`
-
-:
-
-`حساب نداری؟
-<button
-class="btn secondary"
-onclick="showAuthModal('register')">
-ثبت‌نام
-</button>`
-}
-
-</div>
-
-`);
-
-}
-
-
-/* =========================
-   REGISTER
-========================= */
-
-async function registerUser(){
-
-const fullName=
-document.getElementById("fullName").value.trim();
-
-const username=
-document.getElementById("username").value.trim();
-
-const email=
-document.getElementById("userEmail").value.trim();
-
-const password=
-document.getElementById("userPass").value;
-
-if(!fullName||!username||!email||!password){
-
-toast("لطفاً همه فیلدها را پر کن");
-
-return;
-}
-
-if(password.length<6){
-
-toast("رمز عبور باید حداقل ۶ کاراکتر باشد");
-
-return;
-}
-
-const {data,error}=
-await supabaseClient.auth.signUp({
-
-email:email,
-
-password:password,
-
-options:{
-data:{
-full_name:fullName,
-username:username
-}
-}
-
-});
-
-if(error){
-
-toast("خطا: "+error.message);
-
-return;
-}
-
-closeModal();
-
-if(data.session){
-
-toast("ثبت‌نام با موفقیت انجام شد 🎉");
-
-}else{
-
-toast(
-"ثبت‌نام انجام شد. ایمیلت را برای تأیید بررسی کن 📧"
-);
-
-}
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-async function loginUser(){
-
-const email=
-document.getElementById("userEmail").value.trim();
-
-const password=
-document.getElementById("userPass").value;
-
-if(!email||!password){
-
-toast("ایمیل و رمز عبور را وارد کن");
-
-return;
-}
-
-const {data,error}=
-await supabaseClient.auth.signInWithPassword({
-
-email:email,
-
-password:password
-
-});
-
-if(error){
-
-toast("ایمیل یا رمز عبور اشتباه است ❌");
-
-console.error(error);
-
-return;
-}
-
-closeModal();
-
-toast("خوش آمدی 👋");
-
-updateAuthUI(data.user);
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-async function logoutUser(){
-
-const {error}=
-await supabaseClient.auth.signOut();
-
-if(error){
-
-toast("خطا در خروج");
-
-return;
-}
-
-toast("با موفقیت خارج شدی 👋");
-
-updateAuthUI(null);
-}
-
-/* =========================
-   AUTH UI
-========================= */
-
-function updateAuthUI(user){
-
-const authArea = document.getElementById("authArea");
-
-if(!user){
-
-authArea.innerHTML = `
-<button class="btn" onclick="openModal('login')">
-ورود
-</button>
-`;
-
-return;
-}
-
-authArea.innerHTML = `
-<div class="user-box">
-
-<span class="user-email">
-${user.email}
-</span>
-
-<button class="btn" onclick="logoutUser()">
-خروج
-</button>
-
-</div>
-`;
-
-}
-
-/* =========================
-   CHECK LOGIN
-========================= */
-
-async function checkUser(){
-
-const {data,error} =
-await supabaseClient.auth.getSession();
-
-if(error){
-
-console.error(error);
-return;
-
-}
-
-updateAuthUI(data.session?.user || null);
-
-}
-
-/* =========================
-   AUTH CHANGE
-========================= */
-
-supabaseClient.auth.onAuthStateChange(
-(event, session) => {
-
-updateAuthUI(session?.user || null);
-
-});
-
-/* =========================
-   MODAL
-========================= */
-
-function showModal(content){
-
-document.getElementById("modal").innerHTML = content;
-
-document.getElementById("modalBg")
-.classList.add("show");
-
-}
-
-function closeModal(){
-
-document.getElementById("modalBg")
-.classList.remove("show");
-
-}
-
-function closeOutside(e){
-
-if(e.target.id==="modalBg"){
-closeModal();
-}
-
-}
-
-/* =========================
-   TOAST
-========================= */
-
-function toast(message){
-
-const t=document.getElementById("toast");
-
-t.textContent=message;
-
-t.classList.add("show");
-
-setTimeout(()=>{
-t.classList.remove("show");
-},3000);
-
-}
-
-/* =========================
-   THEME
-========================= */
-
-const themeBtn =
-document.getElementById("themeBtn");
-
-themeBtn.onclick=()=>{
-
-document.body.classList.toggle("dark");
-
-localStorage.setItem(
-"theme",
-document.body.classList.contains("dark")
-?"dark":"light"
-);
-
-};
-
-if(localStorage.getItem("theme")==="dark"){
-document.body.classList.add("dark");
-}
-
-/* =========================
-   START
-========================= */
-
-document.getElementById("year")
-.textContent=new Date().getFullYear();
-
-renderCourses();
-
-checkUser();
-
-</script>
-
-</body>
-</html>
+required
+minlength="6"
+placeholder="حداقل ۶ کاراکتر">
+
+  
