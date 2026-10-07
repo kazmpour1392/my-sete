@@ -46,7 +46,15 @@ header{
   display:grid;place-items:center;width:40px;height:40px;
   border-radius:13px;
   background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:#fff
+  color:#fff;
+  overflow:hidden;
+}
+.logo span img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  background:#fff;
 }
 nav{display:flex;gap:24px}
 nav a{color:var(--muted);font-weight:700;font-size:14px}
@@ -229,6 +237,27 @@ footer{
   font-size:12px;color:var(--muted)
 }
 
+/* =========================
+   کارت ویزیت
+========================= */
+
+.brand-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  max-width:900px;
+  margin:auto
+}
+
+.brand-card img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:14px
+}
+
 @media(max-width:850px){
   nav{display:none}
   .mobile-menu{display:block}
@@ -256,7 +285,11 @@ footer{
 <div class="container nav">
 
 <a class="logo" href="#">
-  <span>AK</span>
+  <span>
+    <img
+      src="IMG_۲۰۲۶۱۰۰۸_۰۰۰۳۲۲.png"
+      alt="لوگوی آکادمی طراحی سایت">
+  </span>
   آکادمی طراحی سایت
 </a>
 
@@ -265,6 +298,7 @@ footer{
 <a href="#courses">دوره‌ها</a>
 <a href="#services">خدمات</a>
 <a href="#about">درباره</a>
+<a href="#brand">برند من</a>
 <a href="#contact">ارتباط</a>
 </nav>
 
@@ -450,6 +484,31 @@ onclick="setCat(this,'design')">طراحی</button>
 </div>
 </section>
 
+<!-- =========================
+     برند و کارت ویزیت
+========================= -->
+
+<section class="section" id="brand">
+<div class="container">
+
+<div class="section-head">
+<div>
+<h2>🎨 برند من</h2>
+<p>کارت ویزیت من</p>
+</div>
+</div>
+
+<div class="brand-card">
+
+<img
+src="IMG_۲۰۲۶۱۰۰۸_۰۰۰۲۲۴.png"
+alt="کارت ویزیت من">
+
+</div>
+
+</div>
+</section>
+
 <section class="section" id="contact">
 <div class="container">
 
@@ -513,14 +572,9 @@ required rows="5" placeholder="پیام شما..."></textarea>
 
 <div class="toast" id="toast"></div>
 
-<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
 "https://pdspayxfazoutbjxqswi.supabase.co";
@@ -864,6 +918,10 @@ href="#about"
 onclick="closeModal()">درباره</a>
 
 <a class="btn secondary"
+href="#brand"
+onclick="closeModal()">برند من</a>
+
+<a class="btn secondary"
 href="#contact"
 onclick="closeModal()">ارتباط</a>
 
@@ -1022,233 +1080,4 @@ closeModal();
 
 if(data.session){
 
-toast("ثبت‌نام با موفقیت انجام شد 🎉");
-
-}else{
-
-toast(
-"ثبت‌نام انجام شد. ایمیلت را برای تأیید بررسی کن 📧"
-);
-
-}
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-async function loginUser(){
-
-const email=
-document.getElementById("userEmail").value.trim();
-
-const password=
-document.getElementById("userPass").value;
-
-if(!email||!password){
-
-toast("ایمیل و رمز عبور را وارد کن");
-
-return;
-}
-
-const {data,error}=
-await supabaseClient.auth.signInWithPassword({
-
-email:email,
-
-password:password
-
-});
-
-if(error){
-
-toast("ایمیل یا رمز عبور اشتباه است ❌");
-
-console.error(error);
-
-return;
-}
-
-closeModal();
-
-toast("خوش آمدی 👋");
-
-updateAuthUI(data.user);
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-async function logoutUser(){
-
-const {error}=
-await supabaseClient.auth.signOut();
-
-if(error){
-
-toast("خطا در خروج");
-
-return;
-}
-
-toast("با موفقیت خارج شدی 👋");
-
-updateAuthUI(null);
-}
-
-/* =========================
-   AUTH UI
-========================= */
-
-function updateAuthUI(user){
-
-const authArea = document.getElementById("authArea");
-
-if(!user){
-
-authArea.innerHTML = `
-<button class="btn" onclick="openModal('login')">
-ورود
-</button>
-`;
-
-return;
-}
-
-authArea.innerHTML = `
-<div class="user-box">
-
-<span class="user-email">
-${user.email}
-</span>
-
-<button class="btn" onclick="logoutUser()">
-خروج
-</button>
-
-</div>
-`;
-
-}
-
-/* =========================
-   CHECK LOGIN
-========================= */
-
-async function checkUser(){
-
-const {data,error} =
-await supabaseClient.auth.getSession();
-
-if(error){
-
-console.error(error);
-return;
-
-}
-
-updateAuthUI(data.session?.user || null);
-
-}
-
-/* =========================
-   AUTH CHANGE
-========================= */
-
-supabaseClient.auth.onAuthStateChange(
-(event, session) => {
-
-updateAuthUI(session?.user || null);
-
-});
-
-/* =========================
-   MODAL
-========================= */
-
-function showModal(content){
-
-document.getElementById("modal").innerHTML = content;
-
-document.getElementById("modalBg")
-.classList.add("show");
-
-}
-
-function closeModal(){
-
-document.getElementById("modalBg")
-.classList.remove("show");
-
-}
-
-function closeOutside(e){
-
-if(e.target.id==="modalBg"){
-closeModal();
-}
-
-}
-
-/* =========================
-   TOAST
-========================= */
-
-function toast(message){
-
-const t=document.getElementById("toast");
-
-t.textContent=message;
-
-t.classList.add("show");
-
-setTimeout(()=>{
-t.classList.remove("show");
-},3000);
-
-}
-
-/* =========================
-   THEME
-========================= */
-
-const themeBtn =
-document.getElementById("themeBtn");
-
-themeBtn.onclick=()=>{
-
-document.body.classList.toggle("dark");
-
-localStorage.setItem(
-"theme",
-document.body.classList.contains("dark")
-?"dark":"light"
-);
-
-};
-
-if(localStorage.getItem("theme")==="dark"){
-document.body.classList.add("dark");
-}
-
-/* =========================
-   START
-========================= */
-
-document.getElementById("year")
-.textContent=new Date().getFullYear();
-
-renderCourses();
-
-checkUser();
-
-</script>
-
-</body>
-</html>
+toast("ثبت‌نام با موفقی
