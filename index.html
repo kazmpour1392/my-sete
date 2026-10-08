@@ -229,6 +229,8 @@ footer{
   font-size:12px;color:var(--muted)
 }
 
+details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
+.bar{height:6px;background:var(--line);border-radius:9px;margin:6px 0}.bar i{display:block;height:6px;background:var(--primary);border-radius:9px}
 @media(max-width:850px){
   nav{display:none}
   .mobile-menu{display:block}
@@ -265,6 +267,8 @@ footer{
 <a href="#courses">دوره‌ها</a>
 <a href="#services">خدمات</a>
 <a href="#about">درباره</a>
+<a href="#works">نمونه‌کار</a>
+<a href="#faq">سوالات</a>
 <a href="#contact">ارتباط</a>
 </nav>
 
@@ -363,8 +367,11 @@ onclick="setCat(this,'programming')">برنامه‌نویسی</button>
 <button class="chip"
 onclick="setCat(this,'design')">طراحی</button>
 
+<select id="sort" class="chip" onchange="renderCourses()"><option value="">مرتب‌سازی</option><option value="az">الفبایی</option><option value="new">جدیدترین</option></select>
+
 </div>
 
+<p id="count" style="color:var(--muted);margin-bottom:12px"></p>
 <div class="grid" id="courseGrid"></div>
 
 </div>
@@ -449,6 +456,23 @@ onclick="setCat(this,'design')">طراحی</button>
 </div>
 </div>
 </section>
+
+<section class="section" id="works"><div class="container">
+<div class="section-head"><div><h2>🧩 نمونه‌کارها</h2><p>چند پروژه‌ای که ساخته‌ایم.</p></div></div>
+<div class="grid">
+<div class="card"><div class="course-icon">🌐</div><h3>همین سایت</h3><p>سایت آموزشی با ورود، پنل کاربری و ثبت سفارش.</p><div class="card-row"><span class="price">وب</span><a class="btn" href="https://kazmpour1392.github.io/my-sete/">دمو</a></div></div>
+<div class="card"><div class="course-icon">🎮</div><h3>بازی مرورگر</h3><p>یک بازی کوچک با JavaScript. (متن و لینک را ویرایش کن)</p><div class="card-row"><span class="price">بازی</span><a class="btn" href="#">دمو</a></div></div>
+<div class="card"><div class="course-icon">🎨</div><h3>پوستر</h3><p>طراحی پوستر و بنر. (متن و لینک را ویرایش کن)</p><div class="card-row"><span class="price">طراحی</span><a class="btn" href="#">مشاهده</a></div></div>
+</div></div></section>
+
+<section class="section" id="faq"><div class="container">
+<div class="section-head"><div><h2>❓ سوالات متداول</h2><p>و چند نکته‌ی آموزشی کوتاه.</p></div></div>
+<details class="card"><summary>دوره‌ها رایگان هستند؟</summary><p style="margin-top:8px">بله، همه‌ی دوره‌های فعلی رایگان‌اند.</p></details>
+<details class="card"><summary>برای شروع چه چیزی لازم است؟</summary><p style="margin-top:8px">فقط یک مرورگر و یک ویرایشگر متن. پیش‌نیاز خاصی نیست.</p></details>
+<details class="card"><summary>سفارش پروژه چقدر طول می‌کشد؟</summary><p style="margin-top:8px">بسته به پروژه است. وضعیت سفارش را در پنل کاربری می‌بینی.</p></details>
+<details class="card"><summary>💡 نکته: چرا از flexbox شروع کنیم؟</summary><p style="margin-top:8px">چیدمان یک‌بعدی را ساده می‌کند و برای ۸۰٪ صفحه‌ها کافی است.</p></details>
+<details class="card"><summary>💡 نکته: اول موبایل، بعد دسکتاپ</summary><p style="margin-top:8px">CSS را برای صفحه‌ی کوچک بنویس و با media query بزرگ‌تر کن.</p></details>
+</div></section>
 
 <section class="section" id="contact">
 <div class="container">
@@ -607,6 +631,10 @@ c.title.toLowerCase().includes(q)||
 c.desc.toLowerCase().includes(q))
 );
 
+const so=document.getElementById("sort").value;
+if(so==="az")list.sort((a,b)=>a.title.localeCompare(b.title,"fa"));
+if(so==="new")list.sort((a,b)=>b.id-a.id);
+document.getElementById("count").textContent=list.length+" دوره";
 const grid=document.getElementById("courseGrid");
 
 grid.innerHTML=list.length?
@@ -688,13 +716,16 @@ onclick="closeModal()">✕</button>
 
 <button class="btn big"
 style="margin-top:20px;width:100%"
-onclick="toast('دوره به لیست شما اضافه شد!');closeModal()">
+onclick="enroll(${c.id})">
 
 شروع دوره 🚀
 
 </button>
 
+<div id="rv" style="margin-top:20px"></div>
+
 `);
+loadReviews(id);
 }
 
 
@@ -937,6 +968,8 @@ onclick="closeModal();logoutUser()">
 خروج از حساب
 </button>
 
+<div id="pExtra"></div>
+
 </div>
 
 `);
@@ -949,6 +982,8 @@ document.getElementById("pUsername")
 
 document.getElementById("pEmail")
 .textContent=user.email;
+
+loadMine(user);
 
 }
 
@@ -1210,6 +1245,99 @@ updateAuthUI(null);
 }
 
 /* =========================
+   EXTRAS
+========================= */
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LESSONS=["آشنایی با مفاهیم","تمرین‌های کوتاه","ساخت پروژه","پروژه نهایی"];
+const ST={new:"جدید",doing:"در حال انجام",done:"تمام‌شده"};
+let mine={};
+const sb=()=>supabaseClient;
+async function getUser(){const{data}=await sb().auth.getSession();return data.session?.user||null}
+
+async function loadCourses(){
+const{data}=await sb().from("courses").select("*").order("id");
+if(data&&data.length){courses.splice(0,courses.length,...data.map(c=>({...c,desc:c.description})));renderCourses()}
+}
+
+async function enroll(id){
+const u=await getUser();
+if(!u){showAuthModal("login");toast("اول وارد شو");return}
+const{error}=await sb().from("enrollments").upsert({user_id:u.id,course_id:id},{onConflict:"user_id,course_id",ignoreDuplicates:true});
+closeModal();
+toast(error?"خطا در افزودن دوره ❌":"دوره به لیست شما اضافه شد ✅");
+}
+
+async function toggleLesson(cid,i,on){
+const u=await getUser();const d=new Set(mine[cid]||[]);
+on?d.add(i):d.delete(i);
+const{error}=await sb().from("enrollments").update({done:[...d]}).eq("user_id",u.id).eq("course_id",cid);
+if(error){toast("خطا ❌");return}
+mine[cid]=[...d];loadMine(u);
+}
+
+async function loadMine(u){
+const box=document.getElementById("pExtra");if(!box)return;
+const [e,o,a]=await Promise.all([
+sb().from("enrollments").select("*").eq("user_id",u.id),
+sb().from("orders").select("service,status").eq("user_id",u.id).order("created_at",{ascending:false}),
+sb().from("admins").select("user_id").eq("user_id",u.id).maybeSingle()
+]);
+mine={};
+const cs=(e.data||[]).map(r=>{
+const c=courses.find(x=>x.id===r.course_id);if(!c)return"";
+mine[c.id]=r.done||[];
+const p=Math.round(mine[c.id].length/LESSONS.length*100);
+return `<div class="field"><b>${c.icon} ${esc(c.title)}</b> <small>${p}٪</small>
+<div class="bar"><i style="width:${p}%"></i></div>
+${LESSONS.map((l,i)=>`<label style="display:block;font-size:13px"><input type="checkbox" ${mine[c.id].includes(i)?"checked":""} onchange="toggleLesson(${c.id},${i},this.checked)"> ${l}</label>`).join("")}</div>`
+}).join("")||`<div class="empty">هنوز دوره‌ای شروع نکرده‌ای</div>`;
+const os=(o.data||[]).map(r=>`<div class="field">${esc(r.service)} — <b>${ST[r.status]||"جدید"}</b></div>`).join("")||`<div class="empty">سفارشی ثبت نکرده‌ای</div>`;
+box.innerHTML=`<h3>📚 دوره‌های من</h3>${cs}<h3>🛠️ سفارش‌های من</h3>${os}`+(a.data?`<button class="btn big" onclick="openAdmin()">🔐 مدیریت</button>`:"");
+}
+
+async function loadReviews(id){
+const el=document.getElementById("rv");
+const{data}=await sb().from("reviews").select("*").eq("course_id",id).order("created_at",{ascending:false});
+const a=data||[];
+const avg=a.length?(a.reduce((t,r)=>t+r.stars,0)/a.length).toFixed(1):"—";
+el.innerHTML=`<b>⭐ ${avg} (${a.length} نظر)</b>
+<div class="form" style="margin:10px 0">
+<select id="rvStars" class="field"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select>
+<textarea id="rvBody" class="field" rows="2" placeholder="نظرت درباره‌ی این دوره..."></textarea>
+<button class="btn" onclick="submitReview(${id})">ثبت نظر</button></div>`
++a.map(r=>`<div class="field" style="margin-bottom:8px"><b>${esc(r.name)}</b> ${"⭐".repeat(r.stars)}<br>${esc(r.body)}</div>`).join("");
+}
+
+async function submitReview(id){
+const u=await getUser();
+if(!u){showAuthModal("login");toast("برای ثبت نظر وارد شو");return}
+const body=document.getElementById("rvBody").value.trim();
+if(!body){toast("متن نظر را بنویس");return}
+const m=u.user_metadata||{};
+const{error}=await sb().from("reviews").upsert({user_id:u.id,course_id:id,stars:+document.getElementById("rvStars").value,body,name:m.username||m.full_name||"کاربر"},{onConflict:"user_id,course_id"});
+if(error){console.error(error);toast("خطا در ثبت نظر ❌");return}
+toast("نظر ثبت شد ✅");loadReviews(id);
+}
+
+async function openAdmin(){
+const [m,o]=await Promise.all([
+sb().from("messages").select("*").order("created_at",{ascending:false}).limit(50),
+sb().from("orders").select("*").order("created_at",{ascending:false}).limit(50)
+]);
+if(m.error||o.error){toast("دسترسی مدیر ندارید");return}
+showModal(`<div class="modal-head"><h2>🔐 مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
+<h3>🛠️ سفارش‌ها</h3>`+(o.data.map(r=>`<div class="field" style="margin-bottom:8px"><b>${esc(r.service)}</b> — ${esc(r.name)} (${esc(r.contact)})<br>${esc(r.description)}<br>
+<select class="field" onchange="setStatus(${r.id},this.value)">${Object.keys(ST).map(k=>`<option value="${k}" ${r.status===k?"selected":""}>${ST[k]}</option>`).join("")}</select></div>`).join("")||"—")
++`<h3>📩 پیام‌ها</h3>`+(m.data.map(r=>`<div class="field" style="margin-bottom:8px"><b>${esc(r.name)}</b> (${esc(r.email)})<br>${esc(r.message)}</div>`).join("")||"—"));
+}
+
+async function setStatus(id,v){
+const{error}=await sb().from("orders").update({status:v}).eq("id",id);
+toast(error?"خطا ❌":"وضعیت تغییر کرد ✅");
+}
+
+/* =========================
    AUTH UI
 ========================= */
 
@@ -1234,6 +1362,8 @@ authArea.innerHTML = `
 <span class="user-email">
 ${user.email}
 </span>
+
+<button class="icon-btn" onclick="openPanel()">👤</button>
 
 <button class="btn" onclick="logoutUser()">
 خروج
@@ -1352,6 +1482,8 @@ document.getElementById("year")
 .textContent=new Date().getFullYear();
 
 renderCourses();
+
+loadCourses();
 
 checkUser();
 
