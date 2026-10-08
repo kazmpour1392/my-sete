@@ -465,7 +465,7 @@ onclick="setCat(this,'design')">طراحی</button>
 <div class="card">
 <h3>آماده‌ای شروع کنیم؟ 🚀</h3>
 <p style="margin-top:10px">
-پیامت در همین مرورگر ذخیره می‌شود.
+پیامت برای ما ارسال می‌شود.
 </p>
 
 <div style="margin-top:20px">
@@ -744,40 +744,39 @@ placeholder="توضیح پروژه..."></textarea>
 }
 
 
-function submitOrder(e,service){
+async function submitOrder(e,service){
 
 e.preventDefault();
 
-const orders=
-JSON.parse(
-localStorage.getItem("orders")||"[]"
-);
-
-orders.push({
+const {error}=await supabaseClient
+.from("orders")
+.insert({
 
 service,
 
 name:
-document.getElementById("orderName").value,
+document.getElementById("orderName").value.trim(),
 
 contact:
-document.getElementById("orderContact").value,
+document.getElementById("orderContact").value.trim(),
 
-desc:
-document.getElementById("orderDesc").value,
-
-date:new Date().toLocaleString("fa-IR")
+description:
+document.getElementById("orderDesc").value.trim()
 
 });
 
-localStorage.setItem(
-"orders",
-JSON.stringify(orders)
-);
+if(error){
+
+console.error(error);
+
+toast("خطا در ثبت درخواست ❌");
+
+return;
+}
 
 closeModal();
 
-toast("درخواست با موفقیت ذخیره شد ✅");
+toast("درخواست شما ثبت شد ✅");
 }
 
 
@@ -785,38 +784,39 @@ toast("درخواست با موفقیت ذخیره شد ✅");
    MESSAGES
 ========================= */
 
-function sendMessage(e){
+async function sendMessage(e){
 
 e.preventDefault();
 
-const msgs=
-JSON.parse(
-localStorage.getItem("messages")||"[]"
-);
+const form=e.target;
 
-msgs.push({
+const {error}=await supabaseClient
+.from("messages")
+.insert({
 
 name:
-document.getElementById("name").value,
+document.getElementById("name").value.trim(),
 
 email:
-document.getElementById("email").value,
+document.getElementById("email").value.trim(),
 
 message:
-document.getElementById("message").value,
-
-date:new Date().toLocaleString("fa-IR")
+document.getElementById("message").value.trim()
 
 });
 
-localStorage.setItem(
-"messages",
-JSON.stringify(msgs)
-);
+if(error){
 
-e.target.reset();
+console.error(error);
 
-toast("پیام شما ذخیره شد ✅");
+toast("خطا در ارسال پیام ❌");
+
+return;
+}
+
+form.reset();
+
+toast("پیام شما ارسال شد ✅");
 }
 
 
