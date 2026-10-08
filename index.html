@@ -912,7 +912,9 @@ onclick="closeModal()">✕</button>
 
 <div class="field">
 <small style="color:var(--muted)">نام و نام خانوادگی</small><br>
-<b id="pFullName"></b>
+<input id="pFullName" class="field"
+style="width:100%;margin-top:6px"
+placeholder="نام و نام خانوادگی">
 </div>
 
 <div class="field">
@@ -925,7 +927,12 @@ onclick="closeModal()">✕</button>
 <b id="pEmail"></b>
 </div>
 
-<button class="btn big"
+<button class="btn big" id="saveProfileBtn"
+onclick="saveProfile()">
+ذخیره تغییرات
+</button>
+
+<button class="btn secondary big"
 onclick="closeModal();logoutUser()">
 خروج از حساب
 </button>
@@ -935,13 +942,43 @@ onclick="closeModal();logoutUser()">
 `);
 
 document.getElementById("pFullName")
-.textContent=meta.full_name||"—";
+.value=meta.full_name||"";
 
 document.getElementById("pUsername")
 .textContent=meta.username||"—";
 
 document.getElementById("pEmail")
 .textContent=user.email;
+
+}
+
+
+async function saveProfile(){
+
+const input=document.getElementById("pFullName");
+const btn=document.getElementById("saveProfileBtn");
+const fullName=input.value.trim();
+
+if(!fullName){
+toast("نام و نام خانوادگی نمی‌تواند خالی باشد");
+return;
+}
+
+btn.disabled=true;
+
+const {error}=await supabaseClient.auth.updateUser({
+data:{full_name:fullName}
+});
+
+btn.disabled=false;
+
+if(error){
+console.error(error);
+toast("خطا در ذخیره اطلاعات ❌");
+return;
+}
+
+toast("اطلاعات با موفقیت ذخیره شد ✅");
 
 }
 
