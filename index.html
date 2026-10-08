@@ -867,11 +867,81 @@ onclick="closeModal()">درباره</a>
 href="#contact"
 onclick="closeModal()">ارتباط</a>
 
+<button class="btn secondary"
+onclick="openPanel()">👤 پنل کاربری</button>
+
 </div>
 
 `);
 
 }
+
+}
+
+
+async function openPanel(){
+
+const {data}=
+await supabaseClient.auth.getSession();
+
+const user=data.session?.user;
+
+if(!user){
+
+showAuthModal("login");
+
+toast("برای ورود به پنل کاربری ابتدا وارد شو");
+
+return;
+}
+
+const meta=user.user_metadata||{};
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>👤 پنل کاربری</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<div class="form">
+
+<div class="field">
+<small style="color:var(--muted)">نام و نام خانوادگی</small><br>
+<b id="pFullName"></b>
+</div>
+
+<div class="field">
+<small style="color:var(--muted)">نام کاربری</small><br>
+<b id="pUsername"></b>
+</div>
+
+<div class="field">
+<small style="color:var(--muted)">ایمیل</small><br>
+<b id="pEmail"></b>
+</div>
+
+<button class="btn big"
+onclick="closeModal();logoutUser()">
+خروج از حساب
+</button>
+
+</div>
+
+`);
+
+document.getElementById("pFullName")
+.textContent=meta.full_name||"—";
+
+document.getElementById("pUsername")
+.textContent=meta.username||"—";
+
+document.getElementById("pEmail")
+.textContent=user.email;
 
 }
 
