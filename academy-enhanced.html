@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="آکادمی طراحی سایت">
+<title>آکادمی طراحی سایت</title>
+
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#667085;--line:#e7eaf0;
+  --primary:#6c5ce7;--primary2:#8e7dff;--accent:#00c2ff;
+  --shadow:0 18px 50px rgba(24,30,55,.10);
+}
+body.dark{
+  --bg:#080c18;--card:#111827;--text:#f8fafc;--muted:#a8b0c2;--line:#263047;
+  --shadow:0 18px 50px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Tahoma,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.8;transition:.25s
+}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+.container{width:min(1160px,92%);margin:auto}
+
+header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line)
+}
+.nav{
+  height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px
+}
+.logo{
+  font-size:21px;font-weight:900;white-space:nowrap;
+  display:flex;align-items:center;gap:10px
+}
+.logo span{
+  display:grid;place-items:center;width:40px;height:40px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#fff
+}
+nav{display:flex;gap:24px}
+nav a{color:var(--muted);font-weight:700;font-size:14px}
+nav a:hover{color:var(--primary)}
+.nav-actions{display:flex;gap:8px}
+.icon-btn,.btn{
+  border:0;cursor:pointer;border-radius:13px;padding:10px 15px
+}
+.icon-btn{
+  background:var(--card);
+  border:1px solid var(--line);
+  color:var(--text)
+}
+.btn{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;font-weight:800;
+  box-shadow:0 10px 25px rgba(108,92,231,.22)
+}
+.btn.secondary{
+  background:var(--card);color:var(--text);
+  border:1px solid var(--line);box-shadow:none
+}
+.btn.big{padding:13px 21px}
+
+.hero{padding:78px 0 60px;overflow:hidden}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:50px;align-items:center
+}
+.badge{
+  display:inline-flex;padding:7px 12px;border-radius:99px;
+  background:rgba(108,92,231,.11);
+  color:var(--primary);font-weight:800;font-size:13px;
+  margin-bottom:15px
+}
+h1{font-size:clamp(38px,6vw,70px);line-height:1.1;margin-bottom:20px}
+.gradient{
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;color:transparent
+}
+.hero p{
+  font-size:18px;color:var(--muted);
+  max-width:650px;margin-bottom:25px
+}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.code-card{
+  background:#0d1324;border:1px solid #27304a;
+  border-radius:25px;padding:20px;
+  box-shadow:var(--shadow);transform:rotate(1deg)
+}
+.code-top{display:flex;gap:7px;margin-bottom:18px}
+.dot{width:11px;height:11px;border-radius:50%;background:#777}
+pre{
+  color:#dce5ff;overflow:auto;
+  font-family:Consolas,monospace;font-size:14px
+}
+.c-purple{color:#b99cff}
+.c-blue{color:#62d7ff}
+.c-green{color:#78e6a1}
+.c-yellow{color:#ffe28a}
+
+.section{padding:75px 0}
+.section-head{
+  display:flex;justify-content:space-between;
+  align-items:end;gap:20px;margin-bottom:28px
+}
+.section-head h2{font-size:32px}
+.section-head p{color:var(--muted)}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:15px;margin-top:45px
+}
+.stat,.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;padding:22px;
+  box-shadow:var(--shadow)
+}
+.stat strong{font-size:28px}
+.stat span{display:block;color:var(--muted);font-size:13px}
+
+.filters{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px
+}
+.search{
+  flex:1;min-width:220px;padding:12px 15px;
+  border:1px solid var(--line);border-radius:13px;
+  background:var(--card);color:var(--text);
+  outline:0
+}
+.chip{
+  padding:10px 15px;border-radius:13px;
+  border:1px solid var(--line);
+  background:var(--card);color:var(--text);
+  cursor:pointer
+}
+.chip.active{
+  background:var(--primary);color:#fff;
+  border-color:var(--primary)
+}
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.course-icon{font-size:35px;margin-bottom:12px}
+.card h3{margin-bottom:7px}
+.card p{color:var(--muted);font-size:14px}
+.card-row{
+  display:flex;justify-content:space-between;
+  align-items:center;margin-top:18px
+}
+.price{font-weight:900;color:var(--primary)}
+
+.services .card{position:relative;overflow:hidden}
+.services .card:after{
+  content:"";position:absolute;width:90px;height:90px;
+  border-radius:50%;background:rgba(108,92,231,.08);
+  left:-30px;bottom:-35px
+}
+.feature-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.feature{padding:25px}
+.feature b{font-size:20px}
+.feature .emoji{font-size:35px;margin-bottom:10px}
+
+.contact-grid{
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:20px
+}
+.form{display:grid;gap:12px}
+.field{
+  padding:13px 15px;border:1px solid var(--line);
+  border-radius:13px;background:var(--card);
+  color:var(--text);outline:0
+}
+.field:focus{border-color:var(--primary)}
+
+footer{
+  padding:35px 0;border-top:1px solid var(--line);
+  color:var(--muted);text-align:center
+}
+.credit{color:var(--text);font-weight:800;margin-top:7px}
+
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  display:none;place-items:center;padding:20px;z-index:100
+}
+.modal-bg.show{display:grid}
+.modal{
+  width:min(550px,100%);background:var(--card);
+  border-radius:22px;padding:25px;
+  max-height:90vh;overflow:auto
+}
+.modal-head{
+  display:flex;justify-content:space-between;
+  gap:15px;margin-bottom:15px
+}
+.toast{
+  position:fixed;left:20px;bottom:20px;
+  background:#101828;color:#fff;
+  padding:13px 18px;border-radius:14px;
+  transform:translateY(120px);transition:.3s;z-index:200
+}
+.toast.show{transform:translateY(0)}
+.empty{
+  text-align:center;color:var(--muted);
+  padding:30px;grid-column:1/-1
+}
+.mobile-menu{display:none}
+
+.user-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:13px;padding:7px 10px
+}
+.user-email{
+  max-width:150px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;
+  font-size:12px;color:var(--muted)
+}
+
+details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
+.bar{height:6px;background:var(--line);border-radius:9px;margin:6px 0}.bar i{display:block;height:6px;background:var(--primary);border-radius:9px}
+@media(max-width:850px){
+  nav{display:none}
+  .mobile-menu{display:block}
+  .hero-grid,.contact-grid{grid-template-columns:1fr}
+  .hero{padding-top:45px}
+  .grid,.feature-grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .user-email{display:none}
+}
+@media(max-width:560px){
+  .grid,.feature-grid,.stats{grid-template-columns:1fr}
+  .section{padding:55px 0}
+  .section-head{display:block}
+  .section-head h2{font-size:27px;margin-bottom:6px}
+  .nav{height:64px}
+  .nav{gap:8px}
+  .logo{font-size:13px;white-space:nowrap;gap:6px;flex-shrink:0}
+  .logo span{width:30px;height:30px;border-radius:10px;font-size:12px}
+  .nav-actions{gap:4px;min-width:0}
+  .icon-btn,.btn{padding:8px 9px;font-size:13px;border-radius:11px}
+}
+@media(max-width:380px){
+  .logo{font-size:12px}
+  .logo span{display:none}
+}
+
+/* افزونه‌های جدید؛ استایل‌های اصلی سایت دست‌نخورده می‌مانند */
+.extra-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.extra-toolbar .field{flex:1;min-width:170px}
+.work-card{overflow:hidden;padding:0!important}
+.work-cover{min-height:135px;display:grid;place-items:center;font-size:48px;background:linear-gradient(135deg,rgba(108,92,231,.2),rgba(0,194,255,.18));border-bottom:1px solid var(--line)}
+.work-content{padding:18px}
+.work-tag{display:inline-block;font-size:12px;background:rgba(108,92,231,.12);color:var(--primary);padding:4px 9px;border-radius:99px;margin-bottom:8px}
+.admin-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 20px}
+.admin-kpi{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px}
+.admin-kpi b{font-size:24px;display:block}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.admin-tabs button.active{background:var(--primary);color:#fff}
+.status-pill{display:inline-block;padding:3px 9px;border-radius:99px;background:rgba(108,92,231,.12);font-size:12px}
+.chat-fab{position:fixed;bottom:22px;right:22px;z-index:80;border:0;border-radius:50px;padding:13px 18px;background:linear-gradient(135deg,var(--primary),var(--accent));color:white;font-weight:900;box-shadow:0 12px 30px #0002;cursor:pointer}
+.chat-bubble{padding:10px 12px;border-radius:13px;margin:7px 0;max-width:90%;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat-bubble.user{background:rgba(108,92,231,.13);margin-right:auto}
+.chat-bubble.admin{background:var(--bg);border:1px solid var(--line);margin-left:auto}
+@media(max-width:560px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.chat-fab{right:12px;bottom:12px}}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+
+<a class="logo" href="#">
+  <span>AK</span>
+  آکادمی طراحی سایت
+</a>
+
+<nav>
+<a href="#home">خانه</a>
+<a href="#courses">دوره‌ها</a>
+<a href="#services">خدمات</a>
+<a href="#about">درباره</a>
+<a href="#works">نمونه‌کار</a>
+<a href="#faq">سوالات</a>
+<a href="#contact">ارتباط</a>
+</nav>
+
+<div class="nav-actions">
+<button class="icon-btn" id="themeBtn">🌙</button>
+
+<div id="authArea">
+<button class="btn" onclick="openModal('login')">ورود</button>
+</div>
+
+<button class="mobile-menu icon-btn" onclick="openModal('menu')">☰</button>
+</div>
+
+</div>
+</header>
+
+<main id="home">
+
+<section class="hero">
+<div class="container hero-grid">
+
+<div>
+
+<span class="badge">🚀 یادگیری، ساختن، پیشرفت کردن</span>
+
+<h1>
+ایده‌ات را به یک
+<span class="gradient">پروژه واقعی</span>
+تبدیل کن.
+</h1>
+
+<p>
+آموزش برنامه‌نویسی، طراحی سایت و خدمات دیجیتال
+در یک محیط مدرن و ساده؛ برای شروع لازم نیست حرفه‌ای باشی.
+</p>
+
+<div class="hero-buttons">
+<a class="btn big" href="#courses">شروع یادگیری ←</a>
+<a class="btn secondary big" href="#services">مشاهده خدمات</a>
+<a class="btn secondary big" href="#" onclick="event.preventDefault();openTracking()">پیگیری سفارش</a>
+</div>
+
+<div class="stats">
+<div class="stat"><strong>۱۰+</strong><span>دوره آموزشی</span></div>
+<div class="stat"><strong>۲۰+</strong><span>پروژه</span></div>
+<div class="stat"><strong>۱۰۰٪</strong><span>تمرکز روی یادگیری</span></div>
+<div class="stat"><strong>24/7</strong><span>دسترسی به سایت</span></div>
+</div>
+
+</div>
+
+<div class="code-card">
+<div class="code-top">
+<i class="dot"></i><i class="dot"></i><i class="dot"></i>
+</div>
+
+<pre><span class="c-purple">const</span> <span class="c-blue">dream</span> = {
+  idea: <span class="c-green">"یک پروژه خفن"</span>,
+  skills: [<span class="c-green">"HTML"</span>, <span class="c-green">"CSS"</span>,
+           <span class="c-green">"JavaScript"</span>],
+  result: <span class="c-yellow">"موفقیت 🚀"</span>
+};
+
+<span class="c-purple">function</span> <span class="c-blue">build</span>(dream) {
+  <span class="c-purple">return</span> dream.idea + <span class="c-green">" ✨"</span>;
+}</pre>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="courses">
+<div class="container">
+
+<div class="section-head">
+<div>
+<h2>📚 دوره‌های آموزشی</h2>
+<p>از پایه شروع کن و قدم‌به‌قدم جلو برو.</p>
+</div>
+</div>
+
+<div class="filters">
+
+<input id="search" class="search"
+placeholder="🔎 جستجوی دوره..."
+oninput="renderCourses()">
+
+<button class="chip active"
+onclick="setCat(this,'all')">همه</button>
+
+<button class="chip"
+onclick="setCat(this,'web')">وب</button>
+
+<button class="chip"
+onclick="setCat(this,'programming')">برنامه‌نویسی</button>
+
+<button class="chip"
+onclick="setCat(this,'design')">طراحی</button>
+
+<select id="sort" class="chip" onchange="renderCourses()"><option value="">مرتب‌سازی</option><option value="az">الفبایی</option><option value="new">جدیدترین</option></select>
+
+</div>
+
+<p id="count" style="color:var(--muted);margin-bottom:12px"></p>
+<div class="grid" id="courseGrid"></div>
+
+</div>
+</section>
+
+<section class="section services" id="services">
+<div class="container">
+
+<div class="section-head">
+<div>
+<h2>🛠️ خدمات</h2>
+<p>برای پروژه شخصی، مدرسه یا کسب‌وکار.</p>
+</div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="course-icon">🌐</div>
+<h3>طراحی سایت</h3>
+<p>ساخت سایت مدرن، واکنش‌گرا و مناسب موبایل.</p>
+<div class="card-row">
+<b>سفارشی</b>
+<button class="btn" onclick="order('طراحی سایت')">سفارش</button>
+</div>
+</div>
+
+<div class="card">
+<div class="course-icon">🎨</div>
+<h3>طراحی پوستر</h3>
+<p>طراحی پوستر، بنر و محتوای تصویری جذاب.</p>
+<div class="card-row">
+<b>سفارشی</b>
+<button class="btn" onclick="order('طراحی پوستر')">سفارش</button>
+</div>
+</div>
+
+<div class="card">
+<div class="course-icon">💻</div>
+<h3>پروژه برنامه‌نویسی</h3>
+<p>کمک در ساخت پروژه‌های آموزشی و شخصی.</p>
+<div class="card-row">
+<b>سفارشی</b>
+<button class="btn" onclick="order('پروژه برنامه‌نویسی')">سفارش</button>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="about">
+<div class="container">
+
+<div class="section-head">
+<div>
+<h2>✨ چرا اینجا؟</h2>
+<p>همه‌چیز ساده، کاربردی و پروژه‌محور طراحی شده است.</p>
+</div>
+</div>
+
+<div class="feature-grid">
+
+<div class="card feature">
+<div class="emoji">🎯</div>
+<b>یادگیری هدفمند</b>
+<p>به‌جای حفظ کردن، با ساخت پروژه یاد می‌گیری.</p>
+</div>
+
+<div class="card feature">
+<div class="emoji">📱</div>
+<b>کاملاً واکنش‌گرا</b>
+<p>سایت روی موبایل، تبلت و کامپیوتر ظاهر مناسبی دارد.</p>
+</div>
+
+<div class="card feature">
+<div class="emoji">⚡</div>
+<b>سریع و سبک</b>
+<p>بدون نیاز به کتابخانه‌های سنگین، با HTML و CSS و JavaScript.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="works"><div class="container">
+<div class="section-head"><div><h2>🧩 نمونه‌کارها</h2><p>نمونه پروژه‌ها را جست‌وجو و دسته‌بندی کن.</p></div></div>
+<div class="filters"><input id="workSearch" class="search" placeholder="🔎 جست‌وجوی نمونه‌کار..." oninput="filterWorks()">
+<button class="chip active" onclick="setWorkCat(this,'all')">همه</button><button class="chip" onclick="setWorkCat(this,'web')">طراحی سایت</button><button class="chip" onclick="setWorkCat(this,'game')">بازی</button><button class="chip" onclick="setWorkCat(this,'design')">طراحی گرافیک</button></div>
+<div class="grid" id="workGrid">
+<article class="card work-card" data-cat="web" data-title="آکادمی طراحی سایت"><div class="work-cover">🌐</div><div class="work-content"><span class="work-tag">طراحی سایت</span><h3>آکادمی طراحی سایت</h3><p>سایت آموزشی با حساب کاربری، دوره‌ها و ثبت سفارش.</p><div class="card-row"><span class="price">HTML · CSS · JS</span><a class="btn" target="_blank" rel="noopener" href="https://kazmpour1392.github.io/my-sete/">مشاهده دمو</a></div></div></article>
+<article class="card work-card" data-cat="game" data-title="بازی مرورگر"><div class="work-cover">🎮</div><div class="work-content"><span class="work-tag">بازی</span><h3>بازی مرورگر</h3><p>نمونه‌ای از یک بازی سبک تحت وب؛ لینک دمو را بعداً جایگزین کن.</p><div class="card-row"><span class="price">JavaScript</span><span class="status-pill">نمونه نمایشی</span></div></div></article>
+<article class="card work-card" data-cat="design" data-title="پوستر و بنر"><div class="work-cover">🎨</div><div class="work-content"><span class="work-tag">طراحی گرافیک</span><h3>پوستر و بنر</h3><p>نمونه طراحی محتوای تصویری برای شبکه‌های اجتماعی و کسب‌وکارها.</p><div class="card-row"><span class="price">گرافیک</span><button class="btn" onclick="order('طراحی پوستر')">سفارش مشابه</button></div></div></article>
+</div></div></section>
+
+<section class="section" id="faq"><div class="container">
+<div class="section-head"><div><h2>❓ سوالات متداول</h2><p>و چند نکته‌ی آموزشی کوتاه.</p></div></div>
+<details class="card"><summary>دوره‌ها رایگان هستند؟</summary><p style="margin-top:8px">بله، همه‌ی دوره‌های فعلی رایگان‌اند.</p></details>
+<details class="card"><summary>برای شروع چه چیزی لازم است؟</summary><p style="margin-top:8px">فقط یک مرورگر و یک ویرایشگر متن. پیش‌نیاز خاصی نیست.</p></details>
+<details class="card"><summary>سفارش پروژه چقدر طول می‌کشد؟</summary><p style="margin-top:8px">بسته به پروژه است. وضعیت سفارش را در پنل کاربری می‌بینی.</p></details>
+<details class="card"><summary>💡 نکته: چرا از flexbox شروع کنیم؟</summary><p style="margin-top:8px">چیدمان یک‌بعدی را ساده می‌کند و برای ۸۰٪ صفحه‌ها کافی است.</p></details>
+<details class="card"><summary>💡 نکته: اول موبایل، بعد دسکتاپ</summary><p style="margin-top:8px">CSS را برای صفحه‌ی کوچک بنویس و با media query بزرگ‌تر کن.</p></details>
+</div></section>
+
+<section class="section" id="contact">
+<div class="container">
+
+<div class="section-head">
+<div>
+<h2>📩 ارتباط با ما</h2>
+<p>برای سفارش پروژه یا ارسال پیام فرم زیر را پر کن.</p>
+</div>
+</div>
+
+<div class="contact-grid">
+
+<div class="card">
+<h3>آماده‌ای شروع کنیم؟ 🚀</h3>
+<p style="margin-top:10px">
+پیامت برای ما ارسال می‌شود.
+</p>
+
+<div style="margin-top:20px">
+💡 ایده داری؟ بنویس.<br>
+🧑‍💻 پروژه داری؟ توضیح بده.<br>
+📚 سوال آموزشی داری؟ بپرس.
+</div>
+</div>
+
+<form class="card form" onsubmit="sendMessage(event)">
+
+<input class="field" id="name"
+required placeholder="نام شما">
+
+<input class="field" id="email"
+type="email" required placeholder="ایمیل">
+
+<textarea class="field" id="message"
+required rows="5" placeholder="پیام شما..."></textarea>
+
+<button class="btn big">
+ارسال پیام 🚀
+</button>
+
+</form>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+© <span id="year"></span> تمامی حقوق محفوظ است.
+<div class="credit">
+سازنده: سید امیر حسین کاظم پور
+</div>
+</div>
+</footer>
+
+<div class="modal-bg" id="modalBg" onclick="closeOutside(event)">
+<div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://pdspayxfazoutbjxqswi.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_kPYB9r27zwqmJYRDYBMb_A_YR-2a2PX";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================
+   COURSES
+========================= */
+
+const courses=[
+{
+id:1,
+icon:"🌐",
+title:"HTML و CSS از صفر",
+cat:"web",
+desc:"ساخت اولین صفحات وب و طراحی حرفه‌ای رابط کاربری.",
+price:"رایگان"
+},
+{
+id:2,
+icon:"⚡",
+title:"JavaScript مقدماتی",
+cat:"programming",
+desc:"متغیرها، شرط‌ها، حلقه‌ها، توابع و ساخت برنامه‌های تعاملی.",
+price:"رایگان"
+},
+{
+id:3,
+icon:"🐍",
+title:"Python مقدماتی",
+cat:"programming",
+desc:"شروع برنامه‌نویسی با پایتون به زبان ساده و پروژه‌محور.",
+price:"رایگان"
+},
+{
+id:4,
+icon:"🎮",
+title:"ساخت بازی با JavaScript",
+cat:"programming",
+desc:"ساخت بازی‌های کوچک و جذاب برای مرورگر.",
+price:"رایگان"
+},
+{
+id:5,
+icon:"🎨",
+title:"اصول طراحی UI",
+cat:"design",
+desc:"رنگ، فاصله، تایپوگرافی و ساخت رابط کاربری جذاب.",
+price:"رایگان"
+},
+{
+id:6,
+icon:"🚀",
+title:"ساخت سایت حرفه‌ای",
+cat:"web",
+desc:"ساخت یک سایت کامل با چند بخش، فرم و انیمیشن.",
+price:"رایگان"
+}
+];
+
+let activeCat="all";
+
+
+function renderCourses(){
+
+const q=document
+.getElementById("search")
+.value.trim()
+.toLowerCase();
+
+const list=courses.filter(c=>
+(activeCat==="all"||c.cat===activeCat)&&
+(!q||
+c.title.toLowerCase().includes(q)||
+c.desc.toLowerCase().includes(q))
+);
+
+const so=document.getElementById("sort").value;
+if(so==="az")list.sort((a,b)=>a.title.localeCompare(b.title,"fa"));
+if(so==="new")list.sort((a,b)=>b.id-a.id);
+document.getElementById("count").textContent=list.length+" دوره";
+const grid=document.getElementById("courseGrid");
+
+grid.innerHTML=list.length?
+
+list.map(c=>`
+
+<article class="card">
+
+<div class="course-icon">${c.icon}</div>
+
+<h3>${c.title}</h3>
+
+<p>${c.desc}</p>
+
+<div class="card-row">
+
+<span class="price">${c.price}</span>
+
+<button class="btn"
+onclick="courseDetails(${c.id})">
+مشاهده
+</button>
+
+</div>
+
+</article>
+
+`).join("")
+
+:
+
+`<div class="empty">
+دوره‌ای پیدا نشد 😕
+</div>`;
+}
+
+
+function setCat(el,cat){
+
+activeCat=cat;
+
+document
+.querySelectorAll(".chip")
+.forEach(x=>x.classList.remove("active"));
+
+el.classList.add("active");
+
+renderCourses();
+}
+
+
+function courseDetails(id){
+
+const c=courses.find(x=>x.id===id);
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>${c.icon} ${c.title}</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<p>${c.desc}</p>
+
+<div style="margin-top:20px">
+
+<b>مسیر پیشنهادی:</b><br>
+
+۱. آشنایی با مفاهیم<br>
+۲. تمرین‌های کوتاه<br>
+۳. ساخت پروژه<br>
+۴. پروژه نهایی
+
+</div>
+
+<button class="btn big"
+style="margin-top:20px;width:100%"
+onclick="enroll(${c.id})">
+
+شروع دوره 🚀
+
+</button>
+
+<div id="rv" style="margin-top:20px"></div>
+
+`);
+loadReviews(id);
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+function order(service){
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>🛠️ سفارش ${service}</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<form class="form"
+onsubmit="submitOrder(event,'${service}')">
+
+<input class="field"
+id="orderName"
+required
+placeholder="نام">
+
+<input class="field"
+id="orderContact"
+required
+placeholder="شماره تماس یا ایمیل">
+
+<textarea class="field"
+id="orderDesc"
+required
+rows="5"
+placeholder="توضیح پروژه..."></textarea>
+
+<button class="btn big">
+ثبت درخواست
+</button>
+
+</form>
+
+`);
+}
+
+
+async function submitOrder(e,service){
+
+e.preventDefault();
+
+const {error}=await supabaseClient
+.from("orders")
+.insert({
+
+service,
+
+name:
+document.getElementById("orderName").value.trim(),
+
+contact:
+document.getElementById("orderContact").value.trim(),
+
+description:
+document.getElementById("orderDesc").value.trim()
+
+});
+
+if(error){
+
+console.error(error);
+
+toast("خطا در ثبت درخواست ❌");
+
+return;
+}
+
+closeModal();
+
+toast("درخواست شما ثبت شد ✅");
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+async function sendMessage(e){
+
+e.preventDefault();
+
+const form=e.target;
+
+const {error}=await supabaseClient
+.from("messages")
+.insert({
+
+name:
+document.getElementById("name").value.trim(),
+
+email:
+document.getElementById("email").value.trim(),
+
+message:
+document.getElementById("message").value.trim()
+
+});
+
+if(error){
+
+console.error(error);
+
+toast("خطا در ارسال پیام ❌");
+
+return;
+}
+
+form.reset();
+
+toast("پیام شما ارسال شد ✅");
+}
+
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+function openModal(type){
+
+if(type==="login"){
+
+showAuthModal("login");
+
+}
+
+else if(type==="menu"){
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>منو</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<div class="form">
+
+<a class="btn secondary"
+href="#home"
+onclick="closeModal()">خانه</a>
+
+<a class="btn secondary"
+href="#courses"
+onclick="closeModal()">دوره‌ها</a>
+
+<a class="btn secondary"
+href="#services"
+onclick="closeModal()">خدمات</a>
+
+<a class="btn secondary"
+href="#about"
+onclick="closeModal()">درباره</a>
+
+<a class="btn secondary"
+href="#contact"
+onclick="closeModal()">ارتباط</a>
+
+<button class="btn secondary"
+onclick="openPanel()">👤 پنل کاربری</button>
+
+</div>
+
+`);
+
+}
+
+}
+
+
+async function openPanel(){
+
+const {data}=
+await supabaseClient.auth.getSession();
+
+const user=data.session?.user;
+
+if(!user){
+
+showAuthModal("login");
+
+toast("برای ورود به پنل کاربری ابتدا وارد شو");
+
+return;
+}
+
+const meta=user.user_metadata||{};
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>👤 پنل کاربری</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+<div class="form">
+
+<div class="field">
+<small style="color:var(--muted)">نام و نام خانوادگی</small><br>
+<input id="pFullName" class="field"
+style="width:100%;margin-top:6px"
+placeholder="نام و نام خانوادگی">
+</div>
+
+<div class="field">
+<small style="color:var(--muted)">نام کاربری</small><br>
+<b id="pUsername"></b>
+</div>
+
+<div class="field">
+<small style="color:var(--muted)">ایمیل</small><br>
+<b id="pEmail"></b>
+</div>
+
+<button class="btn big" id="saveProfileBtn"
+onclick="saveProfile()">
+ذخیره تغییرات
+</button>
+
+<button class="btn secondary big"
+onclick="closeModal();logoutUser()">
+خروج از حساب
+</button>
+
+<div id="pExtra"></div>
+
+</div>
+
+`);
+
+document.getElementById("pFullName")
+.value=meta.full_name||"";
+
+document.getElementById("pUsername")
+.textContent=meta.username||"—";
+
+document.getElementById("pEmail")
+.textContent=user.email;
+
+loadMine(user);
+
+}
+
+
+async function saveProfile(){
+
+const input=document.getElementById("pFullName");
+const btn=document.getElementById("saveProfileBtn");
+const fullName=input.value.trim();
+
+if(!fullName){
+toast("نام و نام خانوادگی نمی‌تواند خالی باشد");
+return;
+}
+
+btn.disabled=true;
+
+const {error}=await supabaseClient.auth.updateUser({
+data:{full_name:fullName}
+});
+
+btn.disabled=false;
+
+if(error){
+console.error(error);
+toast("خطا در ذخیره اطلاعات ❌");
+return;
+}
+
+toast("اطلاعات با موفقیت ذخیره شد ✅");
+
+}
+
+
+function showAuthModal(mode){
+
+const register=mode==="register";
+
+showModal(`
+
+<div class="modal-head">
+
+<h2>
+${register?"📝 ثبت‌نام":"👤 ورود"}
+</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
+</div>
+
+${register?`
+
+<input
+class="field"
+id="fullName"
+required
+placeholder="نام و نام خانوادگی">
+
+<input
+class="field"
+id="username"
+required
+placeholder="نام کاربری">
+
+`: ""}
+
+<input
+class="field"
+id="userEmail"
+required
+type="email"
+placeholder="ایمیل">
+
+<input
+class="field"
+id="userPass"
+required
+type="password"
+placeholder="رمز عبور">
+
+<button
+class="btn big"
+style="width:100%;margin-top:5px"
+onclick="${register?"registerUser()":"loginUser()"}">
+
+${register?"ثبت‌نام":"ورود"}
+
+</button>
+
+<div style="text-align:center;margin-top:15px">
+
+${
+register
+
+?
+
+`حساب داری؟
+<button
+class="btn secondary"
+onclick="showAuthModal('login')">
+ورود
+</button>`
+
+:
+
+`حساب نداری؟
+<button
+class="btn secondary"
+onclick="showAuthModal('register')">
+ثبت‌نام
+</button>`
+}
+
+</div>
+
+`);
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+async function registerUser(){
+
+const fullName=
+document.getElementById("fullName").value.trim();
+
+const username=
+document.getElementById("username").value.trim();
+
+const email=
+document.getElementById("userEmail").value.trim();
+
+const password=
+document.getElementById("userPass").value;
+
+if(!fullName||!username||!email||!password){
+
+toast("لطفاً همه فیلدها را پر کن");
+
+return;
+}
+
+if(password.length<6){
+
+toast("رمز عبور باید حداقل ۶ کاراکتر باشد");
+
+return;
+}
+
+const {data,error}=
+await supabaseClient.auth.signUp({
+
+email:email,
+
+password:password,
+
+options:{
+data:{
+full_name:fullName,
+username:username
+}
+}
+
+});
+
+if(error){
+
+toast("خطا: "+error.message);
+
+return;
+}
+
+closeModal();
+
+if(data.session){
+
+toast("ثبت‌نام با موفقیت انجام شد 🎉");
+
+}else{
+
+toast(
+"ثبت‌نام انجام شد. ایمیلت را برای تأیید بررسی کن 📧"
+);
+
+}
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function loginUser(){
+
+const email=
+document.getElementById("userEmail").value.trim();
+
+const password=
+document.getElementById("userPass").value;
+
+if(!email||!password){
+
+toast("ایمیل و رمز عبور را وارد کن");
+
+return;
+}
+
+const {data,error}=
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+if(error){
+
+toast("ایمیل یا رمز عبور اشتباه است ❌");
+
+console.error(error);
+
+return;
+}
+
+closeModal();
+
+toast("خوش آمدی 👋");
+
+updateAuthUI(data.user);
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logoutUser(){
+
+const {error}=
+await supabaseClient.auth.signOut();
+
+if(error){
+
+toast("خطا در خروج");
+
+return;
+}
+
+toast("با موفقیت خارج شدی 👋");
+
+updateAuthUI(null);
+}
+
+/* =========================
+   EXTRAS
+========================= */
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LESSONS=["آشنایی با مفاهیم","تمرین‌های کوتاه","ساخت پروژه","پروژه نهایی"];
+const ST={new:"جدید",doing:"در حال انجام",done:"تمام‌شده"};
+let mine={};
+const sb=()=>supabaseClient;
+async function getUser(){const{data}=await sb().auth.getSession();return data.session?.user||null}
+
+async function loadCourses(){
+const{data}=await sb().from("courses").select("*").order("id");
+if(data&&data.length){courses.splice(0,courses.length,...data.map(c=>({...c,desc:c.description})));renderCourses()}
+}
+
+async function enroll(id){
+const u=await getUser();
+if(!u){showAuthModal("login");toast("اول وارد شو");return}
+const{error}=await sb().from("enrollments").upsert({user_id:u.id,course_id:id},{onConflict:"user_id,course_id",ignoreDuplicates:true});
+closeModal();
+toast(error?"خطا در افزودن دوره ❌":"دوره به لیست شما اضافه شد ✅");
+}
+
+async function toggleLesson(cid,i,on){
+const u=await getUser();const d=new Set(mine[cid]||[]);
+on?d.add(i):d.delete(i);
+const{error}=await sb().from("enrollments").update({done:[...d]}).eq("user_id",u.id).eq("course_id",cid);
+if(error){toast("خطا ❌");return}
+mine[cid]=[...d];loadMine(u);
+}
+
+async function loadMine(u){
+const box=document.getElementById("pExtra");if(!box)return;
+const [e,o,a]=await Promise.all([
+sb().from("enrollments").select("*").eq("user_id",u.id),
+sb().from("orders").select("service,status").eq("user_id",u.id).order("created_at",{ascending:false}),
+sb().from("admins").select("user_id").eq("user_id",u.id).maybeSingle()
+]);
+mine={};
+const cs=(e.data||[]).map(r=>{
+const c=courses.find(x=>x.id===r.course_id);if(!c)return"";
+mine[c.id]=r.done||[];
+const p=Math.round(mine[c.id].length/LESSONS.length*100);
+return `<div class="field"><b>${c.icon} ${esc(c.title)}</b> <small>${p}٪</small>
+<div class="bar"><i style="width:${p}%"></i></div>
+${LESSONS.map((l,i)=>`<label style="display:block;font-size:13px"><input type="checkbox" ${mine[c.id].includes(i)?"checked":""} onchange="toggleLesson(${c.id},${i},this.checked)"> ${l}</label>`).join("")}</div>`
+}).join("")||`<div class="empty">هنوز دوره‌ای شروع نکرده‌ای</div>`;
+const os=(o.data||[]).map(r=>`<div class="field">${esc(r.service)} — <b>${ST[r.status]||"جدید"}</b></div>`).join("")||`<div class="empty">سفارشی ثبت نکرده‌ای</div>`;
+box.innerHTML=`<h3>📚 دوره‌های من</h3>${cs}<h3>🛠️ سفارش‌های من</h3>${os}`+(a.data?`<button class="btn big" onclick="openAdmin()">🔐 مدیریت</button>`:"");
+}
+
+async function loadReviews(id){
+const el=document.getElementById("rv");
+const{data}=await sb().from("reviews").select("*").eq("course_id",id).order("created_at",{ascending:false});
+const a=data||[];
+const avg=a.length?(a.reduce((t,r)=>t+r.stars,0)/a.length).toFixed(1):"—";
+el.innerHTML=`<b>⭐ ${avg} (${a.length} نظر)</b>
+<div class="form" style="margin:10px 0">
+<select id="rvStars" class="field"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select>
+<textarea id="rvBody" class="field" rows="2" placeholder="نظرت درباره‌ی این دوره..."></textarea>
+<button class="btn" onclick="submitReview(${id})">ثبت نظر</button></div>`
++a.map(r=>`<div class="field" style="margin-bottom:8px"><b>${esc(r.name)}</b> ${"⭐".repeat(r.stars)}<br>${esc(r.body)}</div>`).join("");
+}
+
+async function submitReview(id){
+const u=await getUser();
+if(!u){showAuthModal("login");toast("برای ثبت نظر وارد شو");return}
+const body=document.getElementById("rvBody").value.trim();
+if(!body){toast("متن نظر را بنویس");return}
+const m=u.user_metadata||{};
+const{error}=await sb().from("reviews").upsert({user_id:u.id,course_id:id,stars:+document.getElementById("rvStars").value,body,name:m.username||m.full_name||"کاربر"},{onConflict:"user_id,course_id"});
+if(error){console.error(error);toast("خطا در ثبت نظر ❌");return}
+toast("نظر ثبت شد ✅");loadReviews(id);
+}
+
+async function openAdmin(){
+const [m,o]=await Promise.all([
+sb().from("messages").select("*").order("created_at",{ascending:false}).limit(50),
+sb().from("orders").select("*").order("created_at",{ascending:false}).limit(50)
+]);
+if(m.error||o.error){toast("دسترسی مدیر ندارید");return}
+showModal(`<div class="modal-head"><h2>🔐 مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
+<h3>🛠️ سفارش‌ها</h3>`+(o.data.map(r=>`<div class="field" style="margin-bottom:8px"><b>${esc(r.service)}</b> — ${esc(r.name)} (${esc(r.contact)})<br>${esc(r.description)}<br>
+<select class="field" onchange="setStatus(${r.id},this.value)">${Object.keys(ST).map(k=>`<option value="${k}" ${r.status===k?"selected":""}>${ST[k]}</option>`).join("")}</select></div>`).join("")||"—")
++`<h3>📩 پیام‌ها</h3>`+(m.data.map(r=>`<div class="field" style="margin-bottom:8px"><b>${esc(r.name)}</b> (${esc(r.email)})<br>${esc(r.message)}</div>`).join("")||"—"));
+}
+
+async function setStatus(id,v){
+const{error}=await sb().from("orders").update({status:v}).eq("id",id);
+toast(error?"خطا ❌":"وضعیت تغییر کرد ✅");
+}
+
+/* =========================
+   AUTH UI
+========================= */
+
+function updateAuthUI(user){
+
+const authArea = document.getElementById("authArea");
+
+if(!user){
+
+authArea.innerHTML = `
+<button class="btn" onclick="openModal('login')">
+ورود
+</button>
+`;
+
+return;
+}
+
+authArea.innerHTML = `
+<div class="user-box">
+
+<span class="user-email">
+${user.email}
+</span>
+
+<button class="icon-btn" onclick="openPanel()">👤</button>
+
+<button class="btn" onclick="logoutUser()">
+خروج
+</button>
+
+</div>
+`;
+
+}
+
+/* =========================
+   CHECK LOGIN
+========================= */
+
+async function checkUser(){
+
+const {data,error} =
+await supabaseClient.auth.getSession();
+
+if(error){
+
+console.error(error);
+return;
+
+}
+
+updateAuthUI(data.session?.user || null);
+
+}
+
+/* =========================
+   AUTH CHANGE
+========================= */
+
+supabaseClient.auth.onAuthStateChange(
+(event, session) => {
+
+updateAuthUI(session?.user || null);
+
+});
+
+/* =========================
+   MODAL
+========================= */
+
+function showModal(content){
+
+document.getElementById("modal").innerHTML = content;
+
+document.getElementById("modalBg")
+.classList.add("show");
+
+}
+
+function closeModal(){
+
+document.getElementById("modalBg")
+.classList.remove("show");
+
+}
+
+function closeOutside(e){
+
+if(e.target.id==="modalBg"){
+closeModal();
+}
+
+}
+
+/* =========================
+   TOAST
+========================= */
+
+function toast(message){
+
+const t=document.getElementById("toast");
+
+t.textContent=message;
+
+t.classList.add("show");
+
+setTimeout(()=>{
+t.classList.remove("show");
+},3000);
+
+}
+
+/* =========================
+   THEME
+========================= */
+
+const themeBtn =
+document.getElementById("themeBtn");
+
+themeBtn.onclick=()=>{
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"theme",
+document.body.classList.contains("dark")
+?"dark":"light"
+);
+
+};
+
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark");
+}
+
+/* =========================
+   START
+========================= */
+
+document.getElementById("year")
+.textContent=new Date().getFullYear();
+
+renderCourses();
+
+loadCourses();
+
+checkUser();
+
+</script>
+
+
+<!-- امکانات افزوده: پیگیری سفارش و گفت‌وگوی آنلاین -->
+<button class="chat-fab" onclick="openLiveChat()">💬 گفت‌وگو با پشتیبانی</button>
+<script>
+/* ثبت سفارش جدید همراه کد پیگیری؛ ساختار و فرم قبلی حفظ شده‌اند. */
+window.submitOrder=async function(e,service){
+ e.preventDefault();
+ const code='AK-'+Array.from(crypto.getRandomValues(new Uint8Array(5))).map(n=>'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[n%32]).join('');
+ const u=await getUser();
+ const row={service,name:document.getElementById('orderName').value.trim(),contact:document.getElementById('orderContact').value.trim(),description:document.getElementById('orderDesc').value.trim(),order_code:code};
+ if(u)row.user_id=u.id;
+ const {error}=await sb().from('orders').insert(row);
+ if(error){console.error(error);toast(error.message?.includes('order_code')?'ابتدا اسکریپت SQL همراه فایل را در Supabase اجرا کن':'خطا در ثبت درخواست ❌');return}
+ closeModal();showModal(`<div class="modal-head"><h2>✅ سفارش ثبت شد</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><p>کد پیگیری سفارش را نگه دار تا بعداً وضعیت را بررسی کنی.</p><div class="field" style="font-size:22px;font-weight:900;text-align:center;margin:14px 0;direction:ltr">${code}</div><button class="btn secondary" onclick="navigator.clipboard?.writeText('${code}').then(()=>toast('کد کپی شد')).catch(()=>toast('کد را دستی کپی کن'))">کپی کد</button><button class="btn" onclick="closeModal();openTracking()">پیگیری سفارش</button>`);
+};
+
+/* افزونه مستقل: قابلیت‌های قبلی حفظ می‌شوند. */
+let currentWorkCat='all';
+function setWorkCat(btn,cat){currentWorkCat=cat;document.querySelectorAll('#works .chip').forEach(x=>x.classList.remove('active'));btn.classList.add('active');filterWorks()}
+function filterWorks(){const q=(document.getElementById('workSearch')?.value||'').trim().toLowerCase();document.querySelectorAll('#workGrid .work-card').forEach(c=>{c.style.display=((currentWorkCat==='all'||c.dataset.cat===currentWorkCat)&&(!q||((c.dataset.title||'')+' '+c.innerText).toLowerCase().includes(q)))?'':'none'})}
+
+/* پنل مدیریت پیشرفته: آمار، جست‌وجو و فیلتر؛ دسترسی واقعی همچنان با RLS دیتابیس کنترل می‌شود. */
+window.openAdmin=async function(){
+ const [mr,orr]=await Promise.all([sb().from('messages').select('*').order('created_at',{ascending:false}).limit(100),sb().from('orders').select('*').order('created_at',{ascending:false}).limit(100)]);
+ if(mr.error||orr.error){console.error(mr.error||orr.error);toast('دسترسی مدیر ندارید یا ساختار دیتابیس نیاز به بررسی دارد');return}
+ window.__adminData={messages:mr.data||[],orders:orr.data||[]};
+ renderAdmin('all');
+};
+function renderAdmin(tab='all',query=''){
+ const d=window.__adminData||{messages:[],orders:[]};const q=query.toLowerCase();
+ const orders=d.orders.filter(r=>(tab==='all'||tab==='orders')&&(!q||[r.service,r.name,r.contact,r.description,r.order_code].join(' ').toLowerCase().includes(q)));
+ const messages=d.messages.filter(r=>(tab==='all'||tab==='messages')&&(!q||[r.name,r.email,r.message].join(' ').toLowerCase().includes(q)));
+ const fresh=d.orders.filter(x=>(x.status||'new')==='new').length,doing=d.orders.filter(x=>x.status==='doing').length,done=d.orders.filter(x=>x.status==='done').length;
+ showModal(`<div class="modal-head"><h2>🔐 پنل مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
+ <div class="admin-kpis"><div class="admin-kpi"><span>کل سفارش‌ها</span><b>${d.orders.length}</b></div><div class="admin-kpi"><span>جدید</span><b>${fresh}</b></div><div class="admin-kpi"><span>در حال انجام</span><b>${doing}</b></div><div class="admin-kpi"><span>تمام‌شده</span><b>${done}</b></div></div>
+ <input class="field" id="adminSearch" placeholder="جست‌وجوی سفارش یا پیام..." oninput="renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',this.value)" value="${esc(query)}">
+ <div class="admin-tabs"><button class="chip ${tab==='all'?'active':''}" data-admin-tab="all" onclick="renderAdmin('all',document.getElementById('adminSearch')?.value||'')">همه</button><button class="chip ${tab==='orders'?'active':''}" data-admin-tab="orders" onclick="renderAdmin('orders',document.getElementById('adminSearch')?.value||'')">سفارش‌ها</button><button class="chip ${tab==='messages'?'active':''}" data-admin-tab="messages" onclick="renderAdmin('messages',document.getElementById('adminSearch')?.value||'')">پیام‌ها</button></div>
+ <button class="btn secondary" style="margin:10px 0" onclick="openAdminChatInbox()">💬 صندوق گفت‌وگوها</button><h3>🛠️ سفارش‌ها (${orders.length})</h3>${orders.map(r=>`<div class="field" style="margin:8px 0"><b>${esc(r.service)}</b> — ${esc(r.name)}<br><small>${esc(r.contact)} · کد: ${esc(r.order_code||'برای سفارش‌های قدیمی ثبت نشده')}</small><p>${esc(r.description)}</p><select class="field" style="margin-top:8px;width:100%" onchange="setStatus(${Number(r.id)},this.value)">${Object.keys(ST).map(k=>`<option value="${k}" ${(r.status||'new')===k?'selected':''}>${ST[k]}</option>`).join('')}</select></div>`).join('')||'<p class="empty">سفارشی پیدا نشد.</p>'}
+ <h3 style="margin-top:18px">📩 پیام‌ها (${messages.length})</h3>${messages.map(r=>`<div class="field" style="margin:8px 0"><b>${esc(r.name)}</b> (${esc(r.email)})<p>${esc(r.message)}</p><button class="btn secondary" onclick="startChatWith('${esc(r.email)}')">پاسخ در چت آنلاین</button></div>`).join('')||'<p class="empty">پیامی پیدا نشد.</p>'}`);
+}
+window.setStatus=async function(id,v){const {error}=await sb().from('orders').update({status:v}).eq('id',id);if(error){console.error(error);toast('تغییر وضعیت ناموفق بود');return}const r=(window.__adminData?.orders||[]).find(x=>Number(x.id)===Number(id));if(r)r.status=v;toast('وضعیت سفارش تغییر کرد ✅');renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',document.getElementById('adminSearch')?.value||'')};
+
+/* نمونه‌کار و پیگیری سفارش با RPC امن؛ کد سفارش اطلاعات شخصی را نمایش نمی‌دهد. */
+window.trackOrder=async function(){const code=(document.getElementById('trackCode')?.value||'').trim().toUpperCase();if(!code){toast('کد سفارش را وارد کن');return}const {data,error}=await sb().rpc('track_order',{p_code:code});const out=document.getElementById('trackResult');if(error){console.error(error);out.innerHTML='<p class="empty">پیگیری فعلاً آماده نیست؛ ابتدا اسکریپت SQL همراه فایل را در Supabase اجرا کن.</p>';return}const r=Array.isArray(data)?data[0]:data;if(!r){out.innerHTML='<p class="empty">سفارشی با این کد پیدا نشد.</p>';return}const labels={new:'جدید',doing:'در حال انجام',done:'تمام‌شده'};out.innerHTML=`<div class="field"><b>${esc(r.service||'سفارش')}</b><p>وضعیت: <strong>${esc(labels[r.status]||r.status||'در انتظار بررسی')}</strong></p><p>ثبت‌شده در: ${r.created_at?new Date(r.created_at).toLocaleDateString('fa-IR'):'—'}</p></div>`};
+
+function openTracking(){showModal(`<div class="modal-head"><h2>📦 پیگیری سفارش</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><p style="color:var(--muted);margin-bottom:12px">کد پیگیری که پس از ثبت سفارش دریافت کرده‌ای وارد کن.</p><form class="form" onsubmit="event.preventDefault();trackOrder()"><input id="trackCode" class="field" placeholder="مثلاً AK-AB12CD34" required><button class="btn">پیگیری سفارش</button></form><div id="trackResult" style="margin-top:15px"></div>`)}
+
+/* چت آنلاین برای کاربران واردشده؛ پیام‌ها در جدول chat_messages ذخیره می‌شوند. */
+window.openLiveChat=async function(){const u=await getUser();if(!u){showAuthModal('login');toast('برای استفاده از چت، ابتدا وارد حساب شو');return}showModal(`<div class="modal-head"><h2>💬 گفت‌وگو با پشتیبانی</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><div id="chatMessages" style="max-height:300px;overflow:auto;margin-bottom:12px"><p class="empty">در حال دریافت پیام‌ها…</p></div><form class="form" onsubmit="sendChat(event)"><textarea class="field" id="chatText" rows="3" maxlength="1500" required placeholder="پیامت را بنویس..."></textarea><button class="btn">ارسال پیام</button></form>`);await refreshChat()};
+window.refreshChat=async function(){const u=await getUser();if(!u)return;const box=document.getElementById('chatMessages');if(!box)return;const {data,error}=await sb().from('chat_messages').select('id,user_id,sender_role,message,created_at').eq('user_id',u.id).order('created_at',{ascending:true}).limit(100);if(error){box.innerHTML='<p class="empty">چت هنوز راه‌اندازی نشده؛ اسکریپت SQL همراه فایل را اجرا کن.</p>';return}box.innerHTML=(data||[]).map(m=>`<div class="chat-bubble ${m.sender_role==='admin'?'admin':'user'}"><small>${m.sender_role==='admin'?'پشتیبانی':'شما'}</small><br>${esc(m.message)}</div>`).join('')||'<p class="empty">هنوز پیامی ردوبدل نشده است.</p>';box.scrollTop=box.scrollHeight};
+window.sendChat=async function(e){e.preventDefault();const u=await getUser();if(!u){toast('ابتدا وارد حساب شو');return}const message=document.getElementById('chatText').value.trim();if(!message)return;const {error}=await sb().from('chat_messages').insert({user_id:u.id,sender_role:'user',message});if(error){console.error(error);toast('ارسال پیام ناموفق بود');return}document.getElementById('chatText').value='';await refreshChat();toast('پیام ارسال شد')};
+window.startChatWith=async function(){openAdminChatInbox()};
+window.openAdminChatInbox=async function(){
+ const {data,error}=await sb().from('chat_messages').select('user_id,sender_role,message,created_at').order('created_at',{ascending:false}).limit(300);
+ if(error){toast('صندوق چت در دسترس نیست؛ SQL را اجرا کن');return}
+ const rows=data||[];const ids=[...new Set(rows.map(x=>x.user_id))];
+ showModal(`<div class="modal-head"><h2>💬 صندوق گفت‌وگوها</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>`+(ids.map(uid=>{const last=rows.find(x=>x.user_id===uid);return `<div class="field" style="margin:8px 0"><b>گفت‌وگو با کاربر</b><p>${esc(last?.message||'')}</p><small>${last?.created_at?new Date(last.created_at).toLocaleString('fa-IR'):''}</small><button class="btn" style="margin-top:8px" onclick="openAdminConversation('${uid}')">باز کردن گفت‌وگو</button></div>`}).join('')||'<p class="empty">هنوز گفت‌وگویی وجود ندارد.</p>'));
+};
+window.openAdminConversation=async function(uid){
+ const {data,error}=await sb().from('chat_messages').select('sender_role,message,created_at').eq('user_id',uid).order('created_at',{ascending:true}).limit(150);
+ if(error){toast('دریافت گفت‌وگو ناموفق بود');return}
+ showModal(`<div class="modal-head"><h2>گفت‌وگوی پشتیبانی</h2><button class="icon-btn" onclick="openAdminChatInbox()">بازگشت</button></div><div style="max-height:300px;overflow:auto">${(data||[]).map(m=>`<div class="chat-bubble ${m.sender_role==='admin'?'admin':'user'}"><small>${m.sender_role==='admin'?'پشتیبانی':'مشتری'}</small><br>${esc(m.message)}</div>`).join('')}</div><form class="form" onsubmit="event.preventDefault();sendAdminChat('${uid}')"><textarea id="adminChatText" class="field" rows="3" required placeholder="پاسخ مدیر..."></textarea><button class="btn">ارسال پاسخ</button></form>`)
+};
+window.sendAdminChat=async function(uid){const message=document.getElementById('adminChatText').value.trim();if(!message)return;const {error}=await sb().from('chat_messages').insert({user_id:uid,sender_role:'admin',message});if(error){console.error(error);toast('ارسال پاسخ ناموفق بود');return}toast('پاسخ ارسال شد');openAdminConversation(uid)}
+
+/* دسترسی سریع به پیگیری سفارش از پنل کاربر، بدون حذف بخش‌های قبلی */
+const oldLoadMine=window.loadMine;
+window.loadMine=async function(u){if(typeof oldLoadMine==='function')await oldLoadMine(u);const box=document.getElementById('pExtra');if(box&&!box.querySelector('[data-track-button]')){const b=document.createElement('button');b.className='btn secondary';b.textContent='📦 پیگیری سفارش';b.setAttribute('data-track-button','1');b.onclick=openTracking;box.appendChild(b)}};
+</script>
+
+</body>
+</html>
