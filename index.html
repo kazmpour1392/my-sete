@@ -39,7 +39,7 @@ header{
   justify-content:space-between;gap:20px
 }
 .logo{
-  font-size:21px;font-weight:900;
+  font-size:21px;font-weight:900;white-space:nowrap;
   display:flex;align-items:center;gap:10px
 }
 .logo span{
@@ -246,8 +246,15 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
   .section-head{display:block}
   .section-head h2{font-size:27px;margin-bottom:6px}
   .nav{height:64px}
-  .logo{font-size:17px}
-  .logo span{width:35px;height:35px}
+  .nav{gap:8px}
+  .logo{font-size:13px;white-space:nowrap;gap:6px;flex-shrink:0}
+  .logo span{width:30px;height:30px;border-radius:10px;font-size:12px}
+  .nav-actions{gap:4px;min-width:0}
+  .icon-btn,.btn{padding:8px 9px;font-size:13px;border-radius:11px}
+}
+@media(max-width:380px){
+  .logo{font-size:12px}
+  .logo span{display:none}
 }
 </style>
 </head>
