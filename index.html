@@ -256,6 +256,26 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
   .logo{font-size:12px}
   .logo span{display:none}
 }
+
+/* افزونه‌های جدید؛ استایل‌های اصلی سایت دست‌نخورده می‌مانند */
+.extra-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.extra-toolbar .field{flex:1;min-width:170px}
+.work-card{overflow:hidden;padding:0!important}
+.work-cover{min-height:135px;display:grid;place-items:center;font-size:48px;background:linear-gradient(135deg,rgba(108,92,231,.2),rgba(0,194,255,.18));border-bottom:1px solid var(--line)}
+.work-content{padding:18px}
+.work-tag{display:inline-block;font-size:12px;background:rgba(108,92,231,.12);color:var(--primary);padding:4px 9px;border-radius:99px;margin-bottom:8px}
+.admin-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 20px}
+.admin-kpi{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px}
+.admin-kpi b{font-size:24px;display:block}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.admin-tabs button.active{background:var(--primary);color:#fff}
+.status-pill{display:inline-block;padding:3px 9px;border-radius:99px;background:rgba(108,92,231,.12);font-size:12px}
+.chat-fab{position:fixed;bottom:22px;right:22px;z-index:80;border:0;border-radius:50px;padding:13px 18px;background:linear-gradient(135deg,var(--primary),var(--accent));color:white;font-weight:900;box-shadow:0 12px 30px #0002;cursor:pointer}
+.chat-bubble{padding:10px 12px;border-radius:13px;margin:7px 0;max-width:90%;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat-bubble.user{background:rgba(108,92,231,.13);margin-right:auto}
+.chat-bubble.admin{background:var(--bg);border:1px solid var(--line);margin-left:auto}
+@media(max-width:560px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.chat-fab{right:12px;bottom:12px}}
+
 </style>
 </head>
 
@@ -315,6 +335,7 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
 <div class="hero-buttons">
 <a class="btn big" href="#courses">شروع یادگیری ←</a>
 <a class="btn secondary big" href="#services">مشاهده خدمات</a>
+<a class="btn secondary big" href="#" onclick="event.preventDefault();openTracking()">پیگیری سفارش</a>
 </div>
 
 <div class="stats">
@@ -465,11 +486,13 @@ onclick="setCat(this,'design')">طراحی</button>
 </section>
 
 <section class="section" id="works"><div class="container">
-<div class="section-head"><div><h2>🧩 نمونه‌کارها</h2><p>چند پروژه‌ای که ساخته‌ایم.</p></div></div>
-<div class="grid">
-<div class="card"><div class="course-icon">🌐</div><h3>همین سایت</h3><p>سایت آموزشی با ورود، پنل کاربری و ثبت سفارش.</p><div class="card-row"><span class="price">وب</span><a class="btn" href="https://kazmpour1392.github.io/my-sete/">دمو</a></div></div>
-<div class="card"><div class="course-icon">🎮</div><h3>بازی مرورگر</h3><p>یک بازی کوچک با JavaScript. (متن و لینک را ویرایش کن)</p><div class="card-row"><span class="price">بازی</span><a class="btn" href="#">دمو</a></div></div>
-<div class="card"><div class="course-icon">🎨</div><h3>پوستر</h3><p>طراحی پوستر و بنر. (متن و لینک را ویرایش کن)</p><div class="card-row"><span class="price">طراحی</span><a class="btn" href="#">مشاهده</a></div></div>
+<div class="section-head"><div><h2>🧩 نمونه‌کارها</h2><p>نمونه پروژه‌ها را جست‌وجو و دسته‌بندی کن.</p></div></div>
+<div class="filters"><input id="workSearch" class="search" placeholder="🔎 جست‌وجوی نمونه‌کار..." oninput="filterWorks()">
+<button class="chip active" onclick="setWorkCat(this,'all')">همه</button><button class="chip" onclick="setWorkCat(this,'web')">طراحی سایت</button><button class="chip" onclick="setWorkCat(this,'game')">بازی</button><button class="chip" onclick="setWorkCat(this,'design')">طراحی گرافیک</button></div>
+<div class="grid" id="workGrid">
+<article class="card work-card" data-cat="web" data-title="آکادمی طراحی سایت"><div class="work-cover">🌐</div><div class="work-content"><span class="work-tag">طراحی سایت</span><h3>آکادمی طراحی سایت</h3><p>سایت آموزشی با حساب کاربری، دوره‌ها و ثبت سفارش.</p><div class="card-row"><span class="price">HTML · CSS · JS</span><a class="btn" target="_blank" rel="noopener" href="https://kazmpour1392.github.io/my-sete/">مشاهده دمو</a></div></div></article>
+<article class="card work-card" data-cat="game" data-title="بازی مرورگر"><div class="work-cover">🎮</div><div class="work-content"><span class="work-tag">بازی</span><h3>بازی مرورگر</h3><p>نمونه‌ای از یک بازی سبک تحت وب؛ لینک دمو را بعداً جایگزین کن.</p><div class="card-row"><span class="price">JavaScript</span><span class="status-pill">نمونه نمایشی</span></div></div></article>
+<article class="card work-card" data-cat="design" data-title="پوستر و بنر"><div class="work-cover">🎨</div><div class="work-content"><span class="work-tag">طراحی گرافیک</span><h3>پوستر و بنر</h3><p>نمونه طراحی محتوای تصویری برای شبکه‌های اجتماعی و کسب‌وکارها.</p><div class="card-row"><span class="price">گرافیک</span><button class="btn" onclick="order('طراحی پوستر')">سفارش مشابه</button></div></div></article>
 </div></div></section>
 
 <section class="section" id="faq"><div class="container">
@@ -1496,7 +1519,75 @@ checkUser();
 
 </script>
 
+
+<!-- امکانات افزوده: پیگیری سفارش و گفت‌وگوی آنلاین -->
+<button class="chat-fab" onclick="openLiveChat()">💬 گفت‌وگو با پشتیبانی</button>
+<script>
+/* ثبت سفارش جدید همراه کد پیگیری؛ ساختار و فرم قبلی حفظ شده‌اند. */
+window.submitOrder=async function(e,service){
+ e.preventDefault();
+ const code='AK-'+Array.from(crypto.getRandomValues(new Uint8Array(5))).map(n=>'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[n%32]).join('');
+ const u=await getUser();
+ const row={service,name:document.getElementById('orderName').value.trim(),contact:document.getElementById('orderContact').value.trim(),description:document.getElementById('orderDesc').value.trim(),order_code:code};
+ if(u)row.user_id=u.id;
+ const {error}=await sb().from('orders').insert(row);
+ if(error){console.error(error);toast(error.message?.includes('order_code')?'ابتدا اسکریپت SQL همراه فایل را در Supabase اجرا کن':'خطا در ثبت درخواست ❌');return}
+ closeModal();showModal(`<div class="modal-head"><h2>✅ سفارش ثبت شد</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><p>کد پیگیری سفارش را نگه دار تا بعداً وضعیت را بررسی کنی.</p><div class="field" style="font-size:22px;font-weight:900;text-align:center;margin:14px 0;direction:ltr">${code}</div><button class="btn secondary" onclick="navigator.clipboard?.writeText('${code}').then(()=>toast('کد کپی شد')).catch(()=>toast('کد را دستی کپی کن'))">کپی کد</button><button class="btn" onclick="closeModal();openTracking()">پیگیری سفارش</button>`);
+};
+
+/* افزونه مستقل: قابلیت‌های قبلی حفظ می‌شوند. */
+let currentWorkCat='all';
+function setWorkCat(btn,cat){currentWorkCat=cat;document.querySelectorAll('#works .chip').forEach(x=>x.classList.remove('active'));btn.classList.add('active');filterWorks()}
+function filterWorks(){const q=(document.getElementById('workSearch')?.value||'').trim().toLowerCase();document.querySelectorAll('#workGrid .work-card').forEach(c=>{c.style.display=((currentWorkCat==='all'||c.dataset.cat===currentWorkCat)&&(!q||((c.dataset.title||'')+' '+c.innerText).toLowerCase().includes(q)))?'':'none'})}
+
+/* پنل مدیریت پیشرفته: آمار، جست‌وجو و فیلتر؛ دسترسی واقعی همچنان با RLS دیتابیس کنترل می‌شود. */
+window.openAdmin=async function(){
+ const [mr,orr]=await Promise.all([sb().from('messages').select('*').order('created_at',{ascending:false}).limit(100),sb().from('orders').select('*').order('created_at',{ascending:false}).limit(100)]);
+ if(mr.error||orr.error){console.error(mr.error||orr.error);toast('دسترسی مدیر ندارید یا ساختار دیتابیس نیاز به بررسی دارد');return}
+ window.__adminData={messages:mr.data||[],orders:orr.data||[]};
+ renderAdmin('all');
+};
+function renderAdmin(tab='all',query=''){
+ const d=window.__adminData||{messages:[],orders:[]};const q=query.toLowerCase();
+ const orders=d.orders.filter(r=>(tab==='all'||tab==='orders')&&(!q||[r.service,r.name,r.contact,r.description,r.order_code].join(' ').toLowerCase().includes(q)));
+ const messages=d.messages.filter(r=>(tab==='all'||tab==='messages')&&(!q||[r.name,r.email,r.message].join(' ').toLowerCase().includes(q)));
+ const fresh=d.orders.filter(x=>(x.status||'new')==='new').length,doing=d.orders.filter(x=>x.status==='doing').length,done=d.orders.filter(x=>x.status==='done').length;
+ showModal(`<div class="modal-head"><h2>🔐 پنل مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
+ <div class="admin-kpis"><div class="admin-kpi"><span>کل سفارش‌ها</span><b>${d.orders.length}</b></div><div class="admin-kpi"><span>جدید</span><b>${fresh}</b></div><div class="admin-kpi"><span>در حال انجام</span><b>${doing}</b></div><div class="admin-kpi"><span>تمام‌شده</span><b>${done}</b></div></div>
+ <input class="field" id="adminSearch" placeholder="جست‌وجوی سفارش یا پیام..." oninput="renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',this.value)" value="${esc(query)}">
+ <div class="admin-tabs"><button class="chip ${tab==='all'?'active':''}" data-admin-tab="all" onclick="renderAdmin('all',document.getElementById('adminSearch')?.value||'')">همه</button><button class="chip ${tab==='orders'?'active':''}" data-admin-tab="orders" onclick="renderAdmin('orders',document.getElementById('adminSearch')?.value||'')">سفارش‌ها</button><button class="chip ${tab==='messages'?'active':''}" data-admin-tab="messages" onclick="renderAdmin('messages',document.getElementById('adminSearch')?.value||'')">پیام‌ها</button></div>
+ <button class="btn secondary" style="margin:10px 0" onclick="openAdminChatInbox()">💬 صندوق گفت‌وگوها</button><h3>🛠️ سفارش‌ها (${orders.length})</h3>${orders.map(r=>`<div class="field" style="margin:8px 0"><b>${esc(r.service)}</b> — ${esc(r.name)}<br><small>${esc(r.contact)} · کد: ${esc(r.order_code||'برای سفارش‌های قدیمی ثبت نشده')}</small><p>${esc(r.description)}</p><select class="field" style="margin-top:8px;width:100%" onchange="setStatus(${Number(r.id)},this.value)">${Object.keys(ST).map(k=>`<option value="${k}" ${(r.status||'new')===k?'selected':''}>${ST[k]}</option>`).join('')}</select></div>`).join('')||'<p class="empty">سفارشی پیدا نشد.</p>'}
+ <h3 style="margin-top:18px">📩 پیام‌ها (${messages.length})</h3>${messages.map(r=>`<div class="field" style="margin:8px 0"><b>${esc(r.name)}</b> (${esc(r.email)})<p>${esc(r.message)}</p><button class="btn secondary" onclick="startChatWith('${esc(r.email)}')">پاسخ در چت آنلاین</button></div>`).join('')||'<p class="empty">پیامی پیدا نشد.</p>'}`);
+}
+window.setStatus=async function(id,v){const {error}=await sb().from('orders').update({status:v}).eq('id',id);if(error){console.error(error);toast('تغییر وضعیت ناموفق بود');return}const r=(window.__adminData?.orders||[]).find(x=>Number(x.id)===Number(id));if(r)r.status=v;toast('وضعیت سفارش تغییر کرد ✅');renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',document.getElementById('adminSearch')?.value||'')};
+
+/* نمونه‌کار و پیگیری سفارش با RPC امن؛ کد سفارش اطلاعات شخصی را نمایش نمی‌دهد. */
+window.trackOrder=async function(){const code=(document.getElementById('trackCode')?.value||'').trim().toUpperCase();if(!code){toast('کد سفارش را وارد کن');return}const {data,error}=await sb().rpc('track_order',{p_code:code});const out=document.getElementById('trackResult');if(error){console.error(error);out.innerHTML='<p class="empty">پیگیری فعلاً آماده نیست؛ ابتدا اسکریپت SQL همراه فایل را در Supabase اجرا کن.</p>';return}const r=Array.isArray(data)?data[0]:data;if(!r){out.innerHTML='<p class="empty">سفارشی با این کد پیدا نشد.</p>';return}const labels={new:'جدید',doing:'در حال انجام',done:'تمام‌شده'};out.innerHTML=`<div class="field"><b>${esc(r.service||'سفارش')}</b><p>وضعیت: <strong>${esc(labels[r.status]||r.status||'در انتظار بررسی')}</strong></p><p>ثبت‌شده در: ${r.created_at?new Date(r.created_at).toLocaleDateString('fa-IR'):'—'}</p></div>`};
+
+function openTracking(){showModal(`<div class="modal-head"><h2>📦 پیگیری سفارش</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><p style="color:var(--muted);margin-bottom:12px">کد پیگیری که پس از ثبت سفارش دریافت کرده‌ای وارد کن.</p><form class="form" onsubmit="event.preventDefault();trackOrder()"><input id="trackCode" class="field" placeholder="مثلاً AK-AB12CD34" required><button class="btn">پیگیری سفارش</button></form><div id="trackResult" style="margin-top:15px"></div>`)}
+
+/* چت آنلاین برای کاربران واردشده؛ پیام‌ها در جدول chat_messages ذخیره می‌شوند. */
+window.openLiveChat=async function(){const u=await getUser();if(!u){showAuthModal('login');toast('برای استفاده از چت، ابتدا وارد حساب شو');return}showModal(`<div class="modal-head"><h2>💬 گفت‌وگو با پشتیبانی</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><div id="chatMessages" style="max-height:300px;overflow:auto;margin-bottom:12px"><p class="empty">در حال دریافت پیام‌ها…</p></div><form class="form" onsubmit="sendChat(event)"><textarea class="field" id="chatText" rows="3" maxlength="1500" required placeholder="پیامت را بنویس..."></textarea><button class="btn">ارسال پیام</button></form>`);await refreshChat()};
+window.refreshChat=async function(){const u=await getUser();if(!u)return;const box=document.getElementById('chatMessages');if(!box)return;const {data,error}=await sb().from('chat_messages').select('id,user_id,sender_role,message,created_at').eq('user_id',u.id).order('created_at',{ascending:true}).limit(100);if(error){box.innerHTML='<p class="empty">چت هنوز راه‌اندازی نشده؛ اسکریپت SQL همراه فایل را اجرا کن.</p>';return}box.innerHTML=(data||[]).map(m=>`<div class="chat-bubble ${m.sender_role==='admin'?'admin':'user'}"><small>${m.sender_role==='admin'?'پشتیبانی':'شما'}</small><br>${esc(m.message)}</div>`).join('')||'<p class="empty">هنوز پیامی ردوبدل نشده است.</p>';box.scrollTop=box.scrollHeight};
+window.sendChat=async function(e){e.preventDefault();const u=await getUser();if(!u){toast('ابتدا وارد حساب شو');return}const message=document.getElementById('chatText').value.trim();if(!message)return;const {error}=await sb().from('chat_messages').insert({user_id:u.id,sender_role:'user',message});if(error){console.error(error);toast('ارسال پیام ناموفق بود');return}document.getElementById('chatText').value='';await refreshChat();toast('پیام ارسال شد')};
+window.startChatWith=async function(){openAdminChatInbox()};
+window.openAdminChatInbox=async function(){
+ const {data,error}=await sb().from('chat_messages').select('user_id,sender_role,message,created_at').order('created_at',{ascending:false}).limit(300);
+ if(error){toast('صندوق چت در دسترس نیست؛ SQL را اجرا کن');return}
+ const rows=data||[];const ids=[...new Set(rows.map(x=>x.user_id))];
+ showModal(`<div class="modal-head"><h2>💬 صندوق گفت‌وگوها</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>`+(ids.map(uid=>{const last=rows.find(x=>x.user_id===uid);return `<div class="field" style="margin:8px 0"><b>گفت‌وگو با کاربر</b><p>${esc(last?.message||'')}</p><small>${last?.created_at?new Date(last.created_at).toLocaleString('fa-IR'):''}</small><button class="btn" style="margin-top:8px" onclick="openAdminConversation('${uid}')">باز کردن گفت‌وگو</button></div>`}).join('')||'<p class="empty">هنوز گفت‌وگویی وجود ندارد.</p>'));
+};
+window.openAdminConversation=async function(uid){
+ const {data,error}=await sb().from('chat_messages').select('sender_role,message,created_at').eq('user_id',uid).order('created_at',{ascending:true}).limit(150);
+ if(error){toast('دریافت گفت‌وگو ناموفق بود');return}
+ showModal(`<div class="modal-head"><h2>گفت‌وگوی پشتیبانی</h2><button class="icon-btn" onclick="openAdminChatInbox()">بازگشت</button></div><div style="max-height:300px;overflow:auto">${(data||[]).map(m=>`<div class="chat-bubble ${m.sender_role==='admin'?'admin':'user'}"><small>${m.sender_role==='admin'?'پشتیبانی':'مشتری'}</small><br>${esc(m.message)}</div>`).join('')}</div><form class="form" onsubmit="event.preventDefault();sendAdminChat('${uid}')"><textarea id="adminChatText" class="field" rows="3" required placeholder="پاسخ مدیر..."></textarea><button class="btn">ارسال پاسخ</button></form>`)
+};
+window.sendAdminChat=async function(uid){const message=document.getElementById('adminChatText').value.trim();if(!message)return;const {error}=await sb().from('chat_messages').insert({user_id:uid,sender_role:'admin',message});if(error){console.error(error);toast('ارسال پاسخ ناموفق بود');return}toast('پاسخ ارسال شد');openAdminConversation(uid)}
+
+/* دسترسی سریع به پیگیری سفارش از پنل کاربر، بدون حذف بخش‌های قبلی */
+const oldLoadMine=window.loadMine;
+window.loadMine=async function(u){if(typeof oldLoadMine==='function')await oldLoadMine(u);const box=document.getElementById('pExtra');if(box&&!box.querySelector('[data-track-button]')){const b=document.createElement('button');b.className='btn secondary';b.textContent='📦 پیگیری سفارش';b.setAttribute('data-track-button','1');b.onclick=openTracking;box.appendChild(b)}};
+</script>
+
 </body>
 </html>
-
-insert into admins select id from auth.users where email='kazmpour1392@gmail.com' on conflict do nothing;
