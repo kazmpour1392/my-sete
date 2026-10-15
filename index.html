@@ -291,6 +291,13 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
 .admin-chart-note{font-size:12px;color:var(--muted);margin-top:8px}
 @media(max-width:560px){.admin-dash-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-dashboard{padding:10px}}
 
+.admin-top-pages{display:grid;gap:7px;margin:8px 0 12px}
+.admin-page-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:13px}
+.admin-page-row span{direction:ltr;text-align:left;overflow-wrap:anywhere}
+.admin-page-row b{white-space:nowrap}
+.admin-setup-note{padding:12px;border:1px dashed var(--line);border-radius:10px;margin:10px 0}
+
+
 </style>
 </head>
 
@@ -1560,6 +1567,10 @@ window.openAdmin=async function(){
  const [mr,orr]=await Promise.all([sb().from('messages').select('*').order('created_at',{ascending:false}).limit(100),sb().from('orders').select('*').order('created_at',{ascending:false}).limit(100)]);
  if(mr.error||orr.error){console.error(mr.error||orr.error);toast('دسترسی مدیر ندارید یا ساختار دیتابیس نیاز به بررسی دارد');return}
  window.__adminData={messages:mr.data||[],orders:orr.data||[]};
+ // آمار کاربران و بازدیدها از تابع امن Supabase خوانده می‌شود؛ خطای آن بخش‌های قبلی پنل را متوقف نمی‌کند.
+ const analytics=await sb().rpc('admin_dashboard_metrics');
+ window.__adminMetrics=analytics.error?null:analytics.data;
+ if(analytics.error)console.warn('آمار کاربران/بازدید هنوز راه‌اندازی نشده است:',analytics.error.message);
  renderAdmin('all');
 };
 function renderAdmin(tab='all',query=''){
@@ -1570,7 +1581,9 @@ function renderAdmin(tab='all',query=''){
  const days=Array.from({length:7},(_,i)=>{const dt=new Date();dt.setHours(0,0,0,0);dt.setDate(dt.getDate()-(6-i));return dt});
  const daily=days.map(dt=>({label:dt.toLocaleDateString('fa-IR',{day:'numeric',month:'short'}),count:d.orders.filter(r=>{if(!r.created_at)return false;const x=new Date(r.created_at);return x.toDateString()===dt.toDateString()}).length}));
  const maxDaily=Math.max(1,...daily.map(x=>x.count));
- const dashboard=`<section class="admin-dashboard"><h3>📊 داشبورد آمار</h3><div class="admin-dash-grid"><div class="admin-dash-card"><span>کل سفارش‌ها</span><strong>${d.orders.length}</strong></div><div class="admin-dash-card"><span>کل پیام‌های ثبت‌شده</span><strong>${d.messages.length}</strong></div><div class="admin-dash-card"><span>سفارش‌های جدید</span><strong>${fresh}</strong></div><div class="admin-dash-card"><span>در حال انجام</span><strong>${doing}</strong></div><div class="admin-dash-card"><span>تکمیل‌شده</span><strong>${done}</strong></div><div class="admin-dash-card"><span>نرخ تکمیل سفارش‌ها</span><strong>${d.orders.length?Math.round(done/d.orders.length*100):0}٪</strong></div></div><h4>سفارش‌های ثبت‌شده در ۷ روز اخیر</h4><div class="admin-chart">${daily.map(x=>`<div class="admin-chart-col"><b>${x.count}</b><div class="admin-chart-bar" style="height:${Math.max(3,Math.round(x.count/maxDaily*105))}px" title="${x.count} سفارش"></div><small>${x.label}</small></div>`).join('')}</div><p class="admin-chart-note">نمودار بر اساس تاریخ ثبت سفارش‌های موجود در پایگاه داده است. آمار بازدید و تعداد کاربران تا زمان اتصال ابزار ثبت آن‌ها نمایش داده نمی‌شود.</p></section>`;
+ const a=window.__adminMetrics;
+ const analyticsBlock=a?`<h4>👥 کاربران و بازدیدها</h4><div class="admin-dash-grid"><div class="admin-dash-card"><span>کاربران ثبت‌نام‌شده</span><strong>${Number(a.registered_users||0).toLocaleString('fa-IR')}</strong></div><div class="admin-dash-card"><span>کل بازدیدهای ثبت‌شده</span><strong>${Number(a.total_views||0).toLocaleString('fa-IR')}</strong></div><div class="admin-dash-card"><span>بازدیدکنندگان یکتا (تقریبی بر اساس نشست مرورگر)</span><strong>${Number(a.unique_visitors||0).toLocaleString('fa-IR')}</strong></div><div class="admin-dash-card"><span>بازدیدهای ۷ روز اخیر</span><strong>${Number(a.last_7_days_views||0).toLocaleString('fa-IR')}</strong></div></div><h4>📄 صفحات پربازدید</h4><div class="admin-top-pages">${(Array.isArray(a.top_pages)?a.top_pages:[]).map(x=>`<div class="admin-page-row"><span>${esc(x.page_path||'/')}</span><b>${Number(x.views||0).toLocaleString('fa-IR')} بازدید</b></div>`).join('')||'<p class="admin-chart-note">هنوز بازدیدی ثبت نشده است.</p>'}</div>`:`<div class="admin-chart-note admin-setup-note">برای فعال‌شدن آمار کاربران و بازدیدها، فایل SQL همراه این نسخه را یک‌بار در Supabase SQL Editor اجرا کن. تا آن زمان عدد ساختگی نمایش داده نمی‌شود.</div>`;
+ const dashboard=`<section class="admin-dashboard"><h3>📊 داشبورد آمار</h3><div class="admin-dash-grid"><div class="admin-dash-card"><span>کل سفارش‌ها</span><strong>${d.orders.length}</strong></div><div class="admin-dash-card"><span>کل پیام‌های ثبت‌شده</span><strong>${d.messages.length}</strong></div><div class="admin-dash-card"><span>سفارش‌های جدید</span><strong>${fresh}</strong></div><div class="admin-dash-card"><span>در حال انجام</span><strong>${doing}</strong></div><div class="admin-dash-card"><span>تکمیل‌شده</span><strong>${done}</strong></div><div class="admin-dash-card"><span>نرخ تکمیل سفارش‌ها</span><strong>${d.orders.length?Math.round(done/d.orders.length*100):0}٪</strong></div></div><h4>سفارش‌های ثبت‌شده در ۷ روز اخیر</h4><div class="admin-chart">${daily.map(x=>`<div class="admin-chart-col"><b>${x.count}</b><div class="admin-chart-bar" style="height:${Math.max(3,Math.round(x.count/maxDaily*105))}px" title="${x.count} سفارش"></div><small>${x.label}</small></div>`).join('')}</div>${analyticsBlock}<p class="admin-chart-note">آمار کاربران از حساب‌های ثبت‌شده در Supabase و آمار بازدید از بازدیدهای ثبت‌شده در این سایت محاسبه می‌شود. بازدیدهای قبل از فعال‌سازی ثبت‌کننده، قابل بازیابی نیستند.</p></section>`;
  showModal(`<div class="modal-head"><h2>🔐 پنل مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
  ${dashboard}
  <div class="admin-kpis"><div class="admin-kpi"><span>کل سفارش‌ها</span><b>${d.orders.length}</b></div><div class="admin-kpi"><span>جدید</span><b>${fresh}</b></div><div class="admin-kpi"><span>در حال انجام</span><b>${doing}</b></div><div class="admin-kpi"><span>تمام‌شده</span><b>${done}</b></div></div>
@@ -1603,6 +1616,19 @@ window.openAdminConversation=async function(uid){
  showModal(`<div class="modal-head"><h2>گفت‌وگوی پشتیبانی</h2><button class="icon-btn" onclick="openAdminChatInbox()">بازگشت</button></div><div style="max-height:300px;overflow:auto">${(data||[]).map(m=>`<div class="chat-bubble ${m.sender_role==='admin'?'admin':'user'}"><small>${m.sender_role==='admin'?'پشتیبانی':'مشتری'}</small><br>${esc(m.message)}</div>`).join('')}</div><form class="form" onsubmit="event.preventDefault();sendAdminChat('${uid}')"><textarea id="adminChatText" class="field" rows="3" required placeholder="پاسخ مدیر..."></textarea><button class="btn">ارسال پاسخ</button></form>`)
 };
 window.sendAdminChat=async function(uid){const message=document.getElementById('adminChatText').value.trim();if(!message)return;const {error}=await sb().from('chat_messages').insert({user_id:uid,sender_role:'admin',message});if(error){console.error(error);toast('ارسال پاسخ ناموفق بود');return}toast('پاسخ ارسال شد');openAdminConversation(uid)}
+
+/* ثبت بازدید بدون ذخیره IP یا اطلاعات هویتی؛ شناسه فقط در نشست مرورگر نگهداری می‌شود. */
+async function recordSitePageView(){
+ try{
+  let visitorKey=sessionStorage.getItem('academyVisitorSession');
+  if(!visitorKey){visitorKey=(crypto.randomUUID?crypto.randomUUID():('v-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,18)));sessionStorage.setItem('academyVisitorSession',visitorKey)}
+  const pagePath=(location.pathname||'/')+(location.hash||'#home');
+  const {error}=await sb().from('site_page_views').insert({page_path:pagePath.slice(0,300),visitor_key:visitorKey});
+  if(error)console.warn('ثبت بازدید انجام نشد؛ SQL راه‌اندازی شده؟',error.message);
+ }catch(e){console.warn('ثبت بازدید در این مرورگر در دسترس نیست.',e)}
+}
+recordSitePageView();
+window.addEventListener('hashchange',recordSitePageView);
 
 /* دسترسی سریع به پیگیری سفارش از پنل کاربر، بدون حذف بخش‌های قبلی */
 const oldLoadMine=window.loadMine;
