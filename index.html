@@ -276,6 +276,21 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
 .chat-bubble.admin{background:var(--bg);border:1px solid var(--line);margin-left:auto}
 @media(max-width:560px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.chat-fab{right:12px;bottom:12px}}
 
+
+/* افزونه مستقل داشبورد مدیریت */
+.admin-dashboard{margin:12px 0 18px;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.admin-dash-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.admin-dash-card{padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--bg)}
+.admin-dash-card span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.admin-dash-card strong{font-size:24px}
+.admin-chart{display:flex;align-items:flex-end;gap:8px;height:155px;padding:12px 4px 0;border-bottom:1px solid var(--line);margin:8px 0 4px}
+.admin-chart-col{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:5px}
+.admin-chart-bar{width:min(28px,75%);min-height:3px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,var(--primary),var(--accent));}
+.admin-chart-col small{font-size:10px;color:var(--muted)}
+.admin-chart-col b{font-size:10px}
+.admin-chart-note{font-size:12px;color:var(--muted);margin-top:8px}
+@media(max-width:560px){.admin-dash-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-dashboard{padding:10px}}
+
 </style>
 </head>
 
@@ -1552,7 +1567,12 @@ function renderAdmin(tab='all',query=''){
  const orders=d.orders.filter(r=>(tab==='all'||tab==='orders')&&(!q||[r.service,r.name,r.contact,r.description,r.order_code].join(' ').toLowerCase().includes(q)));
  const messages=d.messages.filter(r=>(tab==='all'||tab==='messages')&&(!q||[r.name,r.email,r.message].join(' ').toLowerCase().includes(q)));
  const fresh=d.orders.filter(x=>(x.status||'new')==='new').length,doing=d.orders.filter(x=>x.status==='doing').length,done=d.orders.filter(x=>x.status==='done').length;
+ const days=Array.from({length:7},(_,i)=>{const dt=new Date();dt.setHours(0,0,0,0);dt.setDate(dt.getDate()-(6-i));return dt});
+ const daily=days.map(dt=>({label:dt.toLocaleDateString('fa-IR',{day:'numeric',month:'short'}),count:d.orders.filter(r=>{if(!r.created_at)return false;const x=new Date(r.created_at);return x.toDateString()===dt.toDateString()}).length}));
+ const maxDaily=Math.max(1,...daily.map(x=>x.count));
+ const dashboard=`<section class="admin-dashboard"><h3>📊 داشبورد آمار</h3><div class="admin-dash-grid"><div class="admin-dash-card"><span>کل سفارش‌ها</span><strong>${d.orders.length}</strong></div><div class="admin-dash-card"><span>کل پیام‌های ثبت‌شده</span><strong>${d.messages.length}</strong></div><div class="admin-dash-card"><span>سفارش‌های جدید</span><strong>${fresh}</strong></div><div class="admin-dash-card"><span>در حال انجام</span><strong>${doing}</strong></div><div class="admin-dash-card"><span>تکمیل‌شده</span><strong>${done}</strong></div><div class="admin-dash-card"><span>نرخ تکمیل سفارش‌ها</span><strong>${d.orders.length?Math.round(done/d.orders.length*100):0}٪</strong></div></div><h4>سفارش‌های ثبت‌شده در ۷ روز اخیر</h4><div class="admin-chart">${daily.map(x=>`<div class="admin-chart-col"><b>${x.count}</b><div class="admin-chart-bar" style="height:${Math.max(3,Math.round(x.count/maxDaily*105))}px" title="${x.count} سفارش"></div><small>${x.label}</small></div>`).join('')}</div><p class="admin-chart-note">نمودار بر اساس تاریخ ثبت سفارش‌های موجود در پایگاه داده است. آمار بازدید و تعداد کاربران تا زمان اتصال ابزار ثبت آن‌ها نمایش داده نمی‌شود.</p></section>`;
  showModal(`<div class="modal-head"><h2>🔐 پنل مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
+ ${dashboard}
  <div class="admin-kpis"><div class="admin-kpi"><span>کل سفارش‌ها</span><b>${d.orders.length}</b></div><div class="admin-kpi"><span>جدید</span><b>${fresh}</b></div><div class="admin-kpi"><span>در حال انجام</span><b>${doing}</b></div><div class="admin-kpi"><span>تمام‌شده</span><b>${done}</b></div></div>
  <input class="field" id="adminSearch" placeholder="جست‌وجوی سفارش یا پیام..." oninput="renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',this.value)" value="${esc(query)}">
  <div class="admin-tabs"><button class="chip ${tab==='all'?'active':''}" data-admin-tab="all" onclick="renderAdmin('all',document.getElementById('adminSearch')?.value||'')">همه</button><button class="chip ${tab==='orders'?'active':''}" data-admin-tab="orders" onclick="renderAdmin('orders',document.getElementById('adminSearch')?.value||'')">سفارش‌ها</button><button class="chip ${tab==='messages'?'active':''}" data-admin-tab="messages" onclick="renderAdmin('messages',document.getElementById('adminSearch')?.value||'')">پیام‌ها</button></div>
