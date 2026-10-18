@@ -298,14 +298,6 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
 .admin-setup-note{padding:12px;border:1px dashed var(--line);border-radius:10px;margin:10px 0}
 
 
-
-/* افزونه‌های تکمیلی مدیریت: رشد، کاربران، اعلان‌ها و گزارش */
-.admin-extra-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.admin-extra-actions .btn{font-size:13px}
-.admin-user-row,.admin-notice-row{padding:11px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:var(--bg)}
-.admin-report-note{font-size:12px;color:var(--muted);margin-top:8px}
-.admin-growth-wrap{margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:12px}
-
 </style>
 </head>
 
@@ -325,6 +317,7 @@ details.card{margin-bottom:10px;cursor:pointer}details summary{font-weight:800}
 <a href="#services">خدمات</a>
 <a href="#about">درباره</a>
 <a href="#works">نمونه‌کار</a>
+<a href="#blog">وبلاگ</a>
 <a href="#faq">سوالات</a>
 <a href="#contact">ارتباط</a>
 </nav>
@@ -524,6 +517,43 @@ onclick="setCat(this,'design')">طراحی</button>
 <article class="card work-card" data-cat="game" data-title="بازی مرورگر"><div class="work-cover">🎮</div><div class="work-content"><span class="work-tag">بازی</span><h3>بازی مرورگر</h3><p>نمونه‌ای از یک بازی سبک تحت وب؛ لینک دمو را بعداً جایگزین کن.</p><div class="card-row"><span class="price">JavaScript</span><span class="status-pill">نمونه نمایشی</span></div></div></article>
 <article class="card work-card" data-cat="design" data-title="پوستر و بنر"><div class="work-cover">🎨</div><div class="work-content"><span class="work-tag">طراحی گرافیک</span><h3>پوستر و بنر</h3><p>نمونه طراحی محتوای تصویری برای شبکه‌های اجتماعی و کسب‌وکارها.</p><div class="card-row"><span class="price">گرافیک</span><button class="btn" onclick="order('طراحی پوستر')">سفارش مشابه</button></div></div></article>
 </div></div></section>
+
+<section class="section" id="blog">
+<div class="container">
+<div class="section-head">
+<div>
+<h2>📝 وبلاگ و مقالات آموزشی</h2>
+<p>راهنماهای کاربردی برای یادگیری طراحی سایت و برنامه‌نویسی.</p>
+</div>
+</div>
+<div class="grid">
+<article class="card">
+<div class="course-icon">🌐</div>
+<h3>طراحی سایت چیست؟</h3>
+<p>با مراحل ساخت سایت، طراحی واکنش‌گرا و اصول طراحی وب آشنا شو.</p>
+<div class="card-row"><span class="price">راهنمای شروع</span><a class="btn" href="pages/web-design-guide.html">خواندن مقاله ←</a></div>
+</article>
+<article class="card">
+<div class="course-icon">🎨</div>
+<h3>آموزش HTML و CSS</h3>
+<p>ساختار صفحات وب و طراحی ظاهر آن‌ها را یاد بگیر.</p>
+<div class="card-row"><span class="price">مقدماتی</span><a class="btn" href="pages/html-css-guide.html">خواندن مقاله ←</a></div>
+</article>
+<article class="card">
+<div class="course-icon">⚡</div>
+<h3>آموزش JavaScript</h3>
+<p>با مفاهیم اولیه جاوااسکریپت و تعاملی کردن سایت آشنا شو.</p>
+<div class="card-row"><span class="price">مقدماتی</span><a class="btn" href="pages/javascript-guide.html">خواندن مقاله ←</a></div>
+</article>
+<article class="card">
+<div class="course-icon">🐍</div>
+<h3>آموزش پایتون</h3>
+<p>مفاهیم اولیه برنامه‌نویسی با زبان پایتون را یاد بگیر.</p>
+<div class="card-row"><span class="price">مقدماتی</span><a class="btn" href="pages/python-guide.html">خواندن مقاله ←</a></div>
+</article>
+</div>
+</div>
+</section>
 
 <section class="section" id="faq"><div class="container">
 <div class="section-head"><div><h2>❓ سوالات متداول</h2><p>و چند نکته‌ی آموزشی کوتاه.</p></div></div>
@@ -1591,48 +1621,15 @@ function renderAdmin(tab='all',query=''){
  const maxDaily=Math.max(1,...daily.map(x=>x.count));
  const a=window.__adminMetrics;
  const analyticsBlock=a?`<h4>👥 کاربران و بازدیدها</h4><div class="admin-dash-grid"><div class="admin-dash-card"><span>کاربران ثبت‌نام‌شده</span><strong>${Number(a.registered_users||0).toLocaleString('fa-IR')}</strong></div><div class="admin-dash-card"><span>کل بازدیدهای ثبت‌شده</span><strong>${Number(a.total_views||0).toLocaleString('fa-IR')}</strong></div><div class="admin-dash-card"><span>بازدیدکنندگان یکتا (تقریبی بر اساس نشست مرورگر)</span><strong>${Number(a.unique_visitors||0).toLocaleString('fa-IR')}</strong></div><div class="admin-dash-card"><span>بازدیدهای ۷ روز اخیر</span><strong>${Number(a.last_7_days_views||0).toLocaleString('fa-IR')}</strong></div></div><h4>📄 صفحات پربازدید</h4><div class="admin-top-pages">${(Array.isArray(a.top_pages)?a.top_pages:[]).map(x=>`<div class="admin-page-row"><span>${esc(x.page_path||'/')}</span><b>${Number(x.views||0).toLocaleString('fa-IR')} بازدید</b></div>`).join('')||'<p class="admin-chart-note">هنوز بازدیدی ثبت نشده است.</p>'}</div>`:`<div class="admin-chart-note admin-setup-note">برای فعال‌شدن آمار کاربران و بازدیدها، فایل SQL همراه این نسخه را یک‌بار در Supabase SQL Editor اجرا کن. تا آن زمان عدد ساختگی نمایش داده نمی‌شود.</div>`;
- const dashboard=`<section class="admin-dashboard"><h3>📊 داشبورد آمار</h3><div class="admin-dash-grid"><div class="admin-dash-card"><span>کل سفارش‌ها</span><strong>${d.orders.length}</strong></div><div class="admin-dash-card"><span>کل پیام‌های ثبت‌شده</span><strong>${d.messages.length}</strong></div><div class="admin-dash-card"><span>سفارش‌های جدید</span><strong>${fresh}</strong></div><div class="admin-dash-card"><span>در حال انجام</span><strong>${doing}</strong></div><div class="admin-dash-card"><span>تکمیل‌شده</span><strong>${done}</strong></div><div class="admin-dash-card"><span>نرخ تکمیل سفارش‌ها</span><strong>${d.orders.length?Math.round(done/d.orders.length*100):0}٪</strong></div></div><h4>سفارش‌های ثبت‌شده در ۷ روز اخیر</h4><div class="admin-chart">${daily.map(x=>`<div class="admin-chart-col"><b>${x.count}</b><div class="admin-chart-bar" style="height:${Math.max(3,Math.round(x.count/maxDaily*105))}px" title="${x.count} سفارش"></div><small>${x.label}</small></div>`).join('')}</div><div class="admin-growth-wrap"><h4>📈 روند رشد سفارش‌ها</h4><p class="admin-chart-note">نمودار هفت‌روزه سفارش‌ها در بالا روند روزانه را نشان می‌دهد؛ بازدیدهای هفت‌روزه و صفحات پربازدید در بخش آمار بازدید نمایش داده می‌شوند.</p></div>${analyticsBlock}<p class="admin-chart-note">آمار کاربران از حساب‌های ثبت‌شده در Supabase و آمار بازدید از بازدیدهای ثبت‌شده در این سایت محاسبه می‌شود. بازدیدهای قبل از فعال‌سازی ثبت‌کننده، قابل بازیابی نیستند.</p></section>`;
+ const dashboard=`<section class="admin-dashboard"><h3>📊 داشبورد آمار</h3><div class="admin-dash-grid"><div class="admin-dash-card"><span>کل سفارش‌ها</span><strong>${d.orders.length}</strong></div><div class="admin-dash-card"><span>کل پیام‌های ثبت‌شده</span><strong>${d.messages.length}</strong></div><div class="admin-dash-card"><span>سفارش‌های جدید</span><strong>${fresh}</strong></div><div class="admin-dash-card"><span>در حال انجام</span><strong>${doing}</strong></div><div class="admin-dash-card"><span>تکمیل‌شده</span><strong>${done}</strong></div><div class="admin-dash-card"><span>نرخ تکمیل سفارش‌ها</span><strong>${d.orders.length?Math.round(done/d.orders.length*100):0}٪</strong></div></div><h4>سفارش‌های ثبت‌شده در ۷ روز اخیر</h4><div class="admin-chart">${daily.map(x=>`<div class="admin-chart-col"><b>${x.count}</b><div class="admin-chart-bar" style="height:${Math.max(3,Math.round(x.count/maxDaily*105))}px" title="${x.count} سفارش"></div><small>${x.label}</small></div>`).join('')}</div>${analyticsBlock}<p class="admin-chart-note">آمار کاربران از حساب‌های ثبت‌شده در Supabase و آمار بازدید از بازدیدهای ثبت‌شده در این سایت محاسبه می‌شود. بازدیدهای قبل از فعال‌سازی ثبت‌کننده، قابل بازیابی نیستند.</p></section>`;
  showModal(`<div class="modal-head"><h2>🔐 پنل مدیریت</h2><button class="icon-btn" onclick="closeModal()">✕</button></div>
  ${dashboard}
- <div class="admin-extra-actions">
- <button class="btn secondary" onclick="openAdminUsers()">👥 مدیریت کاربران</button>
- <button class="btn secondary" onclick="openAdminNotifications()">🔔 مرکز اعلان‌ها</button>
- <button class="btn secondary" onclick="exportAdminReport()">📥 دریافت گزارش CSV</button>
- </div>
  <div class="admin-kpis"><div class="admin-kpi"><span>کل سفارش‌ها</span><b>${d.orders.length}</b></div><div class="admin-kpi"><span>جدید</span><b>${fresh}</b></div><div class="admin-kpi"><span>در حال انجام</span><b>${doing}</b></div><div class="admin-kpi"><span>تمام‌شده</span><b>${done}</b></div></div>
  <input class="field" id="adminSearch" placeholder="جست‌وجوی سفارش یا پیام..." oninput="renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',this.value)" value="${esc(query)}">
  <div class="admin-tabs"><button class="chip ${tab==='all'?'active':''}" data-admin-tab="all" onclick="renderAdmin('all',document.getElementById('adminSearch')?.value||'')">همه</button><button class="chip ${tab==='orders'?'active':''}" data-admin-tab="orders" onclick="renderAdmin('orders',document.getElementById('adminSearch')?.value||'')">سفارش‌ها</button><button class="chip ${tab==='messages'?'active':''}" data-admin-tab="messages" onclick="renderAdmin('messages',document.getElementById('adminSearch')?.value||'')">پیام‌ها</button></div>
  <button class="btn secondary" style="margin:10px 0" onclick="openAdminChatInbox()">💬 صندوق گفت‌وگوها</button><h3>🛠️ سفارش‌ها (${orders.length})</h3>${orders.map(r=>`<div class="field" style="margin:8px 0"><b>${esc(r.service)}</b> — ${esc(r.name)}<br><small>${esc(r.contact)} · کد: ${esc(r.order_code||'برای سفارش‌های قدیمی ثبت نشده')}</small><p>${esc(r.description)}</p><select class="field" style="margin-top:8px;width:100%" onchange="setStatus(${Number(r.id)},this.value)">${Object.keys(ST).map(k=>`<option value="${k}" ${(r.status||'new')===k?'selected':''}>${ST[k]}</option>`).join('')}</select></div>`).join('')||'<p class="empty">سفارشی پیدا نشد.</p>'}
  <h3 style="margin-top:18px">📩 پیام‌ها (${messages.length})</h3>${messages.map(r=>`<div class="field" style="margin:8px 0"><b>${esc(r.name)}</b> (${esc(r.email)})<p>${esc(r.message)}</p><button class="btn secondary" onclick="startChatWith('${esc(r.email)}')">پاسخ در چت آنلاین</button></div>`).join('')||'<p class="empty">پیامی پیدا نشد.</p>'}`);
 }
-/* ۲) مدیریت کاربران؛ اطلاعات فقط از تابع امن سمت دیتابیس دریافت می‌شود. */
-window.openAdminUsers=async function(){
- const boxTitle='<div class="modal-head"><h2>👥 مدیریت کاربران</h2><button class="icon-btn" onclick="openAdmin()">بازگشت</button></div>';
- showModal(boxTitle+'<p class="empty">در حال دریافت کاربران…</p>');
- const {data,error}=await sb().rpc('admin_registered_users');
- if(error){console.error(error);showModal(boxTitle+'<p class="empty">فهرست کاربران آماده نیست. تابع admin_registered_users را با فایل SQL تکمیلی اجرا کن.</p>');return}
- const users=Array.isArray(data)?data:[];
- showModal(boxTitle+`<p>تعداد کاربران: <b>${users.length.toLocaleString('fa-IR')}</b></p><input id="adminUserSearch" class="field" placeholder="جست‌وجوی ایمیل یا نام..." oninput="filterAdminUsers()"><div id="adminUsersList">${users.map(u=>`<div class="admin-user-row" data-user-search="${esc((u.email||'')+' '+(u.full_name||''))}"><b>${esc(u.full_name||'کاربر بدون نام')}</b><p>${esc(u.email||'بدون ایمیل')}</p><small>ثبت‌نام: ${u.created_at?new Date(u.created_at).toLocaleDateString('fa-IR'):'—'}</small></div>`).join('')||'<p class="empty">کاربری پیدا نشد.</p>'}</div>`);
-};
-window.filterAdminUsers=function(){const q=(document.getElementById('adminUserSearch')?.value||'').toLowerCase();document.querySelectorAll('#adminUsersList .admin-user-row').forEach(x=>x.style.display=x.dataset.userSearch.toLowerCase().includes(q)?'':'none')};
-
-/* ۳) مرکز اعلان‌ها از سفارش‌ها و پیام‌های واقعی همین پنل ساخته می‌شود. */
-window.openAdminNotifications=function(){
- const d=window.__adminData||{orders:[],messages:[]};
- const notices=[...d.orders.map(x=>({kind:'سفارش',title:x.service||'سفارش جدید',detail:`${x.name||'کاربر'} · ${x.status||'new'}`,time:x.created_at})),...d.messages.map(x=>({kind:'پیام',title:x.name||'پیام جدید',detail:x.message||'',time:x.created_at}))].sort((a,b)=>new Date(b.time||0)-new Date(a.time||0)).slice(0,30);
- showModal(`<div class="modal-head"><h2>🔔 مرکز اعلان‌ها</h2><button class="icon-btn" onclick="openAdmin()">بازگشت</button></div><p class="admin-report-note">آخرین سفارش‌ها و پیام‌ها؛ اعلان‌های داخل این فهرست از داده‌های ذخیره‌شده ساخته می‌شوند.</p>${notices.map(n=>`<div class="admin-notice-row"><b>${n.kind}: ${esc(n.title)}</b><p>${esc(n.detail)}</p><small>${n.time?new Date(n.time).toLocaleString('fa-IR'):'زمان نامشخص'}</small></div>`).join('')||'<p class="empty">اعلانی وجود ندارد.</p>'}`);
-};
-
-/* ۴) گزارش CSV قابل بازکردن در Excel؛ شامل سفارش‌ها و پیام‌های بارگذاری‌شده در پنل. */
-window.exportAdminReport=function(){
- const d=window.__adminData||{orders:[],messages:[]};
- const rows=[['نوع','شناسه','عنوان/خدمت','نام','راه ارتباطی','وضعیت/پیام','تاریخ']];
- (d.orders||[]).forEach(x=>rows.push(['سفارش',x.id,x.service,x.name,x.contact,x.status,x.created_at]));
- (d.messages||[]).forEach(x=>rows.push(['پیام',x.id,'پیام سایت',x.name,x.email,x.message,x.created_at]));
- const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""').replace(/[\r\n]+/g,' ' )+'"').join(',')).join('\r\n');
- const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='academy-admin-report.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('گزارش CSV آماده شد ✅');
-};
-
 window.setStatus=async function(id,v){const {error}=await sb().from('orders').update({status:v}).eq('id',id);if(error){console.error(error);toast('تغییر وضعیت ناموفق بود');return}const r=(window.__adminData?.orders||[]).find(x=>Number(x.id)===Number(id));if(r)r.status=v;toast('وضعیت سفارش تغییر کرد ✅');renderAdmin(document.querySelector('[data-admin-tab].active')?.dataset.adminTab||'all',document.getElementById('adminSearch')?.value||'')};
 
 /* نمونه‌کار و پیگیری سفارش با RPC امن؛ کد سفارش اطلاعات شخصی را نمایش نمی‌دهد. */
